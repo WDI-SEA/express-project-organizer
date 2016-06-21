@@ -20,13 +20,10 @@ router.post('/', function(req, res) {
     }).spread(function(category, created) {
       project.addCategory(category);
     }).then(function(project) {
-      res.redirect('/');
+      res.redirect('/', { category: category });
     })
   })
   res.redirect('/');
-  // .catch(function(error) {
-  //   res.status(400).render('main/404');
-  // })
 });
 
 // GET /projects/new - display form for creating a new project
