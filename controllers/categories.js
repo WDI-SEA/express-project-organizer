@@ -9,4 +9,15 @@ router.get('/', function(req, res) {
   })
 });
 
+router.get('/:id', function(req, res) {
+  db.category.find({
+    where: {
+      id: req.params.id
+    },
+    include: [db.project]
+  }).then(function(category) {
+    res.render('categories/categoryProjectList', {category: category});
+  })
+});
+
 module.exports = router;
