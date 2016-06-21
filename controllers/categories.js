@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
   db.category.findAll()
   .then(function(categories) {
-    res.send(categories);
+    res.render('categories/categories', {categories: categories});
   })
 });
 

@@ -11,14 +11,12 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    console.log('1');
     db.category.findOrCreate({
       where: {
       name: req.body.categories
       }
     })
      .spread(function(category, created) {
-      console.log('2');
       project.addCategory(category);
      })
        .then(function(foo){
