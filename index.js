@@ -21,6 +21,8 @@ app.get('/', function(req, res) {
 
 app.use('/projects', require('./controllers/projects'));
 
+app.use('/categories', require('./controllers/categories'));
+
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
