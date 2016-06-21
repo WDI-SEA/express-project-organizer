@@ -1,13 +1,13 @@
 var db = require('./models');
 
-// db.category.create({
-//   name: 'node'
-// }).then(function(category) {
-//   console.log(category.get());
-// });
+db.category.create({
+  name: 'node'
+}).then(function(category) {
+  console.log(category.get());
+});
 
 db.project.find({
-  where: { id: 1 },
+  where: { id: 3 },
   include: [db.category]
 }).then(function(project) {
   // by using eager loading, the project model should have a categories key
@@ -18,3 +18,4 @@ db.project.find({
     console.log(category.get());
   });
 });
+
