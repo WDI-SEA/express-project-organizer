@@ -12,14 +12,13 @@ router.get('/index', function(req, res) {
   })
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:name', function(req, res) {
   db.category.findAll({
     where: { id: req.params.id }
   })
   .then(function(category) {
-    console.log(category);
     if (!category) throw Error();
-    res.render('category/index', { category: category });
+    res.render('category/show', { category: category });
   })
   .catch(function(error) {
     res.status(400).render('main/404');
