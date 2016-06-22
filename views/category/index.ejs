@@ -2,3 +2,8 @@
 
 
 
+<% categories.forEach(function(category) { %>
+<div class="well">
+    <h2><a href="<%= category.name %>"><%= category.name %></a></h2>
+</div>
+ <% }); %>

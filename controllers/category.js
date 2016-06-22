@@ -6,22 +6,20 @@ var app = express();
 var router = express.Router();
 
 router.get('/index', function(req, res) {
-  res.render('category/index');
+  db.category.findAll()
+  .then(function(categories) {
+  res.render('category/index', { categories: categories });
+  })
 });
-  // db.category.find({
-  //   where: { id: req.params.id }
-  // }).then(function(category) {
-  //   if(!category) throw Error();
-  //   res.render('category/index', { category: category });
-  // })
 
 router.get('/:id', function(req, res) {
-  db.category.find({
+  db.category.findAll({
     where: { id: req.params.id }
   })
   .then(function(category) {
+    console.log(category);
     if (!category) throw Error();
-    res.render('category/show', { category: category });
+    res.render('category/index', { category: category });
   })
   .catch(function(error) {
     res.status(400).render('main/404');
@@ -29,3 +27,4 @@ router.get('/:id', function(req, res) {
 });
 
 module.exports = router;
+
