@@ -6,20 +6,21 @@ body {
 .box-parent {
   margin-top: 50px;
   display: flex;
-  /*flex-direction: row;*/
   justify-content: center;
   flex-wrap: wrap;
   align-self: flex-end;
 }
 
 .box {
-  /*display: inline-block;*/
-  /*float: left;*/
   width: 200px;
   height: 200px;
   background-color: white;
-  margin: 0 25px 25px 0;
   border-radius: 10px;
   text-align: center;
+  margin: 0 25px 25px 0;
   padding-top: 50px;
 }
+
+/*.spacing {
+
+}*/
