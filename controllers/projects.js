@@ -27,9 +27,9 @@ router.post('/', function(req, res) {
 });
 
 // GET /projects/
-router.get("/", function(req, res) {
-  res.send("Hello Projects");
-})
+// router.get("/", function(req, res) {
+//   res.send("Hello Projects");
+// })
 
 
 // GET /projects/new - display form for creating a new project
