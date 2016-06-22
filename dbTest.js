@@ -1,4 +1,4 @@
-var db = require("./models");
+var db = require('./models');
 
 // // Test that a category can be created
 // db.category.create({
@@ -28,24 +28,17 @@ var db = require("./models");
 //   console.log(query.get())
 // })
 
-// Test findOrCreate and add Category
-// router.post('/', function(req, res) {
-//   db.project.create({
-//     name: req.body.name,
-//     githubLink: req.body.githubLink,
-//     deployedLink: req.body.deployedLink,
-//     description: req.body.description
+
+// // Add a category to a project
+//   db.project.find({
+//     where: { id: 2 }
 //   })
-//   .then(function(project) {
-//     project.findOrCreateCategory({
-//       defaults: { category: req.body.categoryInput }
-//     })
-//     .then(function(cat) {
-//       console.log(cat.get());
-//     })
-//     // res.redirect('/');
+//   .then(function(project){
+//     db.category.findOrCreate({
+//       where: { name: "node" }
+//     }).spread(function(cat, created) {
+//       project.addCategory(cat);
+//     });
 //   })
-//   .catch(function(error) {
-//     res.status(400).render('main/404');
-//   });
-// });
+
+
