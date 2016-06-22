@@ -1,6 +1,10 @@
-<p>this is the categories show page</p>
+<h1>Projects in that Category</h1>
 
 
-  <h1><a href="<%= category %>">Link</a></h1>
+  <% projects.forEach(function(category) { %>
+    <div class="well">
+      <h1><a href="/category/<%= category.name %>"><%= category.name %></a></h1>
+    </div>
+  <% }); %>
 
 
