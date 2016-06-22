@@ -32,6 +32,22 @@ router.get('/new', function(req, res) {
   res.render('projects/new');
 });
 
+router.get('/categories', function(req,res) {
+  db.category.findAll().then(function(category) {
+    res.render('projects/categories', { category: category})
+  });
+});
+
+router.get('/categories/:id', function(req,res) {
+  db.category.find({
+    where: {id: req.params.id}
+  }).then(function(category) {
+    category.getProjects().then(function(projects) {
+      res.render('projects/sorted', { projects: projects})
+    })
+  })
+})
+
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
@@ -46,12 +62,5 @@ router.get('/:id', function(req, res) {
   });
 });
 
-router.get('/categories', function(req,res) {
-  db.categories.findAll({
-
-  }).then(function(category) {
-    res.render('projects/categories', { category: category})
-  });
-});
 
 module.exports = router;

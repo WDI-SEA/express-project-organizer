@@ -1,1 +1,3 @@
-<%= console.log(category) %>
+<% category.forEach(function(category) { %>
+  <h1><a href="/projects/categories/<%= category.id %>"><%= category.name %></a></h1>
+<% }); %>
