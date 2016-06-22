@@ -11,6 +11,17 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    // console.log(project);
+    db.category.findOrCreate({
+      where:{ name: req.body.category }
+    })
+    .spread(function(data, create){
+      // console.log(category.get());
+      db.categoriesProjects.create({
+        categoryId: data.id,
+        projectId: project.id
+      })
+    });
     res.redirect('/');
   })
   .catch(function(error) {
