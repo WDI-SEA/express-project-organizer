@@ -1,6 +1,8 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
+var bodyParser = require('body-parser');
+var ejsLayouts = require('express-ejs-layouts');
 
 // POST /projects - create a new project
 // add the new
