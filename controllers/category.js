@@ -12,18 +12,25 @@ router.get('/', function(req, res) {
   })
 })
 
-// GET /projects/:id - display a specific project
-  router.get('/:id', function(req, res) {
+// GET /categories/:id - display a list of categories
+  router.get('/:name', function(req, res) {
     db.category.find({
-      where: { id: req.params.id }
+      where: {
+        name: req.params.name
+      }
     })
     .then(function(category) {
       if (!category) throw Error();
-      res.render('category', { category: category });
+      //render a projects page that contain a certain category
+        category.getProjects().then(function(projects){
+          res.render('categories/new', { projects: projects });
+      })
     })
     .catch(function(error) {
+      console.log(error);
       res.status(400).render('main/404');
     });
   });
+
 
 module.exports = router;
