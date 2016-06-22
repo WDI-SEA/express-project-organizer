@@ -1,2 +1,9 @@
 <h1>this is the categories page</h1>
 
+
+
+     <% categories.forEach(function(categories) { %>
+<div class="well">
+        <a href="/category/<%= categories.name %>"><%= categories.name %></a>
+</div>
+    <% }); %>
