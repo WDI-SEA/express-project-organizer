@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
   db.project.findAll()
@@ -19,6 +20,7 @@ app.get('/', function(req, res) {
   });
 });
 
+app.use('/categories', require('./controllers/categories'));
 app.use('/projects', require('./controllers/projects'));
 
 var server = app.listen(process.env.PORT || 3000);

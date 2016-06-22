@@ -1,0 +1,8 @@
+<h1>Projects</h1>
+
+
+<% projects.forEach(function(project) { %>
+  <div class="well">
+    <h4><a href="/projects/<%= project.id %>"><%= project.name %></a></h4>
+  </div>
+<%  }) %>

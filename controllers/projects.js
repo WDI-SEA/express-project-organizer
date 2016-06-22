@@ -4,6 +4,7 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
+
   // Create project
   db.project.create({
     name: req.body.name,
@@ -23,11 +24,14 @@ router.post('/', function(req, res) {
         projectId: project.id
       });
     })
+
+
     // Redirect when finishes
     .then(function(object) {
       res.redirect('/');
     });
   })
+  // Error catching
   .catch(function(error) {
     res.status(400).render('main/404');
   });
