@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use(express.static(__dirname + '/public'));
 
 // Route to our homepage
 
@@ -21,33 +22,7 @@ app.get('/', function(req, res) {
   });
 });
 
-// Route to our Categories page, listing all Categories
-
-app.get('/categories', function(req, res) {
-  db.categorie.findAll()
-  .then(function(categories) {
-    res.render('categories/categories', { categories: categories });
-  })
-  .catch(function(error) {
-    res.status(404).render('main/404');
-  });
-});
-
-// Route to a specific Category page, listing all Projects tagged with that Category
-
-app.get('/categories/:name', function(req, res) {
-  db.categorie.find({
-    where: { id: req.params.name }
-  }).then(function(categorie) {
-    categorie.getProjects().then(function(projects) {
-      res.render('categories/show', {
-      projects: projects,
-      categorie: categorie
-      });
-    });
-  });
-});
-
+app.use('/categories', require('./controllers/categories'));
 app.use('/projects', require('./controllers/projects'));
 
 var server = app.listen(process.env.PORT || 3000);

@@ -30,11 +30,13 @@ router.post('/', function(req, res) {
 });
 
 // GET /projects/new - display form for creating a new project
+
 router.get('/new', function(req, res) {
   res.render('projects/new');
 });
 
 // GET /projects/:id - display a specific project
+
 router.get('/:id', function(req, res) {
   db.project.find({
     where: { id: req.params.id }
@@ -45,6 +47,16 @@ router.get('/:id', function(req, res) {
   })
   .catch(function(error) {
     res.status(400).render('main/404');
+  });
+});
+
+// POST /projects/:id - delete a project
+
+router.put('/:id', function(req, res) {
+  db.project.destroy({
+    where: { id: req.param.id }
+  }).then(function() {
+    res.redirect('/');
   });
 });
 
