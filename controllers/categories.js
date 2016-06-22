@@ -8,6 +8,14 @@ router.get('/', function(req, res) {
   })
 });
 
-
+router.get('/:name', function(req, res) {
+  db.category.find({
+    where: { name: req.params.name },
+    include: [db.project]
+  }).then(function(nameParam) {
+    res.render('categories/details', { nameParam });
+    // res.send(nameParam);
+  })
+});
 
 module.exports = router;

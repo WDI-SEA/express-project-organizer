@@ -5,7 +5,8 @@
 
   <% category.forEach(function(categoryObject) { %>
     <div class="well">
-    <h2><%= categoryObject.name %></h2>
+    <h2><a href="/categories/<%= categoryObject.name %>" title=""><%= categoryObject.name %></a></h2>
     </div>
   <% }); %>
 </div>
+
