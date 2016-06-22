@@ -1,0 +1,15 @@
+body {
+  background-image: url(../img/background.jpg);
+  background-size: cover;
+}
+ h1 {
+  background-color: rgb(100,200,0);
+  color: white;
+ }
+  #myProjects{
+  background-color: rgb(100,200,0);
+  color: white;
+ }
+ .well {
+  background-color: rgb(100,200,0);
+ }
