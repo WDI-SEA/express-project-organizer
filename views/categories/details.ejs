@@ -1,0 +1,9 @@
+<div class="container">
+ <h1><%= name.name %> Category</h1>
+
+ <% name.projects.forEach(function(project) { %>
+   <h2>Project Name: <%= project.name %> </h2>
+   <h2>Description: <%= project.description %> </h2>
+ <% }); %>
+
+</div>
