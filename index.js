@@ -31,7 +31,7 @@ app.post('/projects', function(req, res) {
 
 // GET /projects/new - page that has a form for creating a new project
 app.get('/projects/new', function(req, res) {
-  res.send('Route for GET /projects/new');
+  res.render('projects/new');
 });
 
 // GET /projects/:id - page that shows a specific project
