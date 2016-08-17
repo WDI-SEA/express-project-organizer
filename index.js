@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
-
+   
 app.get('/', function(req, res) {
   db.project.findAll()
   .then(function(projects) {
