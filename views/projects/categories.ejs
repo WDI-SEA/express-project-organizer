@@ -1,0 +1,9 @@
+<h1>Project Categories</h1>
+  <ul>
+    <% categories.forEach(function(cat){ %>
+      <li>
+        <a href="/projects/categories/<%= cat.id %>"><%= cat.name %></a>
+      </li>
+    <% }); %>
+  </ul>
+<!-- categories -->
