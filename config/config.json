@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "project_organizer_development",
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

@@ -18,9 +18,25 @@ app.get('/', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+app.get("/categories", function(req, res){
+	  db.catagory.findAll().then(function(catagories){
+    res.render("catagories/catagories", {catagories: catagories});
+  });
+});
 
 app.use('/projects', require('./controllers/projects'));
 
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
+
+
+// for multipe comments
+// var test = function (input){
+//   input = input.replace(/,\s+/g, ',');
+//   console.log(input);
+//   var array = input.split(',');
+//   console.log(array);
+// }
+
+// test('1, 2, tree, pine,  apple, things to remember');
