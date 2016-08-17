@@ -1,0 +1,7 @@
+<div>
+  <h2><%= category.name %></h2>
+  <strong>Projects:</strong>
+  <% category.projects.forEach(function(project){ %>
+    <strong>#<%= project.name %></strong>
+  <% }); %>
+</div>

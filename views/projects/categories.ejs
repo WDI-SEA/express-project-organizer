@@ -1,0 +1,8 @@
+<div>
+  <h2>All Categories</h2>
+  <ul style="list-style-type:none">
+    <% category.forEach(function(cat){ %>
+      <li><a href="/projects/category/<%= cat.id %>"><%= cat.name %></a></li>
+    <% }); %>
+  </ul>
+</div>
