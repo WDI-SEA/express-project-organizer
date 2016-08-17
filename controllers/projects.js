@@ -4,21 +4,19 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  db.project.findOrCreate({
-    where: {
+  db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  },
-  include: [db.category]
-  }).spread(function(project, created) {
+
+  }).then(function(project) {
     db.category.findOrCreate({
       where: {name: req.body.category} //where do the key: parameter
-    }).spread(function(category, created){
-      console.log(category.get());
+    }).spread(function(cat, created){
+      console.log(cat.get());
       if(category){
-        project.addCategory(category);
+        project.addCategory(cat);
       }
     });
 
