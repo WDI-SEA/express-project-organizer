@@ -9,6 +9,9 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
+////////ROUTES
+
+///home page that lists all projects
 app.get('/', function(req, res) {
   db.project.findAll()
   .then(function(projects) {
@@ -19,8 +22,25 @@ app.get('/', function(req, res) {
   });
 });
 
+
+///controllers
 app.use('/projects', require('./controllers/projects'));
 
+///listener
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
