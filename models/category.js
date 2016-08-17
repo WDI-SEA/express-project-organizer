@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        models.category.belongsToMany(models.project, {through: 'categoriesProjects'});
+        models.category.belongsToMany(models.project, {through: models.category_project});
       }
     }
   });

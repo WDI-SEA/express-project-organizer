@@ -15,9 +15,7 @@ router.post('/', function(req, res) {
       where: {name: req.body.category} //where do the key: parameter
     }).spread(function(cat, created){
       console.log(cat.get());
-      if(category){
         project.addCategory(cat);
-      }
     });
 
     res.redirect('/');
