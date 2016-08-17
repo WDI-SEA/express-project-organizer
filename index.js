@@ -9,6 +9,7 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
+//GET / - home page that lists all projects
 app.get('/', function(req, res) {
   db.project.findAll()
   .then(function(projects) {
