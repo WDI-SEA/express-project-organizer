@@ -10,3 +10,21 @@
     </h2>
   </div>
 <% }); %>
+
+
+
+
+
+<h2>My Categories</h2>
+
+<% projects.forEach(function(project) { %>
+  <% project.categories.forEach(function(category) { %>
+  <div class="well">
+    <h2>
+      <a href="/categories/<%= category.id %>"><%= category.category %></a>
+      <small>by <%= category.category %></small>
+    </h2>
+  </div>
+
+  <% }); %>
+<% }); %>

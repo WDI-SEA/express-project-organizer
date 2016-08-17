@@ -11,7 +11,14 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
+    db.category.findOrCreate({where:{
+      category: req.body.categoryName
+    }
+    })
+    .spread(function(category, created) {
+      project.addCategory(category);
+      res.redirect('/');
+    })
   })
   .catch(function(error) {
     res.status(400).render('main/404');
@@ -25,14 +32,19 @@ router.get('/new', function(req, res) {
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
+  console.log("BEFORE FIND ---------- ");
   db.project.find({
-    where: { id: req.params.id }
+    where: { id: req.params.id }, include: [db.category]
   })
   .then(function(project) {
+    console.log("AFTER FIND ---------- ");
     if (!project) throw Error();
+    // res.send(project);
     res.render('projects/show', { project: project });
   })
   .catch(function(error) {
+    console.log("Catch");
+
     res.status(400).render('main/404');
   });
 });
