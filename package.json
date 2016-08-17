@@ -26,5 +26,15 @@
     "pg": "^5.1.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.23.3"
-  }
+  },
+  "description": "To practice M:M associations, we'll be adding the ability to categorize projects in an existing project organizer.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boetw/express-project-organizer.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/boetw/express-project-organizer/issues"
+  },
+  "homepage": "https://github.com/boetw/express-project-organizer#readme"
 }
