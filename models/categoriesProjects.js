@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var category_project = sequelize.define('category_project', {
+  var categoriesProjects = sequelize.define('categoriesProjects', {
     categoryId: DataTypes.INTEGER,
     projectId: DataTypes.INTEGER
   }, {
@@ -10,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return category_project;
+  return categoriesProjects;
 };

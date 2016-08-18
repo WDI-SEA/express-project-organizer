@@ -36,9 +36,10 @@ router.get('/categories/:id', function(req, res){
   //console.log('cat route for id');
   //console.log(req.params.id);
   db.category.findById(req.params.id).then(function(category){
-    db.category.findAll({ where: {name: category.name}, include: [db.project] }).spread(function(proj){
-      console.log("project obj " + proj);
-      res.render("projects/showCategory", { projects: proj });
+    category.getProjects().then(function(projects){
+      console.log(category.name);
+      console.log("project obj " + projects);
+      res.render("projects/showCategory", { projects: projects });
     });  
   }); 
 });
