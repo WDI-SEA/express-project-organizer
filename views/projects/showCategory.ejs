@@ -1,0 +1,7 @@
+<h3>All projects listed under a tag</h3>
+
+    <% projects.forEach(function(project){ %>
+      <li>
+        <a href="/projects/<%= project.id %>"><%= project.title %></a>
+      </li>
+    <% }); %>
