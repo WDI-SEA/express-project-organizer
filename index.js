@@ -27,7 +27,32 @@ app.get('/', function(req, res) {
 
 // POST /projects - creates a new project, then redirects back to GET /
 app.post('/projects', function(req, res) {
-  console.log(req.body);
+   console.log(req.body);
+
+  db.project.findOrCreate({  
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployedLink: req.body.deployedLink,
+      description: req.body.description
+    },
+    include: [db.category]
+  }).spread(function(art, wasCreated) {
+    if(req.body.category) {
+      db.tag.findOrCreate({
+        where: {name: req.body.category}
+      }).spread(function(tag, wasCreated) {
+        if(category !== '') {
+          art.addTag(category);
+          res.redirect('/'); 
+        } else {
+          res.render('projects/new, {errorMessage: 'Something went wrong, please try again!'});
+        }
+      })
+    } else { 
+      res.redirect('/')
+    }
+  })
+
 });
 
 // GET /projects/new - page that has a form for creating a new project
