@@ -9,8 +9,15 @@ router.post('/', function(req, res) {
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
+
+  }).then(function(project) {
+    db.category.findOrCreate({
+      where: {name: req.body.category} //where do the key: parameter
+    }).spread(function(cat, created){
+      console.log(cat.get());
+        project.addCategory(cat);
+    });
+
     res.redirect('/');
   })
   .catch(function(error) {
@@ -36,5 +43,19 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+//GET /categories
+
+//GET categories/:id
+// db.category.find({
+//   where: {name: req.params.categoryId}
+// }).then(function(category){
+//   category.getProjects().then(function(project){
+//     console.log('These posts are tagged with ' + category.name);
+//     projects.forEach(function(project){
+//       console.log('Post title: ' + project.title);
+//     });
+//   });
+// });
 
 module.exports = router;
