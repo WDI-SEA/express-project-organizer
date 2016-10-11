@@ -8,14 +8,49 @@ router.post('/', function(req, res) {
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then(function(project) {
+    description: req.body.description,
+  }).then(function(project) {
+    if(req.body.catagory) {
+      var categories = req.body.catagory.split(",");
+
+      for(var i = 0; i < categories.length; i++) {
+        db.category.findOrCreate({
+          where: {name: categories[i]}
+        }).spread(function(category, wasCreated) {
+          if(category) {
+            project.addCategory(category);
+          }
+        });
+      }
+    }
     res.redirect('/');
   })
   .catch(function(error) {
     res.status(400).render('main/404');
   });
+});
+
+// GET projects/categories - displays all the categories
+router.get("/categories", function(req, res) {
+  db.category.findAll({
+    order: "name ASC"
+  }).then(function(categories) {
+    res.render("categories/show-all", { categories: categories });
+  }).catch (function(error) {
+    res.status(400).render("main/404");
+  });
+});
+
+// GET /categories/:id - show a specific category and all the projects with that category
+router.get("/categories/:id", function(req, res) {
+  db.category.find({
+    where: {id: req.params.id},
+    include: [db.project]
+  }).then(function(category) {
+    res.render("categories/show-one", { category: category })
+  }).catch (function(error) {
+    res.status(400).render("main/404");
+  })
 });
 
 // GET /projects/new - display form for creating a new project
