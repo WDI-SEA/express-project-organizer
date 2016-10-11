@@ -1,0 +1,7 @@
+<h1>Here is a list of projects that have the category <%= categoryName %></h1>
+
+<% projects.forEach(function(project) { %>
+  <div class="well">
+    <%= project.name %>
+  </div>
+<% }); %>
