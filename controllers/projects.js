@@ -8,15 +8,29 @@ router.post('/', function(req, res) {
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then(function(project) {
+    description: req.body.description,
+  }).then(function(project) {
+    if(req.body.catagory) {
+      var categories = req.body.catagory.split(",");
+
+      for(var i = 0; i < categories.length; i++) {
+        db.category.findOrCreate({
+          where: {name: categories[i]}
+        }).spread(function(category, wasCreated) {
+          if(category) {
+            project.addCategory(category);
+          }
+        });
+      }
+    }
     res.redirect('/');
   })
   .catch(function(error) {
     res.status(400).render('main/404');
   });
 });
+
+// GET /categories - displays all the categories
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
