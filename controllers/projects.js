@@ -30,7 +30,28 @@ router.post('/', function(req, res) {
   });
 });
 
-// GET /categories - displays all the categories
+// GET projects/categories - displays all the categories
+router.get("/categories", function(req, res) {
+  db.category.findAll({
+    order: "name ASC"
+  }).then(function(categories) {
+    res.render("categories/show-all", { categories: categories });
+  }).catch (function(error) {
+    res.status(400).render("main/404");
+  });
+});
+
+// GET /categories/:id - show a specific category and all the projects with that category
+router.get("/categories/:id", function(req, res) {
+  db.category.find({
+    where: {id: req.params.id},
+    include: [db.project]
+  }).then(function(category) {
+    res.render("categories/show-one", { category: category })
+  }).catch (function(error) {
+    res.status(400).render("main/404");
+  })
+});
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
