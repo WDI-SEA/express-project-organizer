@@ -11,6 +11,18 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    if(req.body.categories){
+      var categories = req.body.categories.split(",");
+      for (var i = 0; i < categories.length; i++) {
+        db.category.findOrCreate({
+          where: {name: categories[i]}
+        }).spread(function(category, wasCreated){
+          if(category) {
+            project.addCategory(category);
+          }
+        });
+      }
+    }
     res.redirect('/');
   })
   .catch(function(error) {
