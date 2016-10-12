@@ -1,16 +1,28 @@
+
+//Requires
 var express = require('express');
 var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
+
+//Variables
 var db = require('./models');
 var app = express();
 
+
+//Set & Use
 app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'));
 
+
+//Routes
 app.get('/', function(req, res) {
-  db.project.findAll()
+  db.project.findAll({
+  	include: [db.category]
+  })
   .then(function(projects) {
     res.render('main/index', { projects: projects });
   })
@@ -19,8 +31,11 @@ app.get('/', function(req, res) {
   });
 });
 
-app.use('/projects', require('./controllers/projects'));
 
+
+
+
+//Listen
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;

@@ -1,0 +1,11 @@
+<div>
+  <h2>Project Category Details</h2>
+  <ul>
+    <% projects.forEach(function(project){ %>
+      <ul>
+        <li><%= project.name %></li>
+        <li><%= project.githubLink %></li>
+        <li><%= project.description %></li>
+    <% }); %>
+  </ul>
+</div> 
