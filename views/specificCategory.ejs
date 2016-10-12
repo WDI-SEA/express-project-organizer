@@ -1,0 +1,14 @@
+<h2>Category Name: <%= id.name %></h2>
+
+<p>The projects associated with this category are...</p>
+
+
+<ul>
+
+<% projects.forEach(function(project) { %>
+	
+	<li><%= project.name %></li>
+
+<% }); %>
+
+</ul>
