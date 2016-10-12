@@ -2,6 +2,17 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+
+router.get('/', function(req, res) {
+  db.project.findAll()
+  .then(function(projects) {
+    res.render('main/index', { projects: projects });
+  })
+  .catch(function(error) {
+    res.status(400).render('main/404');
+  });
+});
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
@@ -9,11 +20,26 @@ router.post('/', function(req, res) {
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+  }).then(function(project) {
+    //using the category name from, form
+    if(req.body.categories){
+    //create array
+    var categories = req.body.categories.split(",");
+      //loop through
+      for(var i = 0; i < categories.length; i++){
+        //either find category or create it using the module category
+        db.category.findOrCreate({
+          where: {name: categories[i]}
+        }).spread(function(category, wasCreated){
+          if(category){
+          project.addCategory(category);//this part creates the relaitonship in the map table
+          }
+        });//end spread
+      }//end loop
+    }
+    res.redirect("/");
+    })
+    .catch(function(error) {
     res.status(400).render('main/404');
   });
 });
@@ -36,5 +62,6 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 module.exports = router;
