@@ -18,6 +18,25 @@ app.get('/', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+////////////////////////////////////////////////////////
+
+//show all categories
+app.get("/categories", function(req,res){
+  db.category.findAll({ order: "name ASC" }).then(function(categories){
+	res.render("categories", { categories: categories }); //passing authors i get from the query to the authors view
+	});
+});
+
+app.get('/categories/:id', function(req, res){
+  db.category.find({
+    where: { id: req.params.id },
+  }).then(function(category){
+    category.getProjects().then(function(projects){
+      res.render('categoriesDetails', { name: name, projects: projects });
+    });
+  });//end then
+})
+
 
 app.use('/projects', require('./controllers/projects'));
 
