@@ -19,6 +19,24 @@ app.get('/', function(req, res) {
   });
 });
 
+//shows a list of all the categories that exist
+app.get("/categories", function(req, res){
+	db.category.findAll().then(function(categories){
+		res.render("all_categories", {categories: categories});
+	});
+});
+
+//get all projects with a certain category
+app.get("/categories/:id", function(req, res){
+	db.category.find({
+		where: {id: req.params.id}
+	}).then(function(category){
+		category.getProjects().then(function(projects){
+			res.render("categoryDetail", {categoryName: category.name, projects: projects});
+		})
+	})
+})
+
 app.use('/projects', require('./controllers/projects'));
 
 var server = app.listen(process.env.PORT || 3000);
