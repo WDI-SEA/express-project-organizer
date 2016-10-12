@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        models.project.belongsToMany(models.category, {through: "categoriesProjects"}); //through specifies that article and tag have a many to many relationship through this third tabl "article tag" (specify name of join table)
       }
     }
   });
