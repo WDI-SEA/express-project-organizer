@@ -19,6 +19,28 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/categories', function(req, res) {
+	db.category.findAll().
+	then(function(categories) {
+		res.render('categories', {categories: categories});
+	})
+});
+
+app.get('/categories/:id', function(req, res) {
+	db.category.find({
+		where: {id: req.params.id}
+	}).then(function(id) {
+
+		id.getProjects().then(function(projects){
+
+			res.render('specificCategory', {id: id, projects: projects});
+
+		})
+
+		
+	});
+});
+
 app.use('/projects', require('./controllers/projects'));
 
 var server = app.listen(process.env.PORT || 3000);
