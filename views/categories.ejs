@@ -1,7 +1,10 @@
-<% categories.forEach(function(c) { %>
-	<p>
-		<a href='/categories/<%=c.id%>'>
-			<%= c.name%>
-		</a>
-	</p>
-<% });%>
+<h1>Categories on File</h1>
+<div class='well'>
+	<% categories.forEach(function(c) { %>
+		<p>
+			<a href='/categories/<%=c.id%>'>
+				<%= c.name%>
+			</a>
+		</p>
+	<% });%>
+</div>

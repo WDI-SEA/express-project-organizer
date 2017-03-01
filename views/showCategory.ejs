@@ -1,11 +1,11 @@
-<h1><%= categories.name %></h1>
+<h1 class='text-primary'>Category: <%= categories.name %></h1>
 
-<h3>Posts that are in this category</h3>
+<h3 class='text-info'>Posts that are in this category</h3>
 
 <% categories.projects.forEach(function(p) { %>
-	<div>
+	<div class='well'>
 		<p>
-			<a href='/projects/ + <%= p.id %>'>
+			<a href='/projects/<%= p.id %>'>
 				<%= p.name %>
 			</a>
 		</p>
