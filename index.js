@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
 app.get('/', function(req, res) {
+  // get all projects from the project db
   db.project.findAll()
+  // render them all
   .then(function(projects) {
     res.render('main/index', { projects: projects });
   })
@@ -19,8 +21,9 @@ app.get('/', function(req, res) {
   });
 });
 
+// controllers
 app.use('/projects', require('./controllers/projects'));
-
+app.use('/categories', require('./controllers/categories'));
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
