@@ -1,0 +1,22 @@
+.navbar {
+  font-color: white;
+  background-color: #A39EA0;
+}
+
+body {
+  font-family: Arial;
+  color: #767274;
+  text-align: center;
+  background-image: url(http://www.aberje.com.br/wp-content/uploads/2016/05/meeting.jpg);
+  /*background-color: #303ABD;*/
+}
+
+.btn {
+  width: 200px;
+}
+
+.well {
+  width: 420px;
+  margin: auto;
+  background-color: #A39EA0;
+}
