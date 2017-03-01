@@ -2,6 +2,12 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+
+
+//then save the category on POST /projects
+
+
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
@@ -20,6 +26,19 @@ router.post('/', function(req, res) {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
+
+//Add a field that accepts a category, 
+db.category.find({
+  where: {name: ""}
+}).then(function(category) {
+  tag.getPosts().then(function(posts) {
+    console.log("These posts are tagged with " + tag.name + ":");
+    posts.forEach(function(post) {
+      console.log("Post title: " + post.title);
+    });
+  });
+});
+//End here
   res.render('projects/new');
 });
 
