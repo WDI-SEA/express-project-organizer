@@ -1,0 +1,13 @@
+<div class="container">
+  <h1 class="text-center"><%= nameParam.name %> Category</h1>
+  <p class="text-center">
+  </p>
+
+  <% nameParam.projects.forEach(function(projectObject) { %>
+    <div class="well">
+    <h2>Project Name: <%= projectObject.name %> </h2>
+    <h2>Description: <%= projectObject.description %> </h2>
+    </div>
+  <% }); %>
+</div>
+
