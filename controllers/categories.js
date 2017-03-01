@@ -12,7 +12,7 @@ router.get("/:id", function(req, res){
   db.category.findOne({
     where: {id: req.params.id},
     include: [db.project]
-  }).then(function(tag){
+  }).then(function(category){
     res.render("categories/show", {category: category});
   });
 });
