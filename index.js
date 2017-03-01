@@ -19,6 +19,19 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/categories', function(req, res){
+  db.category.findAll().then(function(categories){
+    res.render("categories/categories", {categories: categires});
+  })
+});
+
+app.get('/categories/:id', function(req, res){
+  db.category.find({
+    where: {id: req.params.id},
+    include: {db.project}
+  })
+});
+
 app.use('/projects', require('./controllers/projects'));
 
 var server = app.listen(process.env.PORT || 3000);
