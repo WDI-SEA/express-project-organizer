@@ -1,0 +1,7 @@
+<h1>This is Your Matching Categories Page</h1>
+
+     <% projects.forEach(function(project) { %>
+<div class="well">
+        <a href="/projects/<%= project.id %>"><%= project.name %></a>
+</div>
+    <% }); %>
