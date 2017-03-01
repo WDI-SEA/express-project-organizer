@@ -4,6 +4,8 @@ var ejsLayouts = require('express-ejs-layouts');
 var db = require('./models');
 var app = express();
 
+
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));

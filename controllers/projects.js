@@ -11,6 +11,15 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    db.category.findOrCreate({
+      where: { name: req.body.category }
+    }).spread(function(category, created) {
+      console.log("hit spread part")
+      db.categoriesProjects.create({
+        categoryId: category.id,
+        projectId: project.id
+      });
+    });
     res.redirect('/');
   })
   .catch(function(error) {
@@ -22,6 +31,22 @@ router.post('/', function(req, res) {
 router.get('/new', function(req, res) {
   res.render('projects/new');
 });
+
+router.get('/categories', function(req,res) {
+  db.category.findAll().then(function(category) {
+    res.render('projects/categories', { category: category})
+  });
+});
+
+router.get('/categories/:id', function(req,res) {
+  db.category.find({
+    where: {id: req.params.id}
+  }).then(function(category) {
+    category.getProjects().then(function(projects) {
+      res.render('projects/sorted', { projects: projects})
+    })
+  })
+})
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
@@ -36,5 +61,6 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 module.exports = router;
