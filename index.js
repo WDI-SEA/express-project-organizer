@@ -20,15 +20,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/categories', function(req, res){
-  db.category.findAll().then(function(categories){
-    res.render("categories/categories", {categories: categires});
+  db.category.findAll().then(function(category){
+    res.render("categories/categories", {category: category});
   })
 });
 
 app.get('/categories/:id', function(req, res){
   db.category.find({
     where: {id: req.params.id},
-    include: {db.project}
+    include: [db.project]
   })
 });
 
