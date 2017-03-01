@@ -1,0 +1,26 @@
+body {
+  background: url('/img/subtle_white_mini_waves.png') !important;
+  color: #333;
+}
+
+.box-parent {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-self: flex-end;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 25px 25px 0;
+  padding-top: 50px;
+}
+
+/*.spacing {
+
+}*/

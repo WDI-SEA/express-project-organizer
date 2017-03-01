@@ -1,12 +1,13 @@
 <h1>Project Organizer</h1>
 
-<h2>My Projects</h2>
+<div class="box-parent">
+  <% projects.forEach(function(project) { %>
 
-<% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
+    <div class="box">
+      <h3><a href="/projects/<%= project.id %>"><%= project.name %></a></h3>
       <small>by <%= project.name %></small>
-    </h2>
-  </div>
-<% }); %>
+    </div>
+
+
+  <% }); %>
+</div>

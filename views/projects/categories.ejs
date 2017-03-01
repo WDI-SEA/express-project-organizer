@@ -1,0 +1,9 @@
+<h1>All the Categories</h1>
+<div class="box-parent">
+
+  <% cats.forEach(function(cat) { %>
+    <div class="box">
+      <h4><a href="/categories/<%= cat.id %>"><%= cat.name %></h4></a>
+    </div>
+  <% }) %>
+</div>

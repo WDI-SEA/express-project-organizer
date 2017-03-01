@@ -4,15 +4,34 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
+
+  // Create project
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
   })
+  // Check if tag exists
   .then(function(project) {
-    res.redirect('/');
+    db.category.findOrCreate({
+      where: { name: req.body.tags }
+    })
+    // Create row in categoriesProjects
+    .spread(function(data, create) {
+      db.categoriesProjects.create({
+        categoryId: data.id,
+        projectId: project.id
+      });
+    })
+
+
+    // Redirect when finishes
+    .then(function(object) {
+      res.redirect('/');
+    });
   })
+  // Error catching
   .catch(function(error) {
     res.status(400).render('main/404');
   });
