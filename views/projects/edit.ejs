@@ -22,8 +22,10 @@
   </div>
 
   <div class="form-group">
-    <label for="category">Category</label>
-    <input type="text" class="form-control" id="category" name="category" value="<%= project.categories %>">
+    <p><strong>Categories: </strong></p>
+    <% project.categories.forEach(function(category){ %>
+      <p class="btn btn-default"><%= category.name %></p>
+    <% }) %>
   </div>
 
   <input type="submit" class="btn btn-primary">

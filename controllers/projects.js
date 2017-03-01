@@ -63,16 +63,36 @@ router.get('/:id', function(req, res) {
 });
 
 router.delete('/:id', function(req, res){
-  db.project.destroy({
-    where: {id: req.params.id}
-  }).then(function(){
-    res.send({message: 'successful deletion'});
+  db.project.findOne({
+    where: {id: req.params.id},
+    include: [db.category]
+  }).then(function(project){
+    async.forEachSeries(project.categories, function(category, callback){
+      project.removeCategory(category);
+      callback(null);
+    }, function(){
+      db.project.destroy({
+        where: {id: req.params.id}
+      }).then(function(del){
+        res.send("all good");
+      });
+    });
   });
 });
 
 router.put('/:id', function(req, res){
   console.log("you are updating something!");
   res.send({message: 'successful update'});
+  db.project.update({
+    name: req.body.name,
+    githubLink: req.body.githubLink,
+    deployedLink: req.body.deployedLink,
+    description: req.body.description,
+  }, {
+    where: {id: req.params.id}
+  }).then(function(projectUpdated){
+    res.send({message: 'successful update'});
+  });
 });
 
 router.get('/:id/edit', function(req, res){
