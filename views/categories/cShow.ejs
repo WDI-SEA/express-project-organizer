@@ -1,0 +1,22 @@
+<h1><%= list.name %></h1>
+
+<h3>Associated Projects</h3>
+<hr/>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% list.projects.forEach(function(e) { %>
+      <tr>
+        <td><a href="/projects/<%= e.id %>"><%= e.name %></td></a>
+        <td><%= e.description %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<a href="/categories">&larr; To Categories</a>

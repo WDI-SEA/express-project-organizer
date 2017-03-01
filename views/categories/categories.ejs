@@ -1,0 +1,17 @@
+<h2>Existing Categories</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% list.forEach(function(e) { %>
+      <tr>
+        <td><a href="/categories/<%= e.id %>"> <%= e.name %></a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
