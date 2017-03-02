@@ -3,8 +3,8 @@ var db = require('../models');
 var router = express.Router();
 
 router.get("/", function(req,res){
-	db.tag.findAll().then(function(category){
-		res.render("tags/tags", {category: category}); //foldertags/filetags
+	db.category.findAll().then(function(category){
+		res.render("category/show", {category: category}); //foldertags/filetags
 	});
 });
 

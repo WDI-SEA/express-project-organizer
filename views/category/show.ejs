@@ -2,11 +2,11 @@
 
 <h3>Project that use this category</h3>
 
-<% category.project.forEach(function(p){ %>
+<% category.forEach(function(c){ %>
 <div>
 	<p>
-		<a href="/project/<%= p.id %>">
-		<%= p.name %>
+		<a href="/project/<%= c.id %>">
+		<%= c.name %>
 		</a>
 	</p>
 </div>
