@@ -25,6 +25,7 @@ app.get('/', function(req, res) {
 
 // bring in authors, posts, and comments controllers
 app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'));
 
 //Listener
 var server = app.listen(process.env.PORT || 3000);

@@ -14,4 +14,17 @@
 
 <hr />
 
+<strong>Categories:</strong>
+ <% project.categories.forEach(function(c){ %>
+   
+   <a href="/categories/<%= c.id %>"><%= c.name %></a>
+ <% }); %>
+ 
+ <br>
+ 
+ <a href="/projects/<%= project.id %>" class="btn btn-danger" id="delete-project">Delete Project</a>
+ 
+ <br>
+ 
+
 <a href="/">&larr; Back Home</a>
