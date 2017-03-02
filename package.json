@@ -18,13 +18,26 @@
     "eslint-plugin-react": "^5.1.1"
   },
   "dependencies": {
-    "body-parser": "^1.15.1",
-    "ejs": "^2.4.2",
-    "express": "^4.13.4",
-    "express-ejs-layouts": "^2.1.0",
+    "async": "^2.1.5",
+    "body-parser": "^1.16.1",
+    "ejs": "^2.5.6",
+    "express": "^4.14.1",
+    "express-ejs-layouts": "^2.2.0",
     "morgan": "^1.7.0",
     "pg": "^5.1.0",
     "pg-hstore": "^2.3.2",
+    "request": "^2.79.0",
     "sequelize": "^3.23.3"
-  }
+  },
+  "description": "To practice M:M associations, we'll be adding the ability to categorize projects in an existing project organizer.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgnzlz22/express-project-organizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/cgnzlz22/express-project-organizer/issues"
+  },
+  "homepage": "https://github.com/cgnzlz22/express-project-organizer#readme"
 }
