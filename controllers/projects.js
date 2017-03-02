@@ -66,7 +66,7 @@ router.delete("/:id", function(req, res){
     include: [db.category]
   }).then(function(project){
     async.forEachSeries(project.categories, function(c, cb){
-      project.removeTag(c);
+      project.removeCategory(c);
       cb(null);
     }, function(){
       db.project.destroy({
@@ -75,7 +75,7 @@ router.delete("/:id", function(req, res){
         res.send("worked");
       });
     });
-  })
+  });
 });
 
 
