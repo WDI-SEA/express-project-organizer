@@ -1,0 +1,10 @@
+<h1>Create a new category</h1>
+
+<%category.forEach(function(c){%>
+	<p>
+		<a href="/category/<% c.id %>">
+		<%= c.name %>
+		</a>
+	</p>
+
+<% }); %>

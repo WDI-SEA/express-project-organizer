@@ -1,14 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var category = sequelize.define('category', {
-    name: DataTypes.STRING
+  var categoriesProjects = sequelize.define('categoriesProjects', {
+    categoryId: DataTypes.INTEGER,
+    projectId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        models.category.belongsToMany(models.project, {through: models.categoriesProjects});
       }
     }
   });
-  return category;
+  return categoriesProjects;
 };
