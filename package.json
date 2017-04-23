@@ -25,6 +25,7 @@
     "morgan": "^1.7.0",
     "pg": "^5.1.0",
     "pg-hstore": "^2.3.2",
+    "rowdy-logger": "0.0.2",
     "sequelize": "^3.23.3"
   }
 }
