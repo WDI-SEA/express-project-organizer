@@ -1,0 +1,12 @@
+<h1>All Project Categories</h1>
+
+<% categories.forEach(function(c) { %>
+  <li class="list-group-item"><a href="/categories/ <%=c.id%>">
+  <%= c.name %>
+  </a></li>
+<% }); %>
+</ul>
+
+<hr />
+
+<a href="/">&larr; Back Home</a>
