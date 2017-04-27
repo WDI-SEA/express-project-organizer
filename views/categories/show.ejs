@@ -1,0 +1,10 @@
+<h1>Category: <%=category.name%></h1>
+<h2>Projects that fall under this category:</h2>
+
+<%category.projects.forEach(function(project){%>
+  <div class="well">
+    <h2>
+          <a href=""><%=project.name%></a>
+    </h2>
+  </div>
+<%});%>

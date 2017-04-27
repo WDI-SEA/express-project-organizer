@@ -13,19 +13,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
 app.get('/', function(req, res) {
-  db.project.findAll()
+    db.project.findAll()
         .then(function(projects) {
-          res.render('main/index', { projects: projects });
+            res.render('main/index', { projects: projects });
         })
         .catch(function(error) {
-          res.status(400).render('main/404');
+            res.status(400).render('main/404');
         });
 });
 
 app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'));
 
-var server = app.listen(process.env.PORT || 3000, function() {
-  rowdy.print();
+var server = app.listen(process.env.PORT || 3300, function() {
+    rowdy.print();
 });
 
 module.exports = server;
