@@ -23,7 +23,7 @@ router.post('/', function(req, res) {
                             name: c.trim()
                         }
                     }).spread(function(category, wasCreate) {
-                        newProject.newCategory(category);
+                        newProject.addCategory(category);
                         callback();
                     });
                 },
@@ -45,7 +45,7 @@ router.get('/new', function(req, res) {
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
-    db.project.find({
+    db.project.findOne({
             where: { id: req.params.id },
             include: [db.category]
         })
