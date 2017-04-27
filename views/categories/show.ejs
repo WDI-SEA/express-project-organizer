@@ -1,0 +1,14 @@
+<h1><%= category.name %></h1>
+
+
+
+<% category.projects.forEach(function(p) { %>
+
+ <div class="chip cyan lighten-4"><a href="/projects/<%=p.id%>" ><%=p.name%></a></div>
+
+<%})%>
+
+
+<hr />
+
+<a href="/">&larr; Back Home</a>
