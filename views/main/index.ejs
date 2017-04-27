@@ -1,12 +1,13 @@
-<h1>Project Organizer</h1>
-
-<h2>My Projects</h2>
-
+<div class="jumbotron">
+<h1>All Completed Projects</h1>
+<p>This is a sample of projects completed by students in the Web Development Immersive course at General Assembly in Seattle.</p>
+</div>
+<div class="row">
 <% projects.forEach(function(project) { %>
-  <div class="well">
+  <div class="col-md-6 col-sm-12">
     <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
+      <span class="glyphicon glyphicon-floppy-disk"></span>    <a href="/projects/<%= project.id %>"><%= project.name %></a>
     </h2>
   </div>
 <% }); %>
+</div>

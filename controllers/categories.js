@@ -27,7 +27,7 @@ router.get('/:id', function(req, res) {
         })
         .then(function(category) {
             if (!category) throw Error();
-            res.render('categories/indiv', { category: category });
+            res.render('categories/individ', { category: category });
         })
         .catch(function(error) {
             res.status(400).render('main/404');
