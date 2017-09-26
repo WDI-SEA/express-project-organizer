@@ -1,0 +1,7 @@
+
+<h1> Posts with category <%=category.name%>:</h1>
+<% projects.forEach(function(project){ %>
+  <div class="well">
+    <a href="/projects/<%=project.id%>"> <%= project.name %> </p>
+  </div>
+<%});%>
