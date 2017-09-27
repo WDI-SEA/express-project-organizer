@@ -1,12 +1,24 @@
-<h1>Project Organizer</h1>
 
-<h2>My Projects</h2>
-
-<% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
-    </h2>
-  </div>
-<% }); %>
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class='mdl-card__title-text'>My Projects</h2>
+      </div>
+      <div class='mdl-card__supporting-text'>
+        <% projects.forEach(function(project) { %>
+          <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">
+                <%= project.name %></a>
+              </h2>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href=<%= '/projects/' + project.id %>>
+                Get Started
+              </a>
+            </div>
+            <div class="mdl-card__menu">
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
