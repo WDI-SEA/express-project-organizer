@@ -13,6 +13,7 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
+app.use('/mdc', express.static(__dirname + '/node_modules/material-components-web/dist/'));
 app.use(express.static(__dirname + '/public/'));
 
 app.get('/', function(req, res) {

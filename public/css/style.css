@@ -1,12 +1,16 @@
 body {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.7);
 }
 
-/*.mdl-card {
-  margin: 1em;
-  width: 700px;
+.mdc-card {
+  padding: 2em;
+  background-color: white;
 }
 
-.mdl-grid {
-  width: 700px;
-}*/
+.mdc-button {
+  font-size: 18px;
+}
+
+.mdc-card__title {
+  border-bottom: 1px solid rgba(0,0,0,.3);
+}

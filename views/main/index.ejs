@@ -1,24 +1,25 @@
-
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-      <div class="mdl-card__title">
-        <h2 class='mdl-card__title-text'>My Projects</h2>
+<div class='mdc-layout-grid__inner'>
+  <div class="mdc-layout-grid__cell">
+  </div>
+  <div class="mdc-layout-grid__cell">
+    <section class="mdc-card mdc-shadow--2dp mdc-layout-12">
+      <div class="mdc-card__title">
+        <h2 class='mdc-card__title-text'>My Projects</h2>
       </div>
-      <div class='mdl-card__supporting-text'>
-        <% projects.forEach(function(project) { %>
-          <div class="mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">
-                <%= project.name %></a>
-              </h2>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href=<%= '/projects/' + project.id %>>
-                Get Started
-              </a>
-            </div>
-            <div class="mdl-card__menu">
-            </div>
-          </div>
-        <% }); %>
+        <ul class='mdc-list'>
+          <% projects.forEach(function(project) { %>
+            <li class='mdc-list-item'>
+              <form class='mcd-form-field' metohd='GET' action=<%= '/projects/' + project.id %>>
+                <button class='mdc-button mdc-theme--secondary-bg mdc-theme--text-primary-on-secondary'>
+                  <%= project.name %></a>
+                </button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
       </div>
+    </section>
     </div>
+  <div class="mdc-layout-grid__cell">
+  </div>
+</div>

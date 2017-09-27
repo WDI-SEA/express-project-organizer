@@ -14,7 +14,7 @@
 
 <p>
   <% project.categories.forEach(function(category) { %>
-    <a href=<%= '/categories/' + category.id %> >
+    <a href=<%= '/categories/' + category.name %> >
       <%= category.name %>
     </a> &nbsp;
   <% }); %>

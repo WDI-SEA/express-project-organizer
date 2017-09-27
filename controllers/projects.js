@@ -45,7 +45,7 @@ router.get('/:id', function(req, res) {
     res.render('projects/show', { project: project });
   })
   .catch(function(error) {
-    console.log(pe.error);
+    console.log(pe.render(error));
     res.status(400).render('main/404');
   });
 });
