@@ -1,4 +1,36 @@
 .mainColumn {
     height: 800px;
     overflow: auto;
+    border: 2px dotted yellowgreen;
+    margin: 0 auto;
+}
+
+.well {
+    width: 33.1%;
+    height: 130px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.well a {
+    color: gold;
+}
+
+h1 {
+    font-family: 'Krona One', sans-serif;
+}
+
+h2 {
+    font-family: 'Rationale', sans-serif;
+}
+
+p {
+    font-family: 'Rationale', sans-serif;
+}
+
+.navbar-brand {
+    font-family: 'Krona One', sans-serif;
+    color: purple;
+    background-color: gold;
+    font-size: 2em;
 }
