@@ -1,8 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var db = require('../models');
 var router = express.Router();
 
-// POST /projects - create a new project
+
+
+//POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
     name: req.body.name,
@@ -11,17 +14,24 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
-    res.status(400).render('main/404');
+    db.category.findOrCreate({
+    where: { name: req.body.category }
+  }).spread(function (category, created){
+    project.addCategory(category);
+  }).then(function(){
+      console.log('IT WORKED!');
+      res.redirect('/');
+    });
   });
 });
+
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
   res.render('projects/new');
 });
+
+
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
@@ -36,5 +46,9 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+
+
+
 
 module.exports = router;
