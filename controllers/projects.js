@@ -32,7 +32,7 @@ router.post("/", function(req, res){
       where: {name: req.body.category}
     }).spread(function(category, created){
       project.addCategory(category).then(function(category){
-        console.log(category, "added to ", post);
+        console.log(category, "added to ", project);
       });
     });
   });
