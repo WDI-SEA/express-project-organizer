@@ -11,6 +11,13 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    db.category.findOrCreate({
+      where: {name: req.body.category}
+    }).spread(function(category, created) {
+      project.addCategory(category).then(function() {
+        console.log(category, " added to ", project);
+      });
+    });
     res.redirect('/');
   })
   .catch(function(error) {
@@ -36,5 +43,6 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 module.exports = router;
