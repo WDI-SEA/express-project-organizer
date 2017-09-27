@@ -1,0 +1,22 @@
+body {
+	background: darkgray;
+	font-family: Gruppo;
+	color: white;
+}
+
+.navbar {
+	background: lightblue;
+}
+
+label {
+	color: white;
+}
+
+.well {
+	background: black;
+	opacity: .8;
+}
+
+a {
+	font-size: 20px;
+}

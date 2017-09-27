@@ -5,6 +5,12 @@
   Github Link
 </a>
 
+<p class="categories">(&nbsp;Category: 
+	<% project.categories.forEach(function(category) { %>
+		<a href='categories/<%= category.id %>'><%= category.name %>&nbsp;</a>
+	<% }); %>)
+</p>
+
 <a class="btn btn-primary" href="<%= project.deployedLink %>" target="_blank">
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link

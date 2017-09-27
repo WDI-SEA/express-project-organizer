@@ -1,0 +1,7 @@
+<h2>The following projects fall under this category:</h2>
+
+<ul>
+	<% projects.forEach(function(project){ %>
+	<li><a href="../<%= project.id %>"><%= project.name %></a></li>
+	<% }); %>
+</ul>

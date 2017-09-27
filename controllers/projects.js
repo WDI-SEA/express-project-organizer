@@ -11,6 +11,13 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    db.category.findOrCreate({
+      where: {name: req.body.category}
+    }).spread(function(category, created) {
+      project.addCategory(category).then(function(category) {
+        //
+      });
+    });
     res.redirect('/');
   })
   .catch(function(error) {
@@ -23,10 +30,31 @@ router.get('/new', function(req, res) {
   res.render('projects/new');
 });
 
+router.get('/categories', function(req, res) {
+  db.category.findAll().then(function(categories) {
+    res.render('projects/categories', {categories: categories})
+  });
+})
+
+router.get('/categories/:id', function(req, res) {
+  db.category.find({
+    where: {id: req.params.id},
+    include: [db.project]
+  })
+  .then(function(category) {
+    category.getProjects().then(function(projects) {
+      res.render('projects/showall', {projects: projects});
+    })
+  }).catch(function(error) {
+    res.status(400).render('main/404');
+  })
+})
+
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then(function(project) {
     if (!project) throw Error();
@@ -36,5 +64,6 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 module.exports = router;
