@@ -4,16 +4,27 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployedLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
+  console.log(req.body);
+  db.project.findOrCreate({
+    where: {
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployedLink: req.body.deployedLink,
+      description: req.body.description
+    }
+  }).spread(function(project, created) {
+    console.log("found it");
+    db.category.findOrCreate({
+      where:{name: req.body.category}
+    }).spread(function(category, created) {
+      project.addCategory(category).then(function(category) {
+        console.log(category,"added to",project)
+        res.redirect('/');
+      });
+    });
   })
   .catch(function(error) {
+    console.log(error);
     res.status(400).render('main/404');
   });
 });
