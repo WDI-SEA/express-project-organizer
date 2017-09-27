@@ -1,12 +1,25 @@
-<h1>Project Organizer</h1>
-
-<h2>My Projects</h2>
-
-<% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
-    </h2>
+<div class='mdc-layout-grid__inner'>
+  <div class="mdc-layout-grid__cell">
   </div>
-<% }); %>
+  <div class="mdc-layout-grid__cell">
+    <section class="mdc-card mdc-shadow--2dp mdc-layout-12">
+      <div class="mdc-card__title">
+        <h2 class='mdc-card__title-text'>My Projects</h2>
+      </div>
+        <ul class='mdc-list'>
+          <% projects.forEach(function(project) { %>
+            <li class='mdc-list-item'>
+              <form class='mcd-form-field' metohd='GET' action=<%= '/projects/' + project.id %>>
+                <button class='mdc-button mdc-theme--secondary-bg mdc-theme--text-primary-on-secondary'>
+                  <%= project.name %></a>
+                </button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </section>
+    </div>
+  <div class="mdc-layout-grid__cell">
+  </div>
+</div>
