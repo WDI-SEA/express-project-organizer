@@ -1,5 +1,6 @@
 var express = require('express');
 var db = require('../models');
+var bodyParser = require('body-parser');
 var router = express.Router();
 
 // POST /projects - create a new project
@@ -11,10 +12,13 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
-    res.status(400).render('main/404');
+      db.category.findOrCreate({
+        where: { name: req.body.category }
+      }).spread(function (category, category){
+        project.addCategory(category);
+      }).then(function(){
+        res.redirect('/');
+      });
   });
 });
 
