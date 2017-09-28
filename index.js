@@ -15,6 +15,7 @@ app.use(ejsLayouts);
 app.get('/', function(req, res) {
   db.project.findAll()
         .then(function(projects) {
+          // console.log(projects); //displays array of all projects -- id, name, githublink, deployolink, description
           res.render('main/index', { projects: projects });
         })
         .catch(function(error) {

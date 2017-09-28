@@ -1,7 +1,8 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
-// POST /projects - create a new project and category
+
+// POST /projects - create a new project and category and add to DB
 router.post('/', function(req, res) {
   db.project.create({
     name: req.body.name,
@@ -29,19 +30,15 @@ router.get('/new', function(req, res) {
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) { //LEADS TO: projects/:id
-  db.category.find({
-    where: {id: req.params.id}
-  }).then(function(category) {
-    category.getProjects().then(function(projects) {
-      console.log("These projects are category with " + category.name + ":");
-      projects.forEach(function(project) {
-      console.log("Project title: " + project.id);
-      res.render('projects/category', {project: project})
-
-      });
+  // console.log("this is broken"); //this works
+  db.project.findOne({
+    where: {id: req.params.id},
+    include: [db.category]
+  }).then(function(project) {
+    res.render('projects/show', {project: project});
     });
   });
-});
+
 
 
 
