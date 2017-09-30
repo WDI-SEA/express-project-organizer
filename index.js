@@ -22,7 +22,11 @@ app.get('/', function(req, res) {
         });
 });
 
+
+
+app.use('/categories', require('./controllers/categories'));
 app.use('/projects', require('./controllers/projects'));
+
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();

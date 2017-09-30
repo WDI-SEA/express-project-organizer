@@ -1,0 +1,21 @@
+<div class="well">
+  <% categories.forEach(function(category) { %>
+
+    <h3>
+     <%= category.name %>
+    </h3>
+
+  <% }); %>
+</div>
+
+<form action="/categories" method="POST">
+  <div class="form-group">
+    <label for="category">Add New Category</label>
+    <input type="text" class="form-control" id="category" name="category"required>
+  </div>
+
+  <input type="submit" class="btn btn-primary">
+</form>
+
+
+<a href="/"> Back To The Main Page</a>

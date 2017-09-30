@@ -9,9 +9,43 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link
 </a>
+<div class="well">
+  <% project.categories.forEach(function(category) { %>
+
+   <p>  <%= category.name %> </p>
+
+  <% }); %>
+</div>
+
 
 <p><%= project.description %></p>
 
 <hr />
 
+<ul>
+ <% categories.forEach(function(category) { %>
+
+   <li><a class="add-category" href="/projects/<%=project.id%>" putUrl="/projects/<%=project.id%>/categories/<%=category.id%>"> Add Category <%= category.name %></a></li>
+
+  <% }); %>
+
 <a href="/">&larr; Back Home</a>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous">
+</script>
+
+
+<script>
+ $('.add-category').on('click', function(e){
+    // e.preventDefault();
+    var url =$(this).attr('putUrl');
+    $.ajax({
+      method: 'PUT',
+      url: url
+    });
+ });
+</script>
