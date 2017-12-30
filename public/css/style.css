@@ -1,6 +1,7 @@
 body{
-  background: yellow;
+  background: rgb(189, 189, 171);
 }
 .well{
-  background: blue;
+  background: rgb(56, 56, 63);
+  color: white;
 }
