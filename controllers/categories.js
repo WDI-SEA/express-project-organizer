@@ -1,6 +1,6 @@
 var express = require('express');
 var db = require('../models');
-var bodyParser = require('body-Parser');
+var bodyParser = require('body-Parser')
 var router = express.Router();
 var async = require ('async');
 
@@ -13,9 +13,10 @@ router.get('/', function(req, res){
 });
 router.get('/:id', function(req, res) {
   db.category.findOne({
-    where: {id: req.params.id}
+    where: {id: req.params.id},
+    include: [db.project]
   }).then(function(category){
-    res.render('categories/show', {category: category});
+    res.render('categories/show', {projects: projects, category: category});
     }).catch(function(error) {
       res.status(400).render('main/404');
     });
