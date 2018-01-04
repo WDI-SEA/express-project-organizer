@@ -1,0 +1,6 @@
+<h2><%=result.content%></h2>
+
+<blockquote>
+<%result.projects.forEach(function(project){%>
+	<a href="/projects/<%=project.id%>"><h4><%=project.name%></h4></a>
+<%})%>
