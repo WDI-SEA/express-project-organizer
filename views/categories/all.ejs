@@ -1,0 +1,13 @@
+<h2>All Available Project Categories</h2>
+
+<% if(categories && categories.length > 0) { %>
+  <% categories.forEach(function(c){ %>
+    <div>
+      <%= c.name %>
+    </div>
+<% }); %>
+
+<% } else { %>
+  <h3>No categories yet</h3>
+<% } %>
+
