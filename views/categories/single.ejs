@@ -1,4 +1,8 @@
 <h2>Single tag category</h2>
 <% %>
 <%=cat.name%>
+
+
+<% cat.projects.forEach(function(project){ %>
 <%=project.name%>
+<% }); %>

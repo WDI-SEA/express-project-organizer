@@ -14,10 +14,11 @@ router.get('/', function(req,res){
 
 router.get('/:id', function(req, res){
     db.category.findOne({
-        where:{id: req.params.id},
+        where: {id: req.params.id},
         include: [db.project]
     }).then(function(cat){
-        res.render('categories/single.ejs', {cat:cat});
+        res.send(cat);
+        // res.render('categories/single.ejs', {cat:cat});
     })
 });
 
