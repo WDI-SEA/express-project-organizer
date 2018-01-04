@@ -1,0 +1,80 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	background: #EFEFEF;
+	color: #2E2D2B;
+	margin: 0 auto;
+	text-align: center;
+}
+
+h1 {
+	font-family: 'Scope One', serif;
+	font-size: 3em;
+	margin: 20px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1.75em;
+}
+
+a {
+	color: #5567C8;
+	padding: 10px;
+	margin: 10px;
+	text-decoration: none;
+}
+
+.container {
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.project-box {
+	text-align: left;
+	background: white;
+	padding: 20px;
+	margin: 10px;
+}
+
+.description {
+	margin-bottom: 40px;
+}
+
+input[type="text"], textarea {
+	width: 50% !important;
+	display: inline-block !important;
+}
+
+label {
+	display: inline-block !important;
+	width: 200px;
+}
+
+nav {
+	background: white;
+}
+
+.navbar-brand a {
+	font-size: 1.25em;
+	line-height: 1em;
+}
+
+.delete-link, #delete-category {
+	margin-top: 40px;
+}
+
+.main-page-button {
+	position: relative;
+	bottom: 40px;
+	margin: 0 auto -40px auto;
+}
+
+
+.tag {
+	text-align: left;
+}

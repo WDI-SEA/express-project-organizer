@@ -1,33 +1,35 @@
 <h1>Create a new project</h1>
 
 <form action="/projects" method="POST">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+  <div class="field">
+    <label for="name" class="label">Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" class="input is-medium" required>
   </div>
 
-  <div class="form-group">
-    <label for="githubLink">Github Link</label>
-    <input type="text" class="form-control" id="githubLink" placeholder="http://" name="githubLink" required>
+  <div class="field">
+    <label for="githubLink" class="label">Github Link</label>
+    <input type="text" id="githubLink" placeholder="http://" name="githubLink" class="input is-medium" required>
   </div>
 
-  <div class="form-group">
-    <label for="deployedLink">Deployed Link</label>
-    <input type="text" class="form-control" id="deployedLink" placeholder="http://" name="deployedLink" required>
+  <div class="field">
+    <label for="deployedLink" class="label">Deployed Link</label>
+    <input type="text" id="deployedLink" placeholder="http://" name="deployedLink" class="input is-medium" required>
   </div>
 
- <div class="form-group">
-    <label for="categories">Category</label>
-    <input type="text" class="form-control" id="categories" name="categories" placeholder="Separate categories by commas" required>
-    <% categories.forEach(function(c) { %>
-      <span class="badge"><%= c.name %></span>
-    <% }); %>
+ <div class="field">
+    <label for="categories" class="label">Category</label>
+    <input type="text" id="categories" name="categories" class="input is-medium" placeholder="Separate categories by commas" required>
+    <div class="help tags is-centered">
+      <% categories.forEach(function(c) { %>
+        <span class="tag is-dark"><%= c.name %></span>
+      <% }); %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="description" name="description" placeholder="Project Description" required></textarea>
+  <div class="field">
+    <label for="description" class="label">Description</label>
+    <textarea type="text" id="description" name="description" class="input is-medium" placeholder="Project Description" required></textarea>
   </div>
 
-  <input type="submit" class="btn btn-primary" value="Add Project">
+  <input type="submit" value="Add Project" class="button is-primary">
 </form>

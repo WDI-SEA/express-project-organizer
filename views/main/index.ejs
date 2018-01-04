@@ -1,11 +1,17 @@
 <h1>Project Organizer</h1>
 <% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-         <% project.categories.forEach(function(c) { %>
-      		<small><em><a href="categories/<%= c.id %>"><%= c.name %></a></em></small>
-    	<% }); %>
-    </h2>
+	<div class="project-box is-clearfix">
+	    <h2>
+	      <a href="/projects/<%= project.id %>"><%= project.name %></a>
+	    </h2>
+	    <div>
+	    <% project.categories.forEach(function(c) { %>
+	    	<a href="categories/<%= c.id %>"><span class="tag is-dark"><%= c.name %></span></a>
+	   	<% }); %>
+	   	</div>
+	   	<div class="is-pulled-right">
+	    	<a href="/projects/<%= project.id %>" class="delete-link button is-small button is-primary is-outlined main-page-button">Delete</a>
+		</div>
   </div>
 <% }); %>
+

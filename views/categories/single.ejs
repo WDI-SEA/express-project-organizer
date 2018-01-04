@@ -1,11 +1,10 @@
-<h2><%= categories.name %></h2>
-
+<h1><%= categories.name %></h1>
+<p><em>The below projects used <%= categories.name %>:</em></p>
 <% categories.projects.forEach(function(p) { %>
-  <div class="well">
+  <div>
     <h2>
       <a href="/projects/<%= p.id %>"><%= p.name %></a>
     </h2>
   </div>
 <% }); %>
-
-<a href="/categories/<%= categories.id %>" class="btn btn-danger" id="delete-category">Delete Category</a>
+<a href="/categories/<%= categories.id %>" class="button is-primary is-outlined is-small" id="delete-category">Delete Category</a>
