@@ -1,0 +1,15 @@
+<h2>#<%= category.name %></h2>
+
+<!-- <a href="/categories/<%=category.id%>" class="btn btn-danger" id="delete-category">
+  Permanately Delete and All References?
+</a> -->
+
+<hr>
+<h3>Project which use this category</h3>
+<% category.projects.forEach(function(p){ %>
+  <div>
+    <a href="/projects/<%= p.id %>">
+      <%= p.name %>
+    </a>
+  </div>
+<% }); %>
