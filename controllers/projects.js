@@ -40,6 +40,10 @@ router.get('/new', function(req, res) {
   })
 });
 
+router.get('/edit', function(req, res) {
+    res.render('projects/edit');
+});
+
 // DELETE individual projects
 router.delete('/:id', function(req, res){
   db.project.destroy({

@@ -8,3 +8,13 @@ $('.delete-link').click(function(event){
 		window.location.href = '/'; //Reloads the current page on success
 	});
 });
+
+$('#delete-category').click(function(event){
+	event.preventDefault();
+	$.ajax({
+		url: $(this).attr('href'),
+		method: 'DELETE'
+	}).success(function(response){
+		window.location.href = '/categories';
+	});
+});
