@@ -5,6 +5,8 @@ var db = require('./models');
 var rowdy = require('rowdy-logger');
 var app = express();
 var async = require('async');
+var path = require('path');
+
 
 rowdy.begin(app);
 
@@ -12,6 +14,8 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', function(req, res) {
 	db.project.findAll({

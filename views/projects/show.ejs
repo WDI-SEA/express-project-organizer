@@ -9,13 +9,14 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link
 </a>
+<hr>
 
-<p><%= project.description %></p>
+<p id="description"><%= project.description %></p>
 
 <hr />
 
 <% if(project.categories && project.categories.length){ %>
-<h3> Categories </h3>
+<h3 id="categories-header"> Categories </h3>
 <%project.categories.forEach(function(c){ %>
 	<div>
 		<p><a href="/categories/<%=c.id%>"><%=c.category%></a></p>
