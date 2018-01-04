@@ -40,6 +40,18 @@ router.get('/new', function(req, res) {
   })
 });
 
+// DELETE individual projects
+router.delete('/:id', function(req, res){
+  db.project.destroy({
+    where: { id: req.params.id }
+  }).then(function(deleted){
+    res.send('We done did a delete');
+  }).catch(function(err){
+    res.status(400).render('main/404');
+  });
+});
+
+
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({

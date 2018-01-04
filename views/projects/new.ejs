@@ -13,14 +13,14 @@
 
   <div class="form-group">
     <label for="deployedLink">Deployed Link</label>
-    <input type="text" class="form-control" id="deployedLink" placeholder="http://" name="deployedLink">
+    <input type="text" class="form-control" id="deployedLink" placeholder="http://" name="deployedLink" required>
   </div>
 
  <div class="form-group">
     <label for="categories">Category</label>
     <input type="text" class="form-control" id="categories" name="categories" placeholder="Separate categories by commas" required>
     <% categories.forEach(function(c) { %>
-      <span>[<%= c.name %>]</span>
+      <span class="badge"><%= c.name %></span>
     <% }); %>
   </div>
 
