@@ -24,6 +24,7 @@ app.get('/', function(req, res) {
 
 app.use('/projects', require('./controllers/projects'));
 app.use('/categories', require('./controllers/categories'));
+app.use(express.static(__dirname + '/public'));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
