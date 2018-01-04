@@ -1,0 +1,12 @@
+<h2>Here are the categories</h2>
+
+<% if(categories && categories.length > 0){ %>
+	<% categories.forEach(function(c){ %>
+	<div>
+		<%= c.name %>
+	</div>
+<% }); %>
+<% } else { %>
+	<h3>no categories yet</h3>
+<% } %>
+
