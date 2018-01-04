@@ -1,9 +1,10 @@
-<h2>Single tag category</h2>
-<% %>
-<%=cat.name%>
+<h2>All projects under <%=cat.name%></h2>
+
+
 
 
 <% cat.projects.forEach(function(project){ %>
 
 <div><a href="/projects/<%=project.id%>"><%=project.name%></a></div>
+<br>
 <% }); %>
