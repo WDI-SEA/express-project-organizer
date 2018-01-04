@@ -14,4 +14,17 @@
 
 <hr />
 
+<% if(project.categories && project.categories.length){ %>
+<h3> Categories </h3>
+<%project.categories.forEach(function(c){ %>
+	<div>
+		<p><a href="/categories/<%=c.id%>"><%=c.category%></a></p>
+	</div>
+<% }) %>
+<% } else { %>
+<h3> No Categories have been assigned! </h3>	
+<% } %>
+<hr />
 <a href="/">&larr; Back Home</a>
+
+

@@ -4,6 +4,7 @@ var ejsLayouts = require('express-ejs-layouts');
 var db = require('./models');
 var rowdy = require('rowdy-logger');
 var app = express();
+var async = require('async');
 
 rowdy.begin(app);
 
@@ -13,6 +14,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
 app.get('/', function(req, res) {
+	db.project.findAll({
+    	include: [db.category]
+  	});
+
   db.project.findAll()
         .then(function(projects) {
           res.render('main/index', { projects: projects });
@@ -23,6 +28,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
