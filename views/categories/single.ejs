@@ -1,0 +1,9 @@
+<h2><%= categories.name %></h2>
+
+<% categories.projects.forEach(function(p) { %>
+  <div class="well">
+    <h2>
+      <a href="/projects/<%= p.id %>"><%= p.name %></a>
+    </h2>
+  </div>
+<% }); %>

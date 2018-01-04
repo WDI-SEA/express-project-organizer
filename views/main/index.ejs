@@ -6,7 +6,10 @@
   <div class="well">
     <h2>
       <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
+
+      <% project.categories.forEach(function(c) { %>
+      <em>[<%= c.name %>]</em>
+    <% }); %>
     </h2>
   </div>
 <% }); %>
