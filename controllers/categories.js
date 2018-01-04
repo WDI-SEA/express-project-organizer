@@ -13,7 +13,12 @@ router.get('/', function(req,res){
 });
 
 router.get('/:id', function(req, res){
-    res.send('id route');
+    db.category.findOne({
+        where:{id: req.params.id},
+        include: [db.project]
+    }).then(function(cat){
+        res.render('categories/single.ejs', {cat:cat});
+    })
 });
 
 module.exports = router;
