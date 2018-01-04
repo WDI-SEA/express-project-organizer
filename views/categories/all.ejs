@@ -1,2 +1,13 @@
 <h2> all available categories </h2>
 
+
+
+<% if(categories && categories.length > 0){ %>
+	<% categories.forEach( function(c){ %>
+		<div>
+			<a href="/categories/<%= c.id%>"><%= c.name%></a>
+		</div>
+	<% }); %>
+<% } else { %>
+	<h3> No categories Yet </h3>
+<% } %>
