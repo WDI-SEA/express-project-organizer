@@ -10,8 +10,21 @@
   Deployed Link
 </a>
 
-<p><%= project.description %></p>
+<h3><%= project.description %></h3>
 
+<hr>
+
+<h4>Categories:</h4>
+<div>
+	<% project.categories.forEach(function(cat){ %>
+		<h4>
+			<a href="/categories/<%= cat.id%>">
+				<%= cat.name %>
+			</a>
+		</h4>
+	<% }); %>
+</div>
+<a href="/projects/<%=project.id%>" class="btn btn-danger" id="delete-project">Delete</a>
 <hr />
 
 <a href="/">&larr; Back Home</a>
