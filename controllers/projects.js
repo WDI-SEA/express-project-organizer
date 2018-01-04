@@ -1,6 +1,7 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
+var async = require('async');
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
@@ -20,7 +21,10 @@ router.post('/', function(req, res) {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
-  res.render('projects/new');
+  db.category.findAll().then(function(categories){
+      res.render('projects/new', {categories: categories});
+
+  })
 });
 
 // GET /projects/:id - display a specific project
