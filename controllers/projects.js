@@ -5,34 +5,34 @@ var async = require ('async');
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployedLink: req.body.deployedLink,
-    description: req.body.description
-  }).then(function(newProject) {
-    var categories = [];
-    if (req.body.category){
-      categories = req.body.category.split(',');
-    }
-    if (categories.length > 0){
-      async.forEachSeries(categories, function(category, callback) {
-        db.category.findOrCreate({
-          where: {name: category.tirm()}
-        }).spread(function(category, created) {
-          if(category){
-            createdCategory.addCategory(category)
-          }
-          newProject.addCategory(category);
-          callback();
-        })
-      }).then(function(createProject) {
-        res.redirect('/');
-      }).catch(function(error) {
+    db.project.create({
+        name: req.body.name,
+        githubLink: req.body.githubLink,
+        deployedLink: req.body.deployedLink,
+        description: req.body.description
+    }).then(function(newProject) {
+        var categories = [];
+        if (req.body.category) {
+            categories = req.body.category.split(",");
+        }
+        if (categories.length > 0) {
+            async.forEachSeries(categories, function(category, callback) {
+                db.category.findOrCreate({
+                    where: { name: category.trim() }
+                }).spread(function(category, wasCreated) {
+                    newProject.addCategory(category);
+                    callback();
+                });
+            }, function() {
+                //runs when everything is done
+                res.redirect("/");
+            });
+        } else {
+            res.redirect("/");
+        }
+    }).catch(function(error) {
         res.status(400).render('main/404');
-      });
-    };
-  });
+    });
 });
 
 // GET /projects/new - display form for creating a new project
@@ -47,7 +47,7 @@ router.get('/:id', function(req, res) {
   })
   .then(function(project) {
     if (!project) throw Error();
-    res.render('projects/show', { project: project,});
+    res.render('projects/show', { project: project});
   })
   .catch(function(error) {
     res.status(400).render('main/404');
