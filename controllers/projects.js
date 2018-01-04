@@ -1,67 +1,73 @@
 var express = require('express');
-// var async = require('async');
+var async = require('async');
 var db = require('../models');
 var router = express.Router();
 
-// POST /projects - create a new project
-router.post('/', function(req, res) {
-  db.project.findOrCreate({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployedLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
-    res.status(400).render('main/404');
-  });
-});
-
-
-
 // router.post('/', function(req, res){
-//   var tags = [];
-//   if(req.body.tags){
-//     tags = req.body.tags.split(',');
+//   var categories = [];
+//   if(req.body.categories){
+//     categories = req.body.categories.split(',');
 //   }
-//   db.article.create(req.body).then(function(createdArticle){
-//     if(tags.length  > 0){
-//       async.forEach(tags, function(t, callback){
+//   db.project.create(req.body).then(function(createdProject){
+//     if(categories.length  > 0){
+//       async.forEach(categories, function(c, callback){
 //         // add the tag to the tag table
-//         db.tag.findOrCreate({
-//           where: {content: t.trim()}
-//         }).spread(function(tag, wasCreated){
-//           if(tag){
+//         db.category.findOrCreate({
+//           where: {content: c.trim()}
+//         }).spread(function(category, wasCreated){
+//           if(category){
 //         //this part is what adds the relationship in the join table
-//             createdArticle.addTag(tag);
+//             createdProject.addCategory(category);
 //           }
 //           // calling this function is like saying this is all done
 //           callback();
 //         })
 //       }, function(){
 //         // happens when all calls are resolved
-//         res.redirect('/articles/' + createdArticle.id);
+//         res.redirect('/projects/' + createdProject.id);
 
 //       });
 //     }
 //     else{
-//       res.redirect('/articles/' + createdArticle.id);
+//       res.redirect('/projects/' + createdProjects.id);
 //     }
 //   }).catch(function(err){
 //     res.send('uh oh!', err);
 //   });
 // });
 
-// GET /projects/new - display form for creating a new project
+router.post("/", function(req, res){
+ console.log('find', req.body);
+   db.project.findOrCreate({
+     where: {
+       name: req.body.name,
+       githubLink: req.body.githubLink,
+       deployedLink: req.body.deployedLink,
+       description: req.body.description
+     }
+   }).spread(function(project, created) {
+     console.log("found it");
+     db.category.findOrCreate({
+       where:{name: req.body.category}
+     }).spread(function(category, created) {
+       project.addCategory(category).then(function(category) {
+         console.log(category,"added to",project)
+         res.redirect('/');
+       });
+     });
+    })
+    .catch(function(error) {
+     console.log(error);
+      res.status(400).render('main/404');
+    });
+  });
 
+// GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res){
-  db.category.findAll().then(function(categories){
-    res.render('projects/new', {categories: categories});
+  db.category.findAll().then(function(category){
+    res.render('projects/new', {category: category});
   });
 });
-
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
