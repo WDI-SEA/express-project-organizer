@@ -5,11 +5,11 @@ var async = require('async');
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-
   var categories = [];
-  if(req.body.categories){
-    req.body.categories.split(',');
+    if(req.body.categories){
+    categories = req.body.categories.split(',');
   }
+console.log(categories);
 
   db.project.create({
     name: req.body.name,
