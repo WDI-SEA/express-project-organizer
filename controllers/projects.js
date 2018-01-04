@@ -2,6 +2,8 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+var async = require ('async');
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
@@ -10,7 +12,17 @@ router.post('/', function(req, res) {
     deployedLink: req.body.deployedLink,
     description: req.body.description
   })
-  .then(function(project) {
+  async.forEach(category, function(callback) {
+    db.category.findOrCreate({
+      where: {name: req.body.category}
+    }).spread(function(category, category) {
+      if(category){
+        createdCategory.addCategory(category)
+      }
+      callback(null)
+    })
+  })
+  .then(function(createProject) {
     res.redirect('/');
   })
   .catch(function(error) {
@@ -30,7 +42,7 @@ router.get('/:id', function(req, res) {
   })
   .then(function(project) {
     if (!project) throw Error();
-    res.render('projects/show', { project: project });
+    res.render('projects/show', { project: project, category: category });
   })
   .catch(function(error) {
     res.status(400).render('main/404');
