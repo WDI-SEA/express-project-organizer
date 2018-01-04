@@ -1,17 +1,28 @@
-<h1><%= project.name %></h1>
+<h1><%= result.name %></h1>
 
-<a class="btn btn-primary" href="<%= project.githubLink %>" target="_blank">
+<a class="btn btn-primary" href="<%= result.githubLink %>" target="_blank">
   <i class="fa fa-github" aria-hidden="true"></i>
   Github Link
 </a>
 
-<a class="btn btn-primary" href="<%= project.deployedLink %>" target="_blank">
+<a class="btn btn-primary" href="<%= result.deployedLink %>" target="_blank">
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link
 </a>
 
-<p><%= project.description %></p>
+<p><%= result.description %></p>
 
 <hr />
+
+<% if(result.categories && result.categories.length > 0){%>
+	<h3>Categories:</h3>
+	<% result.categories.forEach(function(category){%>
+			<a href="/categories/<%=category.id%>"><span class="badge"><%=result.content%>
+			</span></a>
+	<%})%>
+<%}else{%>
+	<h3>No categories :(</h3>
+	<% console.log(result.categories)%>
+<%}%>
 
 <a href="/">&larr; Back Home</a>
