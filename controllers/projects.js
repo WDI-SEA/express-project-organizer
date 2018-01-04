@@ -1,4 +1,5 @@
 var express = require('express');
+var async = require('async');
 var db = require('../models');
 var router = express.Router();
 
@@ -25,8 +26,9 @@ router.get('/new', function(req, res) {
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
-  db.project.find({
-    where: { id: req.params.id }
+  db.project.findOne({
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then(function(project) {
     if (!project) throw Error();
