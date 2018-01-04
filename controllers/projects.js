@@ -9,7 +9,6 @@ router.post("/", function(req, res){
  if(req.body.categories && req.body.categories.length > 0){
   categories = req.body.categories.split(',');
  }
-
    db.project.findOrCreate({
      where: {
        name: req.body.name,
@@ -43,6 +42,18 @@ router.post("/", function(req, res){
    }); //end spread
 });
 
+router.delete('/:id', function(req, res){
+  console.log('delete route. ID= ', req.params.id);
+  db.project.destroy({
+    where: {id: req.params.id}
+  }).then(function(deleted){
+    console.log('deleted = ', deleted);
+    res.send('sucesss');
+  }).catch(function(err){
+    console.log('An error happened', err);
+    res.send('fail');
+  });
+});
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res){
@@ -64,5 +75,8 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+
+
 
 module.exports = router;

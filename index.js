@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public/'));
 
-
 app.get('/', function(req, res) {
   db.project.findAll().then(function(projects) {
 		res.render('main/index', { projects: projects });
@@ -26,10 +25,8 @@ app.get('/', function(req, res) {
     });
 });
 
-
 app.use('/projects', require('./controllers/projects.js'));
 app.use('/categories', require('./controllers/categories.js'));
-
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
