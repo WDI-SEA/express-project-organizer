@@ -4,6 +4,7 @@ var ejsLayouts = require('express-ejs-layouts');
 var db = require('./models');
 var rowdy = require('rowdy-logger');
 var app = express();
+var async = require('async');
 
 rowdy.begin(app);
 
@@ -23,6 +24,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('/controllers/categories'));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
