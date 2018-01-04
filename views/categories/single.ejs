@@ -1,0 +1,10 @@
+<h1>#<%= category.content %></h1>
+<hr>
+<h2>Projects that Have This Reference</h2>
+<% category.projects.forEach(function(p) { %>
+  <div>
+    <a href="/projects/<%= p.id %>">
+      <%= p.name %>
+    </a>
+  </div>
+<% }); %>

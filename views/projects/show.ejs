@@ -12,6 +12,12 @@
 
 <p><%= project.description %></p>
 
+<div>
+  <% project.categories.forEach(function(c) { %>
+    <a href="/categories/<%= c.id %>">#<%= c.content %></a>
+  <% }); %>
+</div>
+
 <hr />
 
 <a href="/">&larr; Back Home</a>
