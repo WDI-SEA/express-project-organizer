@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        models.category.belongsToMany(models.project, {through: models.categoriesProjects});
+        models.category.belongsToMany(models.project, {through: models.categoriesProjects, foriegn_key:"categoryId"});
       }
     }
   });

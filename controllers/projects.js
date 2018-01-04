@@ -1,33 +1,20 @@
 var express = require('express');
 var db = require('../models');
+var async = require('async');
 var router = express.Router();
 
 // POST /projects - create a new project
-router.post('/', function(req, res) {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployedLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
-    res.status(400).render('main/404');
-  });
-});
 
 router.post('/', function(req, res){
   var categories = [];
   if(req.body.categories){
     categories = req.body.categories.split(',');
   }
-  db.category.create(req.body).then(function(createdProject){
+  db.project.create(req.body).then(function(createdProject){
     if(categories.length > 0){
       async.forEach(categories, function(t, callback){
-        db.categories.findOrCreate({
-          where: {content: t.trim()}
+        db.category.findOrCreate({
+          where: {name: t.trim()}
         }).spread(function(category, wasCreated){
           if(category){
             //this part is what adds the realationship in the join table
