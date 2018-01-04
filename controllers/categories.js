@@ -4,7 +4,9 @@ var db = require('../models');
 var router = express.Router();
 
 router.get('/', function(req,res){
-	res.send('get route reached for categories');
+	db.category.findAll().then(function(categories){
+		res.render('categories/all',{categories:categories});
+	});
 });
 
 router.get('/:id', function(req,res){
