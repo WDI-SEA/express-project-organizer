@@ -11,6 +11,7 @@ router.get("/all", function(req, res){
 
 });
 
+
 router.get("/:id", function(req, res){
 	db.category.findOne({
 		where: {id: req.params.id},
@@ -20,6 +21,18 @@ router.get("/:id", function(req, res){
 	});
 });
 
+router.delete("/:id", function(req, res){
+  console.log("delete route. ID = ", req.params.id);
+  db.category.destroy({
+    where:  {id: req.params.id}
+  }).then(function(deleted){
+    console.log("delete = ", deleted);
+    res.send("success");
+  }).catch(function(err){
+    console.log("an error", err);
+    res.send("fail");
+  });
+});
 
 
 module.exports = router;

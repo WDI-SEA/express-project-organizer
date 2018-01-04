@@ -3,8 +3,10 @@
 <% if(categories && categories.length > 0){ %>
 	<% categories.forEach(function(c){ %>
 	<div>
-		<%= c.name %>
+		<a href="/categories/<%=c.id%>"><%= c.name %></a>
+		<a href="/categories/<%= c.id %>" class="btn btn-danger delete-cat">Delete Project</a>
 	</div>
+
 <% }); %>
 <% } else { %>
 	<h3>no categories yet</h3>

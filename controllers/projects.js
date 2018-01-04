@@ -3,21 +3,7 @@ var db = require('../models');
 var async =require("async");
 var router = express.Router();
 
-// POST /projects - create a new project
-// router.post('/', function(req, res) {
-//   db.project.create({
-//     name: req.body.name,
-//     githubLink: req.body.githubLink,
-//     deployedLink: req.body.deployedLink,
-//     description: req.body.description
-//   })
-//   .then(function(project) {
-//     res.redirect('/');
-//   })
-//   .catch(function(error) {
-//     res.status(400).render('main/404');
-//   });
-// });
+
 
 router.post("/", function(req, res){
   var categories = [];
@@ -51,10 +37,6 @@ router.post("/", function(req, res){
   });
 });
 
-
-
-
-
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
   db.category.findAll().then(function(category){
@@ -62,10 +44,24 @@ router.get('/new', function(req, res) {
   })
 });
 
+router.delete("/:id", function(req, res){
+  console.log("delete route. ID = ", req.params.id);
+  db.project.destroy({
+    where:  {id: req.params.id}
+  }).then(function(deleted){
+    console.log("delete = ", deleted);
+    res.send("success");
+  }).catch(function(err){
+    console.log("an error", err);
+    res.send("fail");
+  });
+});
+
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then(function(project) {
     if (!project) throw Error();
