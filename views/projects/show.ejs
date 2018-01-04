@@ -1,4 +1,4 @@
-<h1><%= result.name %></h1>
+<h1 class="project-title"><%= result.name %></h1>
 
 <a class="btn btn-primary" href="<%= result.githubLink %>" target="_blank">
   <i class="fa fa-github" aria-hidden="true"></i>
@@ -10,18 +10,18 @@
   Deployed Link
 </a>
 
-<p><%= result.description %></p>
+<blockquote><p><%= result.description %></p></blockquote>
 
 <hr />
 
 <% if(result.categories && result.categories.length > 0){%>
-	<h3>Categories:</h3>
+	<h3 class="sub-title">Categories:</h3>
 	<% result.categories.forEach(function(category){%>
 			<a href="/categories/<%=category.id%>"><span class="badge"><%=category.content%>
 			</span></a>
 	<%})%>
 <%}else{%>
-	<h3>No categories :(</h3>
+	<h3 class="sub-title">No categories :(</h3>
 	<% console.log(result.categories)%>
 <%}%>
 <hr />

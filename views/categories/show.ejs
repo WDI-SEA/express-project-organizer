@@ -1,6 +1,7 @@
-<h2><%=result.content%></h2>
+<h2 class="title">Category: <%=result.content%></h2>
 
-<blockquote>
+<h3 class="sub-title">Projects that fall under this category:</h3>
+
 <%result.projects.forEach(function(project){%>
-	<a href="/projects/<%=project.id%>"><h4><%=project.name%></h4></a>
+	<div class="well"><a href="/projects/<%=project.id%>"><h4 class="project-list"><%=project.name%></h4></a></div>
 <%})%>

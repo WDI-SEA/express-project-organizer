@@ -1,9 +1,8 @@
-<h2>All the categories</h2>
-<hr />
+<h2 class="title">Categories</h2>
 <% if(categories && categories.length >0){%>
 	<% categories.forEach(function(category){%>
-		<a href="/categories/<%=category.id%>"><div class="badge"><%=category.content%></div></a>
+		<div class="well"><a href="/categories/<%=category.id%>"><h3 class="category-list"><%=category.content%></h3></a></div>
 	<%})%>
 <%}else{%>
-	<h3>No categories yet!</h3>
+	<h3 class="category-list">No categories yet!</h3>
 <%}%>

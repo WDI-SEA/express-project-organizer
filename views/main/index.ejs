@@ -1,12 +1,11 @@
-<h1>Project Organizer</h1>
+<h1 class="title">Project Organizer</h1>
 
-<h2>My Projects</h2>
+<h2 class="sub-title">My Projects</h2>
 
 <% projects.forEach(function(project) { %>
   <div class="well">
     <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
+      <a href="/projects/<%= project.id %>"><h4 class="project-list"><%= project.name %></h4></a>
     </h2>
   </div>
 <% }); %>
