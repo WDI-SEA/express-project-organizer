@@ -17,8 +17,8 @@ router.get('/:id', function(req, res){
         where: {id: req.params.id},
         include: [db.project]
     }).then(function(cat){
-        res.send(cat);
-        // res.render('categories/single.ejs', {cat:cat});
+         // res.send(cat);
+        res.render('categories/single.ejs', {cat:cat});
     })
 });
 

@@ -4,5 +4,6 @@
 
 
 <% cat.projects.forEach(function(project){ %>
-<%=project.name%>
+
+<div><a href="/projects/<%=project.id%>"><%=project.name%></a></div>
 <% }); %>
