@@ -12,6 +12,20 @@
 
 <p><%= project.description %></p>
 
+<p>
+   Categories:
+   <% for(let i=0; i<project.categories.length; i++) {%>
+      <span class="btn btn-default"><%= project.categories[i].name%></span>
+   <%}%>
+   <form method="post" action="/projects/<%=project.id%>/category">
+      <div class="form-group">
+         <label for="cat">Add new category</label>
+         <input type="text" class="form-control" data-role="tagsinput" id="cat" name="cat">
+         <button type="submit" class="btn btn-primary btn-sm">Add Category</button>
+      </div>
+   </form>
+</p>
+
 <hr />
 
 <a href="/">&larr; Back Home</a>

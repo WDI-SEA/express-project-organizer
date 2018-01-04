@@ -1,0 +1,14 @@
+<h2>Single Category: <%=result.name%></h2>
+
+<p>
+   <h3>Projects:</h3>
+   <%console.log(result.projects.length);%>
+   <% for(let i=0; i<result.projects.length; i++) {%>
+
+      <a href="/projects/<%=result.projects[i].id%>" class="">
+         <div class="well">
+            <%=result.projects[i].name%>
+         </div>
+      </a>
+   <%}%>
+</p>
