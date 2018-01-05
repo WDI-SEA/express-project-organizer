@@ -1,4 +1,4 @@
-<h1>Create a new project</h1>
+<h1 class="title">Create a new project</h1>
 
 <form action="/projects" method="POST">
   <div class="form-group">
@@ -19,6 +19,11 @@
   <div class="form-group">
     <label for="description">Description</label>
     <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="categories">Category Names</label>
+    <input type="text" name="content" placeholder="comma-separated list of tags" class="form-control">
   </div>
 
   <input type="submit" class="btn btn-primary">

@@ -1,0 +1,33 @@
+body {
+	text-align: center;
+}
+
+nav {
+	font-size: 15px !important;
+	font-weight: 600;
+}
+
+.navbar-default{
+	background-color: black !important;
+}
+
+.navbar-nav > li > a {
+	color: white !important;
+}
+
+.well {
+	background: lightgrey !important;
+	border: 4px double black !important;
+}
+
+.project-list {
+	font-size: 25px !important;
+}
+
+a {
+	color: black !important;
+}
+
+.navbar-brand {
+	color: white !important;
+}

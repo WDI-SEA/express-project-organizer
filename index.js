@@ -9,6 +9,7 @@ rowdy.begin(app);
 
 app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
+app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
@@ -23,6 +24,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
