@@ -6,9 +6,9 @@ var router = express.Router();
 // POST /projects - create a new project
 
 router.post('/', function(req, res) {
-  var categories = [];
-  if(req.body.categories){
-    categories = req.body.categories.split(',');
+  var category = [];
+  if(req.body.category){
+    categories = req.body.category.split(',');
     console.log(categories);
   }
   db.project.create({
@@ -17,8 +17,8 @@ router.post('/', function(req, res) {
     deployedLink: req.body.deployedLink,
     description: req.body.description
   }).then(function(createdProject){
-    if(categories.length > 0){
-      async.forEach(categories,function(c,callback){
+    if(category.length > 0){
+      async.forEach(category,function(c,callback){
         db.category.findOrCreate({
           where: {content: c.trim()}
         }).spread(function(category,wasCreated){
@@ -51,7 +51,7 @@ router.get('/:id', function(req, res) {
   })
   .then(function(project) {
     if (!project) throw Error();
-    res.render('projects/show', { result: project });
+    res.render('projects/show', { project: project });
   })
   .catch(function(error) {
     res.status(400).render('main/404');
