@@ -1,0 +1,10 @@
+<h1><%= categories.name %></h1>
+<p><em>The below projects used <%= categories.name %>:</em></p>
+<% categories.projects.forEach(function(p) { %>
+  <div>
+    <h2>
+      <a href="/projects/<%= p.id %>"><%= p.name %></a>
+    </h2>
+  </div>
+<% }); %>
+<a href="/categories/<%= categories.id %>" class="btn btn-succes btn-lg" id="delete-category">Delete Category</a>

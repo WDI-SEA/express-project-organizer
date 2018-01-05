@@ -12,9 +12,13 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
+app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'))
+
 app.get('/', function(req, res) {
-  db.project.findAll()
-        .then(function(projects) {
+  db.project.findAll({
+  			include: [db.category]
+  }).then(function(projects) {
           res.render('main/index', { projects: projects });
         })
         .catch(function(error) {
@@ -22,7 +26,7 @@ app.get('/', function(req, res) {
         });
 });
 
-app.use('/projects', require('./controllers/projects'));
+
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
