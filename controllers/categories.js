@@ -14,7 +14,8 @@ router.get('/', function(req, res){
 
 router.get('/:id', function(req, res){
   db.category.findOne({
-    where: {name: req.params.id}
+    where: {id: req.params.id},
+    include: [db.project]
   }).then(function(category){
     res.render('categories/single.ejs', {category: category})
   });

@@ -6,7 +6,11 @@
   <div class="well">
     <h2>
       <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
+      <% if (project.categories && project.categories.length > 0) { %>
+        <% project.categories.forEach(function(c){ %>
+          <small>Category: <%= c.name %></small>
+        <% }); %>
+      <% } %>
     </h2>
   </div>
 <% }); %>

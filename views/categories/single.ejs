@@ -2,3 +2,8 @@
 
 <h4>Projects that fall under this category</h4>
 
+<% category.projects.forEach(function(p){ %>
+  <div class="well">
+    <h4><a href="/projects/<%= p.id %>"><%= p.name %></a></h4>
+  </div>
+<% }); %>
