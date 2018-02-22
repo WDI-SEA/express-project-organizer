@@ -1,0 +1,7 @@
+<h1>All Categories of Projects</h1>
+
+<ul>
+<% categories.forEach(function(category) { %>
+	<li><h2><a href='/categories/<%=category.id%>'> <%= category.name %> </a> &rarr; <a class='delete-category' href='/categories/<%= category.id %>'>Delete </a>/ <a href='/categories/<%= category.id %>/edit'>Edit</a></h2></li>
+<% }) %>
+</ul>

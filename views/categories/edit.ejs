@@ -1,0 +1,9 @@
+<h2>Edit category</h2>
+
+<form action='/categories/<%= category.id %>' class='edit-category'>
+	<div class='form-group'>
+		<label>Category: </label>
+		<input type='text' id="name" name='name' value='<%= category.name %>'>
+		<input type='submit' value='Submit Edit' class='btn'>
+	</div>
+</form>
