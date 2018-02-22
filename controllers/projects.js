@@ -18,7 +18,7 @@ router.post('/', function(req, res) {
   .then(function(project) {
     if (categories.length > 0) {
       async.forEach(categories, function(c, callback) {
-        console.log(c);
+        c = c.replace(/\s/g, '');
         db.category.findOrCreate({
           where: { name: c.trim() }
         }).spread(function(newCategory, wasCreated){
@@ -46,7 +46,8 @@ router.get('/new', function(req, res) {
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then(function(project) {
     if (!project) throw Error();

@@ -1,5 +1,3 @@
-<h1>this is working</h1>
-
 <h2>#<%= category.name %></h2>
 
 <hr>
@@ -7,7 +5,9 @@
 <h3>Associated Projects</h3>
 
 <% category.projects.forEach(function(p) { %>
+  <a href='/<%= p.deployedLink %>' target='_blank'>
   <h4>
     <%= p.name %>
   </h4>
+  </a>
 <% }); %>

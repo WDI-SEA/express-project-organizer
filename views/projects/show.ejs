@@ -11,6 +11,12 @@
 </a>
 
 <p><%= project.description %></p>
+  Tags:
+  <% project.categories.forEach(function(c) { %>
+    <a href='/categories/<%= c.id %>'>
+      <small class='btn btn-info'><%= c.name %></small>
+    </a>
+  <% }); %>
 
 <hr />
 
