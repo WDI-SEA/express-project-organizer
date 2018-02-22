@@ -1,0 +1,15 @@
+<h1>Create a new category</h1>
+
+<form action="/categories" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+  </div>
+
+  <input type="submit" class="btn btn-primary">
+</form>
