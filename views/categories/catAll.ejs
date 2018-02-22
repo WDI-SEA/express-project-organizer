@@ -1,0 +1,10 @@
+<h2>Categories</h2>
+ <% categories.forEach(function(c) { %>
+   <h3>
+     <a href="/categories/<%= c.id %>">
+       <%= c.name %>
+     </a>
+     <a href="/categories/<%= c.id %>/edit" class=" btn btn-warning">Edit</a>
+     <a href="/categories/<%= c.id %>" class=" btn btn-danger delete-tag">Delete</a>
+   </h3>
+ <% }); %>
