@@ -1,0 +1,20 @@
+<h2>Categories</h2>
+
+<% if(categories.length < 1) { %>
+  <p class="text-info">No categories yet. Create a post to add some categories!</p>
+<% } else { %>
+<% categories.forEach(function(c) { %>
+  <h3>
+    <a href="/categories/<%= c.id %>">
+      <%= c.name %>
+    </a>
+    <a href="/categories/<%= c.id %>/edit" class="btn btn-warning">Edit?</a>
+    <a href="/categories/<%= c.id %>" class="btn btn-danger delete-tag">
+      Delete?
+    </a>
+  </h3>
+  <% }) %>
+<% }; %>
+<hr />
+
+<a href="/">&larr; Back Home</a>
