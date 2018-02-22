@@ -1,0 +1,34 @@
+<h1>Edit Project</h1>
+
+<form id="update-form" method="POST" action="/projects/<%= project.id %>">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= project.name %>">
+    </div>
+    <div class="form-group">
+        <label for="github-link">GitHub Link</label>
+        <input type="text" class="form-control" id="github-link" name="githubLink" id="githubLink" value="<%= project.githubLink %>">
+    </div>
+    <div class="form-group">
+        <label for="deployed-link">Deployed Link</label>
+        <input type="text" class="form-control" id="deployed-link" name="deployedLink" id="deployedLink" value="<%= project.deployedLink %>">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" id="description" value="<%= project.description %>">
+    </div>
+    <div class="form-group">
+        <label for="categories">Categories</label>
+        <input type="text" class="form-control" id="categories" name="categories" id="categories" value="">
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Update">
+</form>
+
+
+
+<p></p>
+
+<hr />
+
+<a href="/">&larr; Back Home</a>

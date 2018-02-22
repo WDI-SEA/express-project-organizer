@@ -1,0 +1,5 @@
+<h1>All Categories</h1>
+
+<% categories.forEach(function(category) { %>
+    <a href="/categories/<%= category.id %>"><h3><%= category.name %></h3></a>
+<% }); %>

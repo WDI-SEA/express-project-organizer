@@ -3,10 +3,11 @@
 <h2>My Projects</h2>
 
 <% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
-    </h2>
-  </div>
+    <div class="well">
+        <h2>
+            <a href="/projects/<%= project.id %>"><%= project.name %></a>
+            <a class="edit-link btn btn-primary" href="projects/<%= project.id %>/edit">Edit</a>
+            <a class="delete-link btn btn-primary" href="projects/<%= project.id %>">Delete</a>
+         </h2>
+    </div>
 <% }); %>
