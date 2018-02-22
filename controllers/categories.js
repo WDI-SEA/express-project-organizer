@@ -47,6 +47,9 @@ router.get('/', function(req, res) {
   });
 });
 
-
+// // GET /categories/id - display new catgory form
+// router.get('/:id', function(req, res) {
+//   res.render('categories/edit');
+// });
 
 module.exports = router;
