@@ -47,9 +47,16 @@ router.get('/', function(req, res) {
   });
 });
 
-// // GET /categories/id - display new catgory form
-// router.get('/:id', function(req, res) {
-//   res.render('categories/edit');
-// });
+// GET /categories/id - display new catgory form
+router.get('/:id', function(req,res) {
+  db.category.findOne({
+    where: {id: req.params.id},
+    include: [db.project] //so we can pull all the projects associated with this category
+  }).then(function(category){
+    res.render('categories/detail', {category: category});
+  });
+});
+
+
 
 module.exports = router;
