@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
           where: { name: c.trim() }
         }).spread(function(newCategory, wasCreated){
           project.addCategory(newCategory).then(function() {
-            callback():
+            callback();
           });
         });
       }, function() {
