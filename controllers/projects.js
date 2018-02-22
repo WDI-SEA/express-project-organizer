@@ -6,17 +6,19 @@ var router = express.Router();
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   var categories = [];
-    if (req.body.category) {
-      categories = req.body.category.split(',');
+    if (req.body.categories) {
+      categories = req.body.categories.split(',');
     };
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
-    description: req.body.description,
-  }).then(function(project) {
+    description: req.body.description
+  })
+  .then(function(project) {
     if (categories.length > 0) {
       async.forEach(categories, function(c, callback) {
+        console.log(c);
         db.category.findOrCreate({
           where: { name: c.trim() }
         }).spread(function(newCategory, wasCreated){
