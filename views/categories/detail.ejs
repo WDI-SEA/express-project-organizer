@@ -1,0 +1,7 @@
+<h1><%= cat.name %></h1>
+<hr />
+
+<h3>Usage</h3>
+<% cat.projects.forEach(function(project){ %>
+  <a href="/projects/<%= project.id %>"><strong><%= project.name %></strong></a>
+<% }) %>
