@@ -1,16 +1,32 @@
 var express = require('express');
 var db = require('../models');
+var async = require('async');
 var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
+  var categories = [];
+  if(req.body.category){
+    categories = req.body.category.split(",");
+  }
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
   })
-  .then(function(project) {
+  .then(function(project){
+    if(categories.length > 0){
+      async.forEach(categories, function(c, callback){
+        db.category.findOrCreate({
+          where: { name: c.trim() }
+        }).spread(function(newCat, wasCreated){
+          project.addCategory(newCat).then(function(){
+            callback();
+          });
+        });
+      });
+    }//end of if statement
     res.redirect('/');
   })
   .catch(function(error) {
@@ -33,7 +49,7 @@ router.get('/:id', function(req, res) {
     res.render('projects/show', { project: project });
   })
   .catch(function(error) {
-    res.status(400).render('main/404');
+    console.log(error);
   });
 });
 
