@@ -14,4 +14,11 @@
 
 <hr />
 
+<h3>Categories</h3>
+<% project.categories.forEach(function(category) { %>
+  <ul>
+    <li> <a href="/categories/categories/<%=category.id%>"><%= category.name %></a> </li>
+  </ul>
+<% }); %>
+
 <a href="/">&larr; Back Home</a>

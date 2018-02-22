@@ -1,3 +1,17 @@
-<h1>Hi, I'm categories new</h1>
 
-<h1>Add New Category</h1>
+<h1>Edit Category</h1>
+<div class="">
+  <form class="" action="/" method="post">
+    <input type="text" name="name" value="<%= category.name %>">
+    <input type="submit" value="Submit Change">
+  </form>
+</div>
+
+<h1>List of Assocated Projects</h1>
+  <% if (category.projects) { %>
+     <% category.projects.forEach(function(project){ %>
+       <h2><%= project.name %></h2>
+      <% }); %>
+   <% } else { %>
+     <p>No projects to display.</p>
+   <% } %>

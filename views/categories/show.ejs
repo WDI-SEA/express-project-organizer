@@ -1,12 +1,11 @@
-<h1>Hi, I'm categories new</h1>
 
 <h1>List All Categories</h1>
-<% categories.forEach(function(category){ %>
-  <h3>
-    <a href="<%= category.id %>">
-      <%= category.name %>
-    </a>
-    <a href="/category/<%= category.id %>/edit">Edit</a>
-    <a href="/category/<%= category.id %>">Delete</a>
-  </h3>
-<% }); %>
+  <% categories.forEach(function(category){ %>
+    <h3>
+      <a href="/categories/categories/<%= category.id %>">
+        <%= category.name %>
+      </a>
+      <a href="/categories/<%= category.id %>/edit">Edit</a>
+      <a href="/categories/<%= category.id %>/delete">Delete</a>
+    </h3>
+  <% }); %>
