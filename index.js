@@ -13,8 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
 app.get('/', function(req, res) {
-  db.project.findAll()
+  db.project.findAll({ include: [db.category] })
         .then(function(projects) {
+        	// console.log('##########' + projects[0].categories[0]);
           res.render('main/index', { projects: projects });
         })
         // .catch(function(error) {

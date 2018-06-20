@@ -1,10 +1,12 @@
-<h1><%= category.name %></h1>
+<h1>Categories</h1>
 
 <hr />
 
 <ul>
-	<% category.projects.forEach(function(project) { %>
-	  <li> <%= project.name %> </li>
+	<% categories.forEach(function(category) { %>
+	  <li> <%= category.name %> </li>
 	<% }); %>
 </ul>
+<a href="new">&larr; Add New Category</a>
 <a href="/">&larr; Back Home</a>
+

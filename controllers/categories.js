@@ -19,9 +19,13 @@ router.get('/:id', function(req, res) {
     where: {id:req.params.id},
     include: [db.project]
   }).then(function(category) {
-    console.log(category);
     res.render('categories/:id', {category : category});
   });
+});
+
+// GET /categories/new - display form for creating a new category
+router.get('/new', function(req, res) {
+  res.render('categories/new');
 });
 
 module.exports = router;

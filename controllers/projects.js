@@ -4,6 +4,7 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
+  // first create the project
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -11,9 +12,16 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+    // second, we need to create the category if it doesn't already exist
+    db.category.findOrCreate({
+      where: { name: req.body.category }
+    }).spread(function(name, created) {
+      project.addCategory(name).then(function(category) {
+        res.redirect('/');
+      })
+    });
+    
+  }).catch(function(error) {
     res.status(400).render('main/404');
   });
 });
