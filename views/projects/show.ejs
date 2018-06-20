@@ -10,7 +10,14 @@
   Deployed Link
 </a>
 
-<p><%= project.description %></p>
+<p><%= project.description %></p><br>
+
+
+<p style="display:inline">Categories:</p>
+<% project.categories.forEach(function(category){ %> 
+  <p style="display:inline" class='category'><%= category.name %> </p>
+<% }); %>
+
 
 <hr />
 

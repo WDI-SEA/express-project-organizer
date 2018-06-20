@@ -9,11 +9,16 @@ router.post('/', function(req, res) {
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+  }).then(function(project) {
+    db.category.findOrCreate({
+      where: {name: req.body.category}
+    }).spread(function(category, created) {
+      project.addCategory(category).then(function(category) {
+        console.log("Category", category, "added to post.");
+        res.redirect('/');
+      });
+    });
+  }).catch(function(error) {
     res.status(400).render('main/404');
   });
 });
@@ -26,13 +31,13 @@ router.get('/new', function(req, res) {
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
-  })
-  .then(function(project) {
+    where: { id: req.params.id },
+    include: [db.category]
+  }).then(function(project) {
     if (!project) throw Error();
+    console.log("LOGGING!!!!: ", project);
     res.render('projects/show', { project: project });
-  })
-  .catch(function(error) {
+  }).catch(function(error) {
     res.status(400).render('main/404');
   });
 });
