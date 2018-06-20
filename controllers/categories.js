@@ -9,5 +9,14 @@ router.get('/', (req,res) => {
     })
 })
 
+// GET - categories/:id show
+router.get('/:id', (req,res) => {
+    db.category.findById(req.params.id).then( (category) => {
+        category.getProjects().then( (projects) => {
+            res.render('categories/show', {category, projects});
+        })
+    })
+})
+
 
 module.exports = router;
