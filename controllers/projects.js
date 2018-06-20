@@ -2,6 +2,11 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+// GET /projects/new - display form for creating a new project
+router.get('/new', function (req, res) {
+  res.render('projects/new');
+});
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
@@ -11,16 +16,17 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+    db.category.findOrCreate({
+      where: {name: req.body.name}
+    }).spread(function(category, created) {
+      project.addCategory(category).then(function(category) {
+        console.log(category + ' added to ' + project);
+        res.redirect('/');        
+      });
+    });
+  }).catch(function(error) {
     res.status(400).render('main/404');
   });
-});
-
-// GET /projects/new - display form for creating a new project
-router.get('/new', function(req, res) {
-  res.render('projects/new');
 });
 
 // GET /projects/:id - display a specific project
@@ -36,5 +42,9 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+// GET /projects/:id/edit - display form for editing a project
+
+// PUT /projects/:id - updates a project
 
 module.exports = router;
