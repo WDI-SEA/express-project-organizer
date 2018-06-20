@@ -1,16 +1,22 @@
 {
   "development": {
-    "database": "project_organizer_development",
+    "username": "gensc",
+    "password": 123,
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "project_organizer_test",
+    "username": "gensc",
+    "password": 123,
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "project_organizer_production",
+    "username": "gensc",
+    "password": 123,
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

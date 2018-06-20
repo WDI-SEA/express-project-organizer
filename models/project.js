@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var project = sequelize.define('project', {
     name: DataTypes.STRING,
     githubLink: {
@@ -15,12 +15,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     description: DataTypes.TEXT
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
+  }, {});
+  project.associate = function(models) {
+    // associations can be defined here
+    models.project.belongsToMany(models.category, { through: 'categoriesProjects' });
+  };
   return project;
 };
