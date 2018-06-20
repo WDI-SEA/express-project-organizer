@@ -1,9 +1,9 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var ejsLayouts = require('express-ejs-layouts');
-var db = require('./models');
-var rowdy = require('rowdy-logger');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const ejsLayouts = require('express-ejs-layouts');
+const db = require('./models');
+const rowdy = require('rowdy-logger');
+const app = express();
 
 rowdy.begin(app);
 
@@ -13,12 +13,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
-app.get('/', function(req, res) {
-  db.project.findAll()
-        .then(function(projects) {
-          res.render('main/index', { projects: projects });
-        })
-        .catch(function(error) {
+app.get('/', (req, res) => {
+  db.project.findAll().then((projects) => {
+          res.render('main/index', {projects});
+        }).catch((error) => {
           res.status(400).render('main/404');
         });
 });
