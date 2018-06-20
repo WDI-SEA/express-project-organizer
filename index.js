@@ -17,12 +17,13 @@ app.get('/', function(req, res) {
         .then(function(projects) {
           res.render('main/index', { projects: projects });
         })
-        .catch(function(error) {
-          res.status(400).render('main/404');
-        });
+        // .catch(function(error) {
+        //   res.status(400).render('main/404');
+        // });
 });
 
 app.use('/projects', require('./controllers/projects'));
+app.use('/categories', require('./controllers/categories'));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
