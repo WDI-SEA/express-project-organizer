@@ -15,9 +15,9 @@
 
 <p>Category Tags:</p>
 <ul style= "display: inline;">
-  < projects.categories.forEach(function(category) { >
-  <li><= category.name ></li>
-  < }) >
+  <% project.categories.forEach(function(category) { %>
+  <li><%= category.name %></li>
+  <% }) %>
 </ul>
 
 
