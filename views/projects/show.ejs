@@ -12,6 +12,13 @@
 
 <p><%= project.description %></p>
 
+<h3>Categories</h3>
+
+<ul style="display: inline;">
+	<% project.categories.forEach(function(cat) { %>
+		<li><%= cat.name %></li>
+	<% }); %>
+</ul>
 <hr />
 
 <a href="/">&larr; Back Home</a>

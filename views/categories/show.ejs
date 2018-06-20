@@ -1,0 +1,11 @@
+<h1><%= cat.name %></h1>
+
+
+<h3>Projects</h3>
+
+	<% cat.projects.forEach(function(project) { %>
+		<div class="well"><%= project.name %></div>
+	<% }); %>
+<hr />
+
+<a href="/">&larr; Back Home</a>
