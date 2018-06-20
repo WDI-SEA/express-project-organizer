@@ -19,20 +19,20 @@ router.get('/:id', function(req, res) {
   });
 });
 
-//GET /categories/new - returns the for for adding.
-router.get('/new', function(req, res) {
-  res.render('categories/new')
-});
+//GET - returns the for for adding.
+// router.get('/new', function(req, res) {
+//   res.render('categories/new')
+// });
 
-//POST /categories/index - posts the categories to the index page
-router.post('/', function(req, res) {
-  db.category.create({
-    name: req.body.name
-  }).then(function(category) {
-      console.log(category);
-      res.redirect('/categories');
-  });
-});
+//POST - posts the categories to the index page
+// router.post('/', function(req, res) {
+//   db.category.create({
+//     name: req.body.name
+//   }).then(function(category) {
+//       console.log(category);
+//       res.redirect('/categories');
+//   });
+// });
 
 
 
