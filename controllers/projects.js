@@ -42,7 +42,7 @@ router.get('/:id', function(req, res) {
     include: [db.category]
   })
   .then(function(project) {
-    console.log(project);
+    console.log('heres project.categories[0].category', project.categories[0].category);
     if (!project) throw Error();
     res.render('projects/show', { project: project });
   })

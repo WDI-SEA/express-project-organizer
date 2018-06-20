@@ -10,10 +10,12 @@
   Deployed Link
 </a>
 
+<h5>Description</h5>
 <p><%= project.description %></p>
 <h6>Categories</h6>
-<p><%= project.categories.name %></p>
-
+<% project.categories.forEach(function(category) { %>
+  <p><%= category.category %></p>
+<% }); %>
 
 <hr />
 
