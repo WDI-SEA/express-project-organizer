@@ -1,19 +1,24 @@
-var express = require('express');
-var db = require('../models');
-var router = express.Router();
+const express = require('express');
+const db = require('../models');
+const router = express.Router();
 
 // POST /projects - create a new project
-router.post('/', function(req, res) {
+router.post('/', (req,res) => {
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+  }).then( (project) => {
+    db.category.findOrCreate({
+      where: {name: req.body.categoryName}
+    }).spread( (category, created) => {
+      project.addCategory(category).then((category) => {
+        console.log(category + "added to" + project);
+        res.redirect('/');
+      })
+    })
+  }).catch( (error) => {
     res.status(400).render('main/404');
   });
 });
@@ -27,12 +32,10 @@ router.get('/new', function(req, res) {
 router.get('/:id', function(req, res) {
   db.project.find({
     where: { id: req.params.id }
-  })
-  .then(function(project) {
+  }).then(function(project) {
     if (!project) throw Error();
     res.render('projects/show', { project: project });
-  })
-  .catch(function(error) {
+  }).catch(function(error) {
     res.status(400).render('main/404');
   });
 });
