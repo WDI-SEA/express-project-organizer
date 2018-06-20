@@ -1,16 +1,19 @@
 {
   "development": {
-    "database": "project_organizer_development",
+
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "project_organizer_test",
+
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "project_organizer_production",
+
+    "database": "project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

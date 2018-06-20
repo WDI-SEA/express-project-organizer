@@ -9,11 +9,16 @@ router.post('/', function(req, res) {
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+  }).then(function(project) {
+      db.category.findOrCreate({
+      where: {name: req.body.categoryName}
+  }).spread(function(category, created){
+
+    project.addCategory(category).then(function(category){
+      res.redirect('/');
+    });
+  });
+  }).catch(function(error) {
     res.status(400).render('main/404');
   });
 });
