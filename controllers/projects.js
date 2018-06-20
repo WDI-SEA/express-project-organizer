@@ -1,6 +1,7 @@
 var express = require('express');
 var db = require('../models');
 var router = express.Router();
+var async = require('async');
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
@@ -10,18 +11,47 @@ router.post('/', function(req, res) {
     deployedLink: req.body.deployedLink,
     description: req.body.description
   }).then(function(project) {
-    db.category.findOrCreate({
-      where: {name: req.body.category}
-    }).spread(function(category, created) {
-      project.addCategory(category).then(function(category) {
-        console.log("Category", category, "added to post.");
-        res.redirect('/');
-      });
+    
+    var catArray = req.body.category.split(','); // separate categories into array
+    
+    var addCategory = function(catName, callback) {
+      db.category.findOrCreate({
+        where: {name: catName}
+      }).spread(function(category, created) {
+          project.addCategory(category);
+        }).then(function(category) {
+        });
+    }
+    
+    // async call to create each category in the database
+    async.concat(catArray, addCategory, function(err, results) {
+      console.log('Done with async calls!');
     });
-  }).catch(function(error) {
-    res.status(400).render('main/404');
+    results.redirect('/');
   });
 });
+
+// Original post route that works for one single category
+// POST /projects - create a new project
+// router.post('/', function(req, res) {
+//   db.project.create({
+//     name: req.body.name,
+//     githubLink: req.body.githubLink,
+//     deployedLink: req.body.deployedLink,
+//     description: req.body.description
+//   }).then(function(project) {
+//     db.category.findOrCreate({
+//       where: {name: req.body.category}
+//     }).spread(function(category, created) {
+//       project.addCategory(category).then(function(category) {
+//         console.log("Category", category, "added to post.");
+//         res.redirect('/');
+//       });
+//     });
+//   }).catch(function(error) {
+//     res.status(400).render('main/404');
+//   });
+// });
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
@@ -35,8 +65,7 @@ router.get('/:id', function(req, res) {
     include: [db.category]
   }).then(function(project) {
     if (!project) throw Error();
-    console.log("LOGGING!!!!: ", project);
-    res.render('projects/show', { project: project });
+    res.render('projects/show', {project: project});
   }).catch(function(error) {
     res.status(400).render('main/404');
   });
