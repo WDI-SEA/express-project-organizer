@@ -14,4 +14,11 @@
 
 <hr />
 
+<p>Categories:</p>
+<ul>
+	<% project.categories.forEach(function(category) { %>
+		<a href="/categories/<%= category.id %>"><%= category.name %></a>
+	<% }) %>
+</ul>
+
 <a href="/">&larr; Back Home</a>
