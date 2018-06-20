@@ -7,7 +7,7 @@ router.get('/new', function (req, res) {
   res.render('projects/new');
 });
 
-// POST /projects - create a new project
+// POST /projects - create a new project with a category
 router.post('/', function(req, res) {
   db.project.create({
     name: req.body.name,
@@ -17,7 +17,7 @@ router.post('/', function(req, res) {
   })
   .then(function(project) {
     db.category.findOrCreate({
-      where: {name: req.body.name}
+      where: {name: req.body.categoryId}
     }).spread(function(category, created) {
       project.addCategory(category).then(function(category) {
         console.log(category + ' added to ' + project);
@@ -29,16 +29,16 @@ router.post('/', function(req, res) {
   });
 });
 
-// GET /projects/:id - display a specific project
+// GET /projects/:id - display a specific project and its category(ies)
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
-  })
-  .then(function(project) {
+    where: { id: req.params.id },
+    include: [db.category]
+  }).then(function(project) {
     if (!project) throw Error();
     res.render('projects/show', { project: project });
-  })
-  .catch(function(error) {
+  }).catch(function(error) {
+    console.log(error);
     res.status(400).render('main/404');
   });
 });

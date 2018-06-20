@@ -1,16 +1,23 @@
 <h1><%= project.name %></h1>
 
 <a class="btn btn-primary" href="<%= project.githubLink %>" target="_blank">
-  <i class="fa fa-github" aria-hidden="true"></i>
+  <!-- <i class="fa fa-github" aria-hidden="true"></i> -->
   Github Link
 </a>
 
 <a class="btn btn-primary" href="<%= project.deployedLink %>" target="_blank">
-  <i class="fa fa-globe" aria-hidden="true"></i>
+  <!--<i class="fa fa-globe" aria-hidden="true"></i>-->
   Deployed Link
 </a>
 
 <p><%= project.description %></p>
+
+<p>Categories:</p>
+<ul>
+  <% project.categories.forEach(function(category) { %>
+    <li><%= category.name %></li>
+  <%  }); %>
+</ul>
 
 <hr />
 

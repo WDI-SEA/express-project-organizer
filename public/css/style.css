@@ -1,4 +1,8 @@
-
+body{
+  margin: 1%;
+  background-color: #000;
+  color: #fff;
+}
 .menu-hover-lines {
   text-align: center;
   text-transform: uppercase;
@@ -9,7 +13,7 @@
 
 .menu-hover-lines li a {
   padding: 0.75rem 0;
-  color: rgba(10, 10, 10, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   position: relative;
   margin-left: 1rem;
 }
@@ -44,7 +48,7 @@
 
 .menu-hover-lines a:hover,
 .menu-hover-lines li.active > a {
-  color: #0a0a0a;
+  color: #fff;
   transition: all 0.35s ease;
 }
 
