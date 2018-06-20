@@ -42,5 +42,3 @@ module.exports = server;
 //bodyParser - server gets a request, w/ bodyParser (ex. forms, route colon id..allows you to grab it really easily)
 //ejsLayouts - everything goes in the body, side note ejs= uses <%'s
 //db = database ->> models files see line4 >>columns table = models
-
-// controllers anouther word for router = router folder

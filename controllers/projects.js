@@ -4,8 +4,6 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  // already saving project, we have to create two more
-  // use find or create for two new ones
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -25,10 +23,6 @@ router.post('/', function(req, res) {
     res.status(400).render('main/404');
   });
 });
-
-// ask what spead does, and addTag or addCategory? where does this come from
-
-
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
