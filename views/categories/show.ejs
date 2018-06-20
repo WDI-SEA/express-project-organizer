@@ -3,6 +3,8 @@
 <h2>Categories</h2>
 
 <% projects.forEach(function(project) { %>
+<p><a><%= project.name %></a></p>
+
   <div class="well">
     <h2>
       <a href="/projects/<%= project.id %>"><%= project.title %></a>

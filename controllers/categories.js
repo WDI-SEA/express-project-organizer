@@ -12,8 +12,8 @@ router.get('/', function(req, res) {
 // GET / categories/:id - get a specific category
 router.get('/:id', function(req, res) {
   db.category.findById(req.params.id).then(function(category) {
-    category.getPosts().then(function(posts) {
-      res.render('categories/show', {category: category, posts: posts});
+    category.getProjects().then(function(projects) {
+      res.render('categories/show', {category: category, projects: projects});
     });
   });
 });
