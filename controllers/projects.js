@@ -9,14 +9,19 @@ router.post('/', function(req, res) {
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
-    res.status(400).render('main/404');
+  }).then(function(project) {
+      db.category.findOrCreate({
+        where: {name: req.body.category}
+      }).spread(function(category, created) {
+        project.addCategory(category).then(function(category) {
+          console.log(category + " added to " + project);
+          res.redirect('/');
+        });
+      });
+    }).catch(function(error) {
+      res.status(400).render('main/404');
+    });
   });
-});
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
