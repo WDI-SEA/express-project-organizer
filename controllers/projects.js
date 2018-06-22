@@ -30,16 +30,12 @@ router.get('/new', function(req, res) {
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
-  db.project.find({
-    where: { id: req.params.id }
+  db.project.findById(req.params.id).then(function(project){
+    project.getCategories().then(function(categories){
+      res.render('projects/show', {project:project, categories: categories})
+    })
   })
-  .then(function(project) {
-    if (!project) throw Error();
-    res.render('projects/show', { project: project });
   })
-  .catch(function(error) {
-    res.status(400).render('main/404');
-  });
-});
+
 
 module.exports = router;
