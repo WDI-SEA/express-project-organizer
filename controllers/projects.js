@@ -12,7 +12,8 @@ router.post('/', function(req, res) {
     description: req.body.description
   }).then(function(project) {
     
-    var catArray = req.body.category.split(','); // separate categories into array
+    // separate categories into array
+    var catArray = req.body.category.split(','); 
     
     var addCategory = function(catName, callback) {
       db.category.findOrCreate({
