@@ -32,7 +32,9 @@ router.post('/', function(req, res) {
         });
       });
     };
+
     async.concat(catArray, findOrCreate);
+
     res.redirect('/');
   }).catch(function(error) {
     res.status(400).render('main/404');
@@ -79,5 +81,37 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+// DELETE /projects/:id - delete project
+router.delete('/:id', function(req, res) {
+  db.project.destroy({
+    where: {id: req.params.id}
+  }).then(function(data) {
+    res.sendStatus(200);
+  })
+});
+
+// router.delete('/:id', function(req, res) {
+//   db.project.findById(req.params.id).then(function(proj) {
+//     proj.getCategory().then(function(cat) {
+      
+//     })
+//   });
+// });
+
+
+// router.delete('/:id', function(req, res) {
+//   db.project.find({
+//     where: {id: req.params.id},
+//     incude: [{
+//       model: category,
+//       through: {
+//         attributes: [categoryId, projectId],
+//       }
+//     }]
+//   }).then(function(project) {
+
+//   })
+// });
 
 module.exports = router;
