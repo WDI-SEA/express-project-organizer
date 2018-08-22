@@ -5,30 +5,25 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  db.project.create(req.body).then(function(createdProject) {
-    if(!req.body.categories) {
-      res.redirect('/projects/' + createdProject.id);
-    }
-    else {
-      var categories = req.body.categories.split(',');
-      categories = categories.filter(function(category) { return /\S/.test(category); });
-      categories.forEach(function(item, index, arr) {
-        arr[index] = item.trim();
-      });
-      async.forEach(categories, function(c, callback) {
-        db.category.findOrCreate({
-          where: { name: c }
-        }).spread(function(cat, wasCreated) {
-          if(cat) {
-            createdProject.addCategory(cat);
-          }
-          callback(null);
-        })
-      },
-      function() {
-        res.redirect('/projects/' + createdProject.id);
-      });
-    }
+  db.project.create({
+    name: req.body.name,
+    githubLink: req.body.githubLink,
+    deployedLink: req.body.deployedLink,
+    description: req.body.description
+  })
+  .then(function(project) {
+    var cats = [];
+    if(req.body.categories) { cats = req.body.categories.split(','); }
+    
+    cats.forEach(function(c) {
+      db.category.findOrCreate({ 
+        where: { name: c.toLowerCase().trim() }
+      }).spread(function(foundCategory, wasCreated) {
+        project.addCategory(foundCategory);
+      }).catch();
+    });
+
+    res.redirect('/');
   })
   .catch(function(error) {
     res.status(400).render('main/404');
