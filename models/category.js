@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   category.associate = function(models) {
-    // associations can be defined here
+    models.category.belongsToMany(models.project, {through: models.categoriesProjects}); //category belongs to many projects
   };
   return category;
 };
+
