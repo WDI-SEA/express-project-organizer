@@ -22,7 +22,11 @@ app.get('/', function(req, res) {
         });
 });
 
+// when called from controllers/projects home is /projects
 app.use('/projects', require('./controllers/projects'));
+
+app.use('/dbtest', require('./test/dbtest'));
+
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();
