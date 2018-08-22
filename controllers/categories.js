@@ -2,7 +2,7 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
-// get index
+// get index of categories
 router.get('/', function(req, res) {
   db.category.findAll().then(function(categories) {
       res.render('categories/index', { categories: categories });
@@ -12,10 +12,15 @@ router.get('/', function(req, res) {
     });
 });
 
+// get specific category & show projects listed under
 router.get('/:id', function(req, res) {
-  res.send('you reached category ' + req.params.id + '\'s show page');
+  var ident = parseInt(req.params.id);
+  db.category.findById(ident).then(function(category) {
+    res.send('you reached category ' + category.id + '\'s show page');
+  }).catch(function(err) {
+    // no nph plz
+    res.send('a less aggrivating 404 page');
+  });
 });
-
-// get specific
 
 module.exports = router;
