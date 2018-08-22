@@ -12,6 +12,10 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/:id', function(req, res) {
+  res.send('you reached category ' + req.params.id + '\'s show page');
+});
+
 // get specific
 
 module.exports = router;

@@ -1,6 +1,6 @@
 <h2>All Categories Currently Applied</h2>
 
 <% categories.forEach(function(category) { %>
-  <p><%= category.name %></p>
+  <a href="/categories/<%= category.id %>"> <%= category.name %> </a>
   <hr>
 <% }); %>
