@@ -10,10 +10,31 @@ router.post('/', function(req, res) {
     deployedLink: req.body.deployedLink,
     description: req.body.description
   })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
+  .then(function(createdProject) {
+    var cat = [];
+      if(req.body.categories){
+        cat = req.body.categories.split(',');
+      }
+      if(cat.length > 0){
+        //loop through each tag, create if needed, add relation to join table
+        async.forEach(cat, function(t, done){
+          //this code runs for each individual tag we need to add
+          db.category.findOrCreate({
+            where: {name: t.trim()}
+          }).spread(function(newCat, wasCreated){
+            createdProject.addTag(newCat).then(function(){
+              done();//tells async, this iteration is all finished
+            })
+          });
+        }, function(){
+          //this code runs when everything is done
+          res.redirect('/projects/' + createdProject.id);
+        });
+      }
+      else {
+        res.redirect('/projects/' + createdProject.id);
+      }
+      }).catch(function(error) {
     res.status(400).render('main/404');
   });
 });

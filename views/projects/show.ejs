@@ -14,4 +14,10 @@
 
 <hr />
 
+<% if (project.categories && project.categories.length > 0){%>
+	<%project.categories.forEach(function(c){%>
+		<p>Category: <%c.category%></p>
+	<%});%>
+<%} else { %> <p>No Categories Yet!</p><% }%>
+
 <a href="/">&larr; Back Home</a>

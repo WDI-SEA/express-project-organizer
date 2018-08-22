@@ -1,26 +1,13 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var project = sequelize.define('project', {
     name: DataTypes.STRING,
-    githubLink: {
-      type: DataTypes.TEXT,
-      validate: {
-        isUrl: true
-      }
-    },
-    deployedLink: {
-      type: DataTypes.TEXT,
-      validate: {
-        isUrl: true
-      }
-    },
+    githubLink: DataTypes.STRING,
+    deployedLink: DataTypes.STRING,
     description: DataTypes.TEXT
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
+  }, {});
+  project.associate = function(models) {
+    models.project.belongsToMany(models.category, {through: 'categoriesProjects'})
+  };
   return project;
 };
