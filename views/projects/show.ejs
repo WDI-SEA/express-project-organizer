@@ -9,9 +9,21 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link
 </a>
-
+<hr>
 <p><%= project.description %></p>
 
-<hr />
+<div>
+	<% if(project.categories && project.categories.length > 0){%>
+	<% project.categories.forEach(function(c){%> 
+		<a href="/categories/<%=c.id%>">
+			#<%=c.name%>
+		</a>
+		<%});%>
+	<%} else { %>
+		<p>No tags yet</p>
+	<%}%>
+</div>
+
+<hr>
 
 <a href="/">&larr; Back Home</a>
