@@ -26,13 +26,13 @@ var async = require('async');
 
 router.post('/', function(req, res){
     db.project.create(req.body).then(function(createdProject){
-      var categories = [];
-      if (req.body.category){
-        categories = req.body.category.split(",")
+      var cats = [];
+      if (req.body.categories){
+        cats = req.body.categories.split(",")
       }
-      console.log(categories);
+      //console.log(cats);
       if(categories.length>0){
-        async.forEach(categories, function(t, done){
+        async.forEach(cats, function(t, done){
           db.category.findOrCreate({
             where: {name: t.trim()}
           }).spread(function(newCategory, wasCreated){
@@ -70,6 +70,7 @@ router.get('/:id', function(req, res) {
     include: [db.project, db.category]
   })
   .then(function(project) {
+    console.log("project::::::",project)
     if (!project) throw Error();
     res.render('projects/show', { project: project });
   })
