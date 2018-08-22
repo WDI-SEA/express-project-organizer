@@ -15,10 +15,19 @@ router.get('/', function(req, res) {
 // get specific category & show projects listed under
 router.get('/:id', function(req, res) {
   var ident = parseInt(req.params.id);
-  db.category.findById(ident).then(function(category) {
-    res.send('you reached category ' + category.id + '\'s show page');
+  db.category.findOne({
+    where: { id: ident },
+    include: [db.project]
+  }).then(function(foundCategory) {
+    // TODO why the F do i have to do this check?!
+    if (foundCategory) {
+      res.render('categories/show',
+        { category: foundCategory });
+    }
+    else {
+      throw 'whatever'
+    }
   }).catch(function(err) {
-    // no nph plz
     res.send('a less aggrivating 404 page');
   });
 });
