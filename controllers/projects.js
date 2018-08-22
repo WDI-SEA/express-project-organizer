@@ -12,6 +12,18 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    var cats = [];
+    if(req.body.categories) {cats = req.body.categories.split(','); }
+
+    cats.forEach(function(c){
+      db.category.findOrCreate({
+        where: {name: c.toLowerCase().trim() } // takes input lowercase without spaces
+      }).spread(function(foundCategory, wasCreated){
+        project.addCategory(foundCategory); 
+
+      }).catch();
+    });
+   
     res.redirect('/');
   })
   .catch(function(error) {
@@ -27,7 +39,8 @@ router.get('/new', function(req, res) {
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category] //makes sure category gets included here 
   })
   .then(function(project) {
     if (!project) throw Error();
