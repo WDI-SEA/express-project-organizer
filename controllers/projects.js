@@ -4,7 +4,7 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  db.project.create({
+  db.project.findOrCreate({
     name: req.body.name,
     category: req.body.category,
     githubLink: req.body.githubLink,
