@@ -12,6 +12,12 @@
 
 <p><%= project.description %></p>
 
+<% if(project.categories.length > 0) {%>
+	<p>Categories:</p>
+	<% project.categories.forEach(function(category) {%>
+	<a href="/categories/<%= category.id %>"><%= category.name %></a>
+<% })}; %>
+
 <hr />
 
 <a href="/">&larr; Back Home</a>
