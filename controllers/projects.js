@@ -6,6 +6,7 @@ var router = express.Router();
 router.post('/', function(req, res) {
   db.project.create({
     name: req.body.name,
+    category: req.body.category,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
