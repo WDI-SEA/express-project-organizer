@@ -25,6 +25,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/projects', require('./controllers/projects'));
+app.use('/technologies', require("./controllers/technologies"));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();

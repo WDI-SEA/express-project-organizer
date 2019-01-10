@@ -1,0 +1,7 @@
+<h1>List of all Technologies</h1>
+
+<ul>
+  <% categories.forEach((cat)=>{ %>
+  <li><a href="/technologies/<%= cat.id %>">#<%= cat.name %></a></li>
+  <% }) %>
+</ul>
