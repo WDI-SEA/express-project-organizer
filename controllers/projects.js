@@ -8,10 +8,18 @@ router.post('/', function(req, res) {
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
-    description: req.body.description
+    description: req.body.description,
   })
   .then(function(project) {
-    res.redirect('/');
+      db.category.findOrCreate({
+        where: { 
+          id: req.params.id,
+          name: req.body.name
+        }
+      }).spread(function(newCat, wasCreated){
+           project.addCategory(newCat)
+      });
+        res.redirect('/projects/' + project.id);
   })
   .catch(function(error) {
     res.status(400).render('main/404');
@@ -20,13 +28,19 @@ router.post('/', function(req, res) {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
-  res.render('projects/new');
+  db.category.findAll()
+  .then(function(categories){
+    res.render('projects/new', {categories: categories})
+  }).catch(function(err){
+    res.status(400).render('main/404');
+  })
 });
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then(function(project) {
     if (!project) throw Error();
@@ -36,5 +50,6 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 module.exports = router;
