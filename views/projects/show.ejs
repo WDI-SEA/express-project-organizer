@@ -12,6 +12,23 @@
 
 <p><%= project.description %></p>
 
+<hr>
+
+<p>
+  <% project.categories.forEach((cat)=>{ %>
+  <a href="/technologies/<%= cat.name %>">#<%= cat.name %></a>
+  <% }) %>
+</p>  
+
 <hr />
 
+<a href="/projects/<%= project.id%>/edit">Edit this project</a>
+
 <a href="/">&larr; Back Home</a>
+
+<hr>
+
+<form action="/projects/<%= project.id %>/?_method=DELETE" method="post">
+  <input type="hidden" name="id" value="<%= project.id %>">
+  <input type="submit" value="Delete this Project">
+</form>
