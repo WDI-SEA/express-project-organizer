@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb/legacy",
+  "extends": ["prettier"],
 
   "env": {
     "browser": true,
@@ -9,6 +9,8 @@
   },
 
   "globals": {},
+
+  "parserOptions": { "ecmaVersion": 2017 },
 
   "rules": {
     "vars-on-top": 0,

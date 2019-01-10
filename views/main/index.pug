@@ -1,0 +1,10 @@
+h1 Project Organizer
+
+h2 My Projects
+
+each project in projects
+  .well
+    h2
+      a(href=`/projects/${project.id}`)= project.name
+      small by 
+      = project.name
