@@ -2,7 +2,8 @@
   "development": {
     "database": "project_organizer_development",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": "false"
   },
   "test": {
     "database": "project_organizer_test",
