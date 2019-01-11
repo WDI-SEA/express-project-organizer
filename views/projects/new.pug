@@ -1,25 +1,33 @@
-h1 Create a new project
+extends ../layout.pug
 
-form(action="/projects" method="POST")
-  div.form-group
-    label(for="name") Name
-    input(type="text" class="form-control" id="name" name="name" required)
-  
+block content
 
-  div.form-group
-    label(for="githubLink") Github Link
-    input(type="text" class="form-control" id="githubLink" name="githubLink" required)
-  
+  h1 Create a new project
 
-  div.form-group
-    label(for="deployedLink") Deployed Link
-    input(type="text" class="form-control" id="deployedLink" name="deployedLink" required)
-  
+  form(action="/projects" method="POST")
+    div.form-group
+      label(for="name") Name
+      input(type="text" class="form-control" id="name" name="name" required)
+    
 
-  div.form-group
-    label(for="description") Description
-    textarea(type="text" class="form-control" id="description" name="description" required)
-  
+    div.form-group
+      label(for="githubLink") Github Link
+      input(type="text" class="form-control" id="githubLink" name="githubLink" required)
+    
 
-  input(type="submit" class="btn btn-primary")
+    div.form-group
+      label(for="deployedLink") Deployed Link
+      input(type="text" class="form-control" id="deployedLink" name="deployedLink" required)
+    
+
+    div.form-group
+      label(for="description") Description
+      textarea(type="text" class="form-control" id="description" name="description" required)
+
+    div.form-group
+      label(for="category") Category
+      input(type="text" class="form-control" id="category" name="category" required)
+
+
+    input(type="submit" class="btn btn-primary")
 

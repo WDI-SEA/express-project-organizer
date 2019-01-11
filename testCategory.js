@@ -2,7 +2,7 @@ const db = require('./models');
 
 db.category
   .create({
-    category: 'node',
+    category: 'flask',
   })
   .then(category => {
     console.log(category.get());
