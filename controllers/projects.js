@@ -20,7 +20,6 @@ router.post('/', function(req, res) {
           },
         })
         .spread(function(category, created) {
-          console.log(project.id, category.id);
           db.categoryProject
             .create({
               projectId: project.id,

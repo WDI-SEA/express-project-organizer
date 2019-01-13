@@ -2,8 +2,25 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
-router.get('/categories', function(req, res) {
+router.get('/', function(req, res) {
   db.category.findAll().then(function(categories) {
-    res.send(categories);
+    res.render('categories/categories', { categories });
   });
 });
+
+router.get('/:id', function(req, res) {
+  db.category
+    .findOne({
+      where: { id: req.params.id },
+      include: [db.project], // This is some sort of magic.
+    })
+    .then(function(category) {
+      if (!category) throw Error();
+      res.render('categories/show', { category: category });
+    })
+    .catch(function(error) {
+      res.status(400).render('main/404');
+    });
+});
+
+module.exports = router;

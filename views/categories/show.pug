@@ -1,9 +1,13 @@
 extends ../layout.pug
 
 block content
-  h1= category.name
+  h1= category.category
 
-  p=project.description
+  each project in category.projects
+    .well
+      h3
+        a(href=`/projects/${project.id}`)=project.name
+      p= project.description
 
   hr
 

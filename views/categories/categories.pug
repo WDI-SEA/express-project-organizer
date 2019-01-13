@@ -1,4 +1,9 @@
 extends ../layout.pug
 
 block content
-  h1
+  h1 Categories
+
+  each category in categories
+    .well
+      h2
+        a(href=`/categories/${category.id}`)= category.category
