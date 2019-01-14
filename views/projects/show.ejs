@@ -10,6 +10,11 @@
   Deployed Link
 </a>
 
+<% project.category.forEach(function(t){ %>
+	<a href="/category/<%= c.id %>">"
+		#<%= c.name %>
+<% }) %>
+
 <p><%= project.description %></p>
 
 <hr />

@@ -4,19 +4,45 @@ var router = express.Router();
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployedLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then(function(project) {
-    res.redirect('/');
-  })
-  .catch(function(error) {
-    res.status(400).render('main/404');
+  var categories = [];
+  if (req.body.category) {
+    categories = req.body.categories.split
+  }
+    db.project.create({
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployedLink: req.body.deployedLink,
+      description: req.body.description
+    })
+    .then(function(project) {
+      async.forEach(categories, function(c, done){
+        db.category.findOrCreate({
+          where: {
+            name: c.trim()
+          }
+        })
+        .spread(function(newCategory, wasCreated){
+          project.addCategory(newCategory)
+          .then(function(){
+            done();
+          })
+          .catch(done);
+        })
+        .catch(done)
+      .then(function(){
+        res.redirect('/');
+      })
+      .catch(function(err){
+        console.log(err)
+        res.send("Error")
+      })
+    })
+    .catch(function(error) {
+      console.log(error)
+      res.status(400).render('main/404');
+    });
   });
-});
+})
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
@@ -25,8 +51,9 @@ router.get('/new', function(req, res) {
 
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
-  db.project.find({
-    where: { id: req.params.id }
+  db.project.findOne({
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then(function(project) {
     if (!project) throw Error();
