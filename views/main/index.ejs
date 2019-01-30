@@ -7,6 +7,9 @@
     <h2>
       <a href="/projects/<%= project.id %>"><%= project.name %></a>
       <small>by <%= project.name %></small>
+      <form method="POST" action="/projects/<%= project.id %>/?_method=DELETE"">
+        <small><small><input type="submit" value="Delete This Project"></small></small>
+      </form>
     </h2>
   </div>
 <% }); %>
