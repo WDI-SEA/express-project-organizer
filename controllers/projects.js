@@ -11,7 +11,9 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
+    project.addCategory(category).then(function(category) {
+      res.redirect('/projects/'+ project.id);
+    });
   })
   .catch(function(error) {
     res.status(400).render('main/404');
