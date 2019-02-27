@@ -27,5 +27,15 @@
     "pg-hstore": "^2.3.2",
     "rowdy-logger": "0.0.2",
     "sequelize": "^3.23.3"
-  }
+  },
+  "description": "To practice M:M associations, we'll be adding the ability to categorize projects in an existing project organizer.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-yun/express-project-organizer.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/c-yun/express-project-organizer/issues"
+  },
+  "homepage": "https://github.com/c-yun/express-project-organizer#readme"
 }

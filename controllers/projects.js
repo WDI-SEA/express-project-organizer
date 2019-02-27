@@ -11,7 +11,14 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/');
+    db.category.findOrCreate({
+      where: {name: req.body.category}
+    }).spread(function(category, created) {
+      project.addCategory(category)
+      .then(function(category) {
+        res.redirect('/');
+      });
+    });
   })
   .catch(function(error) {
     res.status(400).render('main/404');
@@ -26,7 +33,7 @@ router.get('/new', function(req, res) {
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
-    where: { id: req.params.id }
+    where: {id: req.params.id}
   })
   .then(function(project) {
     if (!project) throw Error();
