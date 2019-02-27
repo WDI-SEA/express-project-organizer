@@ -1,16 +1,22 @@
 {
   "development": {
-    "database": "project_organizer_development",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "express_project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "project_organizer_test",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "express_project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "project_organizer_production",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "express_project_organizer",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
