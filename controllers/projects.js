@@ -2,6 +2,25 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+// // POST /projects - create a new project
+// router.post('/', function(req, res) {
+//   db.project.create({
+//     name: req.body.name,
+//     githubLink: req.body.githubLink,
+//     deployedLink: req.body.deployedLink,
+//     description: req.body.description
+//   })
+//   .then(function(project) {
+//     project.addCategory(category).then(function(category) {
+//       res.redirect('/projects/'+ project.id);
+//     });
+//   })
+//   .catch(function(error) {
+//     console.log(error);
+//     res.status(400).render('main/404');
+//   });
+// });
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
@@ -11,11 +30,16 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    project.addCategory(category).then(function(category) {
-      res.redirect('/projects/'+ project.id);
+    db.category.findOrCreate({
+      where: {name: req.body.name}
+    }).spread(function(category, created) {
+      project.addCategory(category).then(function(category) {
+        res.redirect('/projects/'+ project.id);
+      });
     });
   })
   .catch(function(error) {
+    console.log(error);
     res.status(400).render('main/404');
   });
 });

@@ -11,9 +11,9 @@ router.get('/', function(req, res) {
 });
 
 // GET /categories/:id
-router.get('/:name', (req, res) => {
+router.get('/:id', (req, res) => {
   db.category.find({
-    where: {name: req.params.name}
+    where: {id: req.params.id}
   }).then(category => {
     category.getProjects().then(projects => {
       res.render('categories/show', {category: category, projects: projects});

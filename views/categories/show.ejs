@@ -5,8 +5,9 @@
 <h2>Projects</h2>
 <% projects.forEach(function(project) { %>
   <div class='well'>
-    <h3>aaaa
+    <h3>
       <a href="/projects/<% project.id %>"><%= project.name %></a>
+      <%= project.description %>
     </h3>
   </div>
 <% }); %>
