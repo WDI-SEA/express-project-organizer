@@ -1,10 +1,11 @@
-<h1> CATEGORIES </h1>
 
-    
-    <div class = "well">
+
+<h1>Project Categories</h1>
+
+<% categories.forEach(function(category) { %>
+    <div class="well">
         <h2>
-            <a href="/category/<%= category.name %>"> <%= category.name %> </a>
+            <a href="/categories/<%= category.id %>"><%= category.name %></a>
         </h2>
     </div>
-
-<%}); %>
+<% }); %>

@@ -12,11 +12,12 @@ router.get('/', function(req, res) {
 });
 
 
+
+
 // ID Route 
 router.get('/:id', function(req, res) {
-    db.category.findOrCreate({
-        where: {name: req.params.id},
-        include: [db.project]
+    db.category.find({
+        where: {name: req.params.id}
     }).then(function(category) {
         category.getProjects().then(function(projects){
         res.render('categories/show', {category, projects});    
