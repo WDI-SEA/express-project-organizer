@@ -11,13 +11,21 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
+    db.category.findOrCreate({
+      name: req.body.name,
+  })
+  .then(function(category) {
+    db.project.addCategory([category])
+  })
+  .then(function(project) {
     res.redirect('/');
   })
   .catch(function(error) {
     res.status(400).render('main/404');
   });
+  });
 });
-
+  
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
   res.render('projects/new');
