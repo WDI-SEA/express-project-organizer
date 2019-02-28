@@ -8,10 +8,17 @@ router.post('/', function(req, res) {
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
-    description: req.body.description
+    description: req.body.description,
+    id: parseInt(req.body.id)
   })
   .then(function(project) {
-    res.redirect('/');
+    db.category.findOrCreate({
+      where: {name:req.body.category } 
+    }).spread(function (category, created) {
+      project.addCategory(category).then(function(category){
+        res.redirect('/');
+      })
+    })
   })
   .catch(function(error) {
     res.status(400).render('main/404');
@@ -20,7 +27,10 @@ router.post('/', function(req, res) {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
-  res.render('projects/new');
+  db.project.findAll()
+  .then(function(project) {
+  res.render('projects/new', {project});
+  });
 });
 
 // GET /projects/:id - display a specific project
@@ -36,5 +46,8 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+
+
 
 module.exports = router;

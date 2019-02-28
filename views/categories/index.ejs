@@ -1,0 +1,16 @@
+<h1>SHOW CATEGORIES</h1>
+
+<hr />
+
+<nav>Posts</nav>
+<% categories.forEach(function(category) { %>
+    <div class="category-posts">
+        <h3>
+            <a href="/categories/<%= category.id %>"> <%= category.name %> </a>
+        </h3>
+    </div>
+<% }); %>
+
+<div class="back-btn">
+<a href="/">&larr; Back Home</a>
+</div>
