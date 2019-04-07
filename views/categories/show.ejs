@@ -1,0 +1,12 @@
+<h1>Category: <%= category.name %></h1>
+
+<hr />
+
+<h2>Projects</h2>
+<% projects.forEach(function(post) { %>
+    <div class='well'>
+        <h3>
+            <a href='/projects/<%= project.id %>'><%= project.name %></a>
+        </h3>
+    </div>
+<% }); %>

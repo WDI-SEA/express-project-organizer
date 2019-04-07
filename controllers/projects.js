@@ -37,4 +37,15 @@ router.get('/:id', function(req, res) {
   });
 });
 
+router.get('/:id', function(req, res) {
+  db.project.findOne({
+    where: {id: parseInt(req.params.id)},
+    include: [db.category]
+  }).then(function(project) {
+    post.getCategories().then(function(categories) {
+      res.render('projects/show', {project, categories});
+    });
+  });
+});
+
 module.exports = router;
