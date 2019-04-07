@@ -12,6 +12,11 @@
 
 <p><%= project.description %></p>
 
+
+<form action="/projects?_method=DELETE" method='POST'>
+  <input type='submit' class="btn btn-primary" value='delete'>
+</form>
+
 <hr />
 
 <a href="/">&larr; Back Home</a>

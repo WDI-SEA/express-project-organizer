@@ -49,6 +49,15 @@ router.get('/new', function(req, res) {
   res.render('projects/new');
 });
 
+// DELETE /projects/:id - delete a specific project
+router.delete('/:id', function(req, res) {
+  db.project.destroy({
+    where: {id: parseInt(req.params.id)}
+  }).then(function(){
+    res.redirect('/projects');
+  });
+});
+
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
