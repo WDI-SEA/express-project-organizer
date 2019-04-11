@@ -21,11 +21,21 @@
     "body-parser": "^1.15.1",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
-    "express-ejs-layouts": "^2.1.0",
+    "express-ejs-layouts": "^2.5.0",
     "morgan": "^1.7.0",
-    "pg": "^5.1.0",
+    "pg": "^5.2.1",
     "pg-hstore": "^2.3.2",
     "rowdy-logger": "0.0.2",
-    "sequelize": "^3.23.3"
-  }
+    "sequelize": "^3.34.0"
+  },
+  "description": "To practice M:M associations, we'll be adding the ability to categorize projects in an existing project organizer.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herickson27/express-project-organizer.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/herickson27/express-project-organizer/issues"
+  },
+  "homepage": "https://github.com/herickson27/express-project-organizer#readme"
 }
