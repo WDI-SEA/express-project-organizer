@@ -14,7 +14,7 @@ module.exports = {
       githubLink: {
         type: Sequelize.TEXT
       },
-      deployedLink: {
+      deployLink: {
         type: Sequelize.TEXT
       },
       description: {

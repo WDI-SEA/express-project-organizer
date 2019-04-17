@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var project = sequelize.define('project', {
+module.exports = (sequelize, DataTypes) => {
+  const project = sequelize.define('project', {
     name: DataTypes.STRING,
     githubLink: {
       type: DataTypes.TEXT,
@@ -8,19 +8,18 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true
       }
     },
-    deployedLink: {
+    deployLink: {
       type: DataTypes.TEXT,
       validate: {
         isUrl: true
       }
     },
     description: DataTypes.TEXT
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
-  return project;
-};
+  }, {})
+
+  project.associate = function(models) {
+    // associations can be defined here
+  }
+
+  return project
+}
