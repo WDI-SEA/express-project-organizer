@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
-  up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('projects', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,15 +10,6 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
-      },
-      githubLink: {
-        type: Sequelize.TEXT
-      },
-      deployedLink: {
-        type: Sequelize.TEXT
-      },
-      description: {
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -30,7 +21,7 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('projects');
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('categories');
   }
 };
