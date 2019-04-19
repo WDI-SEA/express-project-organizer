@@ -1,0 +1,15 @@
+
+<div class="container">
+<h1>All the categories</h1>
+
+ <% if(categories && categories.length ){ %>
+   <% categories.forEach( d=>{  %>
+     <div class="well" >
+        <a href="/categories/<%= d.id %> "><h4 class="card-title"><%= d.name %></h4></a>
+    </div>
+
+   <% }) %>
+<% }else{ %>
+    <h4>No categories have been added yet</h4>
+<% } %>
+</div>
