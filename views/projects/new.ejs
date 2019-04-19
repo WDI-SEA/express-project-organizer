@@ -21,5 +21,13 @@
     <textarea type="text" class="form-control" id="description" name="description" required></textarea>
   </div>
 
+  <div class="checkbox"
+    <label class="checkbox-inline">
+      <% categories.forEach(category => { %>
+        <%= categories.name %>
+    </label>
+  <% }) %>
+  </div>
+
   <input type="submit" class="btn btn-primary">
 </form>

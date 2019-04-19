@@ -11,7 +11,17 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/')
+    db.category.findOrCreate({
+        where: {id: req.params.id},
+        name: req.body.name,
+        include: [db.category]
+    })
+    .spread((category, wasCreated) => {
+      project.addCategory(category)
+      .then(() => {
+        res.redirect('/categories')
+      })
+    })
   })
   .catch(function(error) {
     res.status(400).render('main/404')
@@ -20,6 +30,8 @@ router.post('/', function(req, res) {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', function(req, res) {
+  db.category.findAll()
+  .then()
   res.render('projects/new')
 })
 
@@ -37,4 +49,4 @@ router.get('/:id', function(req, res) {
   })
 })
 
-module.exports = router
+  module.exports = router
