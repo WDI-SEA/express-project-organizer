@@ -1,5 +1,6 @@
 var express = require('express')
 var db = require('../models')
+var async = require('async')
 var router = express.Router()
 
 // POST /projects - create a new project
@@ -11,9 +12,17 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: { name: req.body.category }
+    }).spread((category, wasCreated) => {
+      project.addCategory(category)
+      .then(() => {
+        res.redirect('/')
+      })
+    })
   })
   .catch(function(error) {
+    console.log('error', error)
     res.status(400).render('main/404')
   })
 })

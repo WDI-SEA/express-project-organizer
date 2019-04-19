@@ -1,0 +1,13 @@
+<h1>Categories</h1>
+
+<small>Click a tag to see projects utilizing that technology</small>
+
+<% categories.forEach(function(category) { %>
+  <div class="well">
+    <h2>
+      <a href="/categories/<%= category.id %>"><%= category.name %></a>
+    </h2>
+  </div>
+<% }); %>
+
+<a href="/">&larr; Back Home</a>
