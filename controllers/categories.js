@@ -21,8 +21,6 @@ router.get('/:id',(req,res)=>{
     include : [db.project]
   })
   .then(foundCategory =>{
-    console.log(foundCategory)
-
     res.render('categories/show', { found:foundCategory, foundCategory: foundCategory.projects})
   })
   .catch(err=>{

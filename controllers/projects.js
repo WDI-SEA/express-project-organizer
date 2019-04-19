@@ -10,17 +10,25 @@ router.post('/', function(req, res) {
     deployedLink: req.body.deployedLink,
     description: req.body.description
   });
-  var categoryPromise = db.category.findOrCreate({
-        where: { name: req.body.category }
-      });
-  Promise.all([projectPromise, categoryPromise]).then(function(complete) {
-    console.log(complete)
-    console.log(complete[0].id);
-    db.categoriesProjects.create({
-      projectId: complete[0].id,
-      categoryId: complete[1][0].id
+  var arrayCategory = req.body.category.split(',')
+
+  var categoryPromise = arrayCategory.map( cate =>{
+    return db.category.findOrCreate({
+           where: { name: cate }
+        });
+  })
+
+  categoryPromise.push(projectPromise)
+
+  Promise.all(categoryPromise).then(function(complete) {
+    var project = complete.pop()
+    var categoryProjectPromises = complete.map( result =>{
+      return db.categoriesProjects.create({
+        projectId: project.id,
+        categoryId: result[0].id
+      })
     })
-    .then(function(){
+    Promise.all(categoryProjectPromises).then(function(){
       res.redirect('/')
     })
     .catch(function(error) {
