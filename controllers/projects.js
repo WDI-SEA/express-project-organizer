@@ -5,6 +5,14 @@ var router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', function(req, res) {
+  console.log('categoies:', req.body.category)
+  // Handle textbox for categories
+  let cats = typeof req.body.category == 'string' ? [req.body.category] : req.body.category
+  if (req.body.category) {
+    cats = req.body.category.split(',')
+    console.log(cats)
+  }
+
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -12,13 +20,20 @@ router.post('/', function(req, res) {
     description: req.body.description
   })
   .then(function(project) {
-    db.category.findOrCreate({
-      where: { name: req.body.category }
-    }).spread((category, wasCreated) => {
-      project.addCategory(category)
-      .then(() => {
-        res.redirect('/')
+    async.forEach(cats, (cat, done) => {
+      db.category.findOrCreate({
+        where: { name: cat.trim() }
+      }).spread((category, wasCreated) => {
+        // Create an entry in the join table
+        project.addCategory(category)
+        .then(() => {
+          done()
+        })
+        .catch(done)
       })
+      .catch(done)
+    }, () => {
+      res.redirect('/projects/' + project.id)
     })
   })
   .catch(function(error) {
@@ -35,7 +50,8 @@ router.get('/new', function(req, res) {
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [ db.category ]
   })
   .then(function(project) {
     if (!project) throw Error()
