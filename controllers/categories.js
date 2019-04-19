@@ -18,19 +18,13 @@ router.get('/', (req, res) => {
 
 // GET /categories/:id
 router.get('/:id', function(req, res) {
-	db.project.findAll({
-	    include: [{
-	        model: db.category, 
-	        attributes: ['id', 'name'], 
-	    }, {
-	    	model: db.categoriesProjects,
-	    	attributes: ['categoryId', 'projectId']
-	    }], 
+	db.category.findOne({
+		where: { id: req.params.id },
+		include: [db.project]
 	})
-	.then((projects) => {
-		// let proj = project[req.params.id]
-		console.log(projects)
-		res.send('categories/show')
+	.then((category) => {
+		console.log(category.projects)
+		res.render('categories/show', { category })
 	})
 	.catch(function(error) {
 		console.log('Error in GET /', error)
