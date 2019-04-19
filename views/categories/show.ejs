@@ -1,0 +1,22 @@
+<h1><%= category.name %></h1>
+
+<p><%= category.description %></p>
+
+<% if (category.projects && category.projects.length) { %>
+	<% category.projects.forEach((pro)=>{%>
+	
+		<div class="well">
+	    	<h2>
+	     		<a href="/projects/<%= pro.id %>"><%= pro.name %></a><br />
+	      		<small><%= pro.description %></small>
+	    	</h2>
+	  	</div>
+    <% }) %>
+<%} else {%>
+  		<div class="well">
+  			<p>This tech has not been used in any of my projects, yet.</p>
+  		</div>
+<%}%>
+
+<hr />
+<a href="/categories/">&larr; Back to Categories</a>

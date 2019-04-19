@@ -23,6 +23,5 @@ module.exports = (sequelize, DataTypes) => {
       through: models.categoriesProjects
     })
   }
-
   return project
 }

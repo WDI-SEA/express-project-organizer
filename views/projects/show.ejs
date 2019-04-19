@@ -9,9 +9,17 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link
 </a>
-
+<br />
+<br />
 <p><%= project.description %></p>
+<strong>Uses:&nbsp;&nbsp;</strong>
+
+<% project.categories.forEach((cat)=>{%>
+      <label class="checkbox-inline">
+        <input type="checkbox" checked disabled id="<%= cat.id%>" value="<%= cat.id%>"> <%=cat.name%>
+      </label>
+      <% }) %>
+
 
 <hr />
-
-<a href="/">&larr; Back Home</a>
+<a href="/">&larr; Back to Projects</a>

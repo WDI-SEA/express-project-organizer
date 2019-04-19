@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 
 app.get('/', function(req, res) {
-  db.project.findAll()
+  db.project.findAll({include: [db.category]})
   .then(function(projects) {
     res.render('main/index', { projects: projects })
   })
@@ -23,6 +23,7 @@ app.get('/', function(req, res) {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print()

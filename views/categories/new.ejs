@@ -1,0 +1,20 @@
+<h1>Create a new category</h1>
+
+<form action="/categories" method="POST">
+	<div class="form-group">
+	  <label for="category">Add a technology</label>
+	  <input type="text" class="form-control" id="category" name="category" required>
+	</div>
+	<div class="form-group">
+		<label for="category">Which projects use this technology?</label><br />
+	   <!-- loop one here -->
+	      <% projects.forEach((pro)=>{%>
+	      <label class="checkbox-inline">
+	        <input type="checkbox" id="<%= pro.id%>" value="<%= pro.id%>"> <%=pro.name%>
+	      </label>
+	      <% }) %>
+	</div><br />
+	<div class="form-group">
+	  <input type="submit" class="btn btn-primary">
+	</div>
+</form>

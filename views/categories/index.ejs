@@ -1,0 +1,16 @@
+<h1>Categories Organizer</h1>
+
+<h2>My Techs</h2>
+
+
+
+
+<ul class="list-group">
+<% categories.forEach(function(category) { %>
+
+ <li class="list-group-item">
+    <span class="badge"><%=category.projects.length%></span>
+      <a href="/categories/<%= category.id %>"><%= category.name %></a>
+  </li>
+<% }); %>
+</ul>
