@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: DataTypes.TEXT
   }, {})
-
+// todo: proobably need to fix some things here
   project.associate = function(models) {
     // associations can be defined here
-    models.project.hasMany(models.categories, {}) // not sure if I need through: something in the yellow curlies...
+    models.project.belongsToMany(models.category, {through: 'categoriesProjects'});
   }
 
   return project
