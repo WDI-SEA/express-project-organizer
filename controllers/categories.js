@@ -28,14 +28,34 @@ router.post('/', function(req, res) {
   db.project.findOrCreate({
     where: {id:parseInt(req.body.projectId)}
   }).spread(function(project, created) {
-    db.category.findOrCreate({
-      where: {name: req.body.name}
-    }).spread(function(category, created) {
-      project.addCategory(category)
-    }).then(function() {
+    let names = req.body.name.split(', ')
+    async.parallel(genAddCatFns(names, project), function(err, results){
+      console.log('added categories to project🎉🎉🎉🎉🎉');
       res.redirect('/projects/' + req.body.projectId);
     })
-  })  
-})
+    
+  //   db.category.findOrCreate({
+  //     where: {name: req.body.name}
+  //   }).spread(function(category, created) {
+  //     project.addCategory(category)
+  //   }).then(function() {
+  //     res.redirect('/projects/' + req.body.projectId);
+  //   })
+  }); 
+});
+
+function genAddCatFns(names, project) {
+  let result = names.map(function(name) {
+    return function fn(done) {
+      db.category.findOrCreate({
+      where: {'name': name}
+    }).spread(function(category, created) {
+      project.addCategory(category);
+      done(null, name)
+    })
+    }
+  })
+  return result;
+};
 
 module.exports = router;
