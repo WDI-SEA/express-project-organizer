@@ -11,12 +11,40 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    }).spread(function(category, created) {
+      project.addCategory(category)
+        .then(function(){
+          console.log("🐠🐠🐠done adding " + req.body.category)
+          res.redirect('/');
+        })
+      })
+    }).catch((error) => {
+      res.json(error);
+  //   db.project.findByPk(parseInt(req.body.projectId)).then(function(project) {
+  //     db.category.findOrCreate({
+  //       where: {
+  //         name: req.body.category
+  //       }
+  //     }).spread(function(category, created) {
+  //       project.addCategory(category)
+  //         .then(() => {
+  //           console.log("🐠🐠🐠done adding " + req.body.category)
+  //           res.redirect('/');
+  //         })
+  //   })
+    
+  // })
+//   .catch((error) => {
+//     res.json(error);
+//   })
   })
-  .catch((error) => {
-    res.status(400).render('main/404')
-  })
-})
+});
+
+
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
@@ -38,4 +66,4 @@ router.get('/:id', (req, res) => {
   })
 })
 
-module.exports = router
+module.exports = router;

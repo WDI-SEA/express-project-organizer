@@ -4,17 +4,23 @@ const db = require('../models');
 
 // GET /categories - show ALL the categories that exist
 router.get('/', function(req, res) {
-  db.category.findAll({
-    include: [db.project],
-    through: {
-      attributes: [projectId],
-      where: {completed: true}
-    }
-  }).then(function(categories) {
-    console.log(categories);
-    res.render('authors/index', {categories});
-  });
-});
+  db.category.findAll().then(function(categories) {
+    console.log("categories: " + categories);
+    res.render('categories/index', {categories});
+  })
+})
+// router.get('/', function(req, res) {
+//   db.category.findAll({
+//     include: [db.project],
+//     through: {
+//       attributes: [projectId],
+//       where: {completed: true}
+//     }
+//   }).then(function(categories) {
+//     console.log(categories);
+//     res.render('categories/index', {categories});
+//   });
+// });
 // router.get('/', function(req, res) {
 //   db.category.find({
 //     where: {name: req.body.name}
@@ -27,16 +33,31 @@ router.get('/', function(req, res) {
 // });
 
 //GET /categories/:id - show a specific category and all the projects with that category
-db.project.find({
-  where: {name: req.param.name}
-}).then(function(project) {
-  project.getCategories().then(function(categories) {
-    console.log("These categories are tagged with " + project.name + ":");
-    categories.forEach(function(category) {
-      console.log("Post title: " + category.name);
-    });
-  });
-});
+router.get('/:id', function(req, res) {
+  db.category.findOne( {
+    where: {id: parseInt(req.params.id)},
+    include: [db.project]
+  }).then(function(category) {
+      res.render('categories/show', {category})
+      // category.getProjects()
+      //   .then(function(category) {
+      //     res.render('categories/show', {category})
+      // })
+  })
+})
+// router.get('/categories/:id', function(req, res){
+//   db.project.find({
+//     where: {name: req.param.name}
+//   }).then(function(project) {
+//     project.getCategories().then(function(categories) {
+//       console.log("These categories are tagged with " + project.name + ":");
+//       categories.forEach(function(category) {
+//         console.log("Post title: " + category.name);
+//       });
+//     });
+// })
+
+
 
 // POST /tags - post the tags
 // router.post('/', function(req, res) {
