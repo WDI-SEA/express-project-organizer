@@ -20,12 +20,12 @@ router.post('/', (req, res) => {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
-  db.category.findOrCreate()
-    .then(function(categories) {
-      res.render('projects/new', {categories});
+  // db.category.findOrCreate()
+  //   .then(function(categories) {
+      res.render('projects/new');
 
     });
-});
+//});
 
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
@@ -41,6 +41,8 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
+//could i put this in the above route line 5
 router.post('/:id/categories', function(req,res) {
   db.project.findByPk(parseInt(req.params.id))
   .then(function(project) {
