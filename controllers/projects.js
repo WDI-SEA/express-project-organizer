@@ -11,15 +11,24 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    }).spread (function(category, created){
+      project.addCategory(category).then( function(){
+        res.redirect('/')
+      })
+    })
   })
   .catch((error) => {
-    res.status(400).render('main/404')
+    res.json(error);
   })
 })
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
+  
   res.render('projects/new')
 })
 
@@ -36,5 +45,6 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
 
 module.exports = router
