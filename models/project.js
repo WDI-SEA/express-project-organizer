@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 
   project.associate = function(models) {
     // associations can be defined here
+    models.project.hasMany(models.categories, {}) // not sure if I need through: something in the yellow curlies...
   }
 
   return project
