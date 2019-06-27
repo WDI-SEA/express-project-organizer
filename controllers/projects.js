@@ -9,10 +9,18 @@ router.post('/', (req, res) => {
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
-  })
+  })// never put a semicolon, ends promise
   .then((project) => {
-    res.redirect('/')
-  })
+    db.category.findOrCreate({ //putting ids into join table so theyre connected
+      where: {
+        name: req.body.category
+      }
+    }).spread(function(category, created) {
+      project.addCategory(category).then( function() { //add categoryId into join table
+        res.redirect('/')
+      })
+    })
+  }) //never put a semicolon, ends promise
   .catch((error) => {
     res.status(400).render('main/404')
   })
