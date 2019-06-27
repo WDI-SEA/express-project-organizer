@@ -37,4 +37,25 @@ router.get('/:id', (req, res) => {
   })
 })
 
+
+
+//GET /categories - show all the categories that exist
+
+
+
+
+//GET /categories/:id - show a specific category and all the projects with that category
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router
