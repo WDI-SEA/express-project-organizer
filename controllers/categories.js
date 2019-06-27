@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const async = require('async');
 
 // GET /categories   show all categories
 router.get('/', function(req,res) {

@@ -1,15 +1,24 @@
 <h1>Edit Project: <%=project.name%></h1>
+<form action='/projects/<%=project.id%>/?_method=DELETE' method='POST'>
+  <button type="submit">Delete Project</button>
+</form>
 <p>
   <%project.categories.forEach(function(cat){%>
     <a href="/categories/<%=cat.id%>"><%=cat.name%></a> | 
   <%})%>
 </p>
 <hr>
-<form action="/projects/:id/?_method=PUT" method="POST">
-  <label for="projectname">Project Name:</label>
-  <input type="text" name='name' value='<%=project.name%>'><br>
-  <label for="githubLink">githubLink</label>
-  <input type="text" name='githubLink' value='<%=project.githubLink%>'><br>
-  <label for=""></label>
-  
+<form action="/projects/<%=project.id%>/?_method=PUT" method="POST">
+  <label for="projectname">Project Name:</label><br>
+  <input style='width: 100%;' type="text" name='name' value='<%=project.name%>'><br><br>
+  <label for="githubLink">githubLink: </label><br>
+  <input style='width: 100%;' type="text" name='githubLink' value='<%=project.githubLink%>'><br><br>
+  <label for="deployLink">deployLink: </label><br>
+  <input style='width: 100%;' type="text" name='deployLink' value='<%=project.deployLink%>'><br><br>
+  <label for="decription">decsription: </label><br>
+  <input style='width: 100%;' type="text" name='description' value='<%=project.description%>'><br><br>
+
+  <input type="submit" value="Submit">
 </form>
+<hr>
+<a href="/projects/<%=project.id%>">&larr; Back to <%=project.name%></a>

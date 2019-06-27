@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
 });
 
 // GET /projects/:id/edit - page let user update the project info
-rounter.get('/:id/edit', function(req, res) {
+router.get('/:id/edit', function(req, res) {
   db.project.findOne({
     where: { id: parseInt(req.params.id)},
     include: [db.category]
@@ -50,7 +50,32 @@ rounter.get('/:id/edit', function(req, res) {
 
 // PUT /projects/:id - update a project
 router.put('/:id', function(req, res) {
+  console.log('sending new project info');
+  db.project.update({
+    name: req.body.name,
+    githubLink: req.body.githubLink,
+    deployLink: req.body.deployLink,
+    description: req.body.description
+  }, {
+    where: {
+      id: parseInt(req.params.id)
+    }
+  }
+  ).then(function() {
+    res.redirect('/projects/' + req.params.id);
+  })
+});
 
-})
+// DELETE /projects/:id - delete a post
+router.delete('/:id', function(req,res) {
+  console.log('⚠️⚠️⚠️⚠️delete project');
+  db.project.destroy({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  }).then(function() {
+    res.redirect('/');
+  });
+});
 
 module.exports = router
