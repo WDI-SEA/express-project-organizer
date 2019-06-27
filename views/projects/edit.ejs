@@ -1,0 +1,7 @@
+<h1>Edit Project: <%=project.name%></h1>
+<p>
+  <%project.categories.forEach(function(cat){%>
+    <a href="/categories/<%=cat.id%>"><%=cat.name%></a> | 
+  <%})%>
+</p>
+<hr>

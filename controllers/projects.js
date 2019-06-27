@@ -26,7 +26,8 @@ router.get('/new', (req, res) => {
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: {id: parseInt(req.params.id)},
+    include: [db.category]
   })
   .then((project) => {
     if (!project) throw Error()
@@ -34,7 +35,22 @@ router.get('/:id', (req, res) => {
   })
   .catch((error) => {
     res.status(400).render('main/404')
-  })
+  });
+});
+
+// GET /projects/:id/edit - page let user update the project info
+rounter.get('/:id/edit', function(req, res) {
+  db.project.findOne({
+    where: { id: parseInt(req.params.id)},
+    include: [db.category]
+  }).then(function(project) {
+    res.render('projects/edit', {project});
+  });
+});
+
+// PUT /projects/:id - update a project
+router.put('/:id', function(req, res) {
+
 })
 
 module.exports = router

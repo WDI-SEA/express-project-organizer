@@ -1,4 +1,15 @@
 <h1><%= project.name %></h1>
+<p>
+  <%project.categories.forEach(function(category){%>
+    <a href="/categories/<%=category.id%>"><%=category.name%></a> | 
+  <%})%>
+</p>
+<form action="/categories" method='POST'>
+  <input hidden type="text" name='projectId' value='<%=project.id%>'>
+  <input type="text" name='name' placeholder='Category Name'>
+  <input type="submit" value="Add a Category">
+</form>
+<hr>
 
 <a class="btn btn-primary" href="<%= project.githubLink %>" target="_blank">
   <i class="fa fa-github" aria-hidden="true"></i>
@@ -11,6 +22,8 @@
 </a>
 
 <p><%= project.description %></p>
+
+<a href="/projects/<%=project.id%>/edit">Edit Project</a>
 
 <hr />
 
