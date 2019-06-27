@@ -20,13 +20,18 @@ router.post('/', (req, res) => {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
-  res.render('projects/new')
-})
+  db.category.findOrCreate()
+    .then(function(categories) {
+      res.render('projects/new', {categories});
+
+    });
+});
 
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then((project) => {
     if (!project) throw Error()
@@ -36,5 +41,14 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
-
+router.post('/:id/categories', function(req,res) {
+  db.project.findByPk(parseInt(req.params.id))
+  .then(function(project) {
+      project.createCategory({
+          name:req.body.name,
+      }).then(function(category) {
+          res.redirect('/projects/' + req.params.id);
+      })
+  })
+});
 module.exports = router

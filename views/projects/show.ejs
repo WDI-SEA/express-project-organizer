@@ -12,6 +12,25 @@
 
 <p><%= project.description %></p>
 
+
+
 <hr />
+<h2>Categories Associated with this project:</h2>
+<p>
+<%project.categories.forEach(function(category){ %>
+    <a href="/categories"><%= category.name %> | </a>
+<% }) %>
+</p>
+<hr />
+<form action="/categories" method="POST">
+  <div class="form-group">
+    <label for="category">Category</label>
+    <input type="text" class="form-control" id="category" name="category" required>
+  </div>
+  <input type="hidden" name="projectId" value="<%= project.id%>">
+  <input type="submit" class="btn btn-primary">
+  </form>
+
+
 
 <a href="/">&larr; Back Home</a>
