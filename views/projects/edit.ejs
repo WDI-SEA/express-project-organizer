@@ -5,3 +5,11 @@
   <%})%>
 </p>
 <hr>
+<form action="/projects/:id/?_method=PUT" method="POST">
+  <label for="projectname">Project Name:</label>
+  <input type="text" name='name' value='<%=project.name%>'><br>
+  <label for="githubLink">githubLink</label>
+  <input type="text" name='githubLink' value='<%=project.githubLink%>'><br>
+  <label for=""></label>
+  
+</form>
