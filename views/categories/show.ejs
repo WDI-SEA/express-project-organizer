@@ -1,8 +1,8 @@
 <h1><%= category.name %></h1>
 <hr />
 <p>
-<%project.categories.forEach(function(category){ %>
-    <a href="/projects"><%= project.name %> | </a>
+<%category.projects.forEach(function(project){ %>
+    <a href="/projects/<%= project.id%>"><%= project.name %> | </a>
 <% }) %>
 </p>
 <hr />

@@ -34,7 +34,7 @@ router.get('/:id', function(req, res){
         where: {id: parseInt(req.params.id)},
         include: [db.project]
     }).then(function(category){
-            res.render('category/show', {category});
+            res.render('categories/show', {category});
         });
 });
 module.exports = router;
