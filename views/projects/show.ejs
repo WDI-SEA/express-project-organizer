@@ -18,7 +18,7 @@
 <h2>Categories Associated with this project:</h2>
 <p>
 <%project.categories.forEach(function(category){ %>
-    <a href="/categories"><%= category.name %> | </a>
+    <a href="/categories/<%= category.id%>"><%= category.name %> | </a>
 <% }) %>
 </p>
 <hr />
