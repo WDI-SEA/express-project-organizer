@@ -9,6 +9,7 @@ router.post('/', (req, res) => {
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
+    // category: req.body.category
   })
   .then((project) => {
     res.redirect('/')
