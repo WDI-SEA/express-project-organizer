@@ -1,5 +1,9 @@
 <h1><%= project.name %></h1>
 
+<% project.categories.forEach(function(category) { %>
+  <p><%= category.name %></p>
+<% }); %>
+
 <a class="btn btn-primary" href="<%= project.githubLink %>" target="_blank">
   <i class="fa fa-github" aria-hidden="true"></i>
   Github Link
