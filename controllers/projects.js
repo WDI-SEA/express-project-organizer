@@ -4,6 +4,7 @@ let router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
+ 
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -12,10 +13,20 @@ router.post('/', (req, res) => {
     // category: req.body.category
   })
   .then((project) => {
-    res.redirect('/')
+    //review
+    db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    }).spread(function(category, created){
+      project.addCategory(category).then(function(){
+        res.redirect('/')
+    })
+  })
   })
   .catch((error) => {
-    res.status(400).render('main/404')
+    // res.status(400).render('main/404')
+    res.json(error);
   })
 })
 
