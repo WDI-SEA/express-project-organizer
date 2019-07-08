@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')
@@ -33,3 +34,6 @@ let server = app.listen(process.env.PORT || 3000, function() {
 })
 
 module.exports = server
+
+
+// TODO npm install, create database, double check all of that is right, make routes, reference notes often. Get as far as possible.
