@@ -11,6 +11,9 @@
 </a>
 
 <p><%= project.description %></p>
+<% project.categories.forEach(function(category){%>
+        <p><%=category.name%></p>
+<%})%>
 
 <hr />
 
