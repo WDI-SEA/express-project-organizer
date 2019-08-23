@@ -1,0 +1,13 @@
+
+<h2><%= category.name %>></h2>
+<hr>
+
+<% category.projects.forEach((p) => { %>
+  <div class="well">
+    <h2>
+      <a href="/projects/<%= p.id %>"><%= p.name %></a>
+    </h2>
+  </div>
+<% }); %>
+
+

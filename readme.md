@@ -10,15 +10,15 @@ Keeping track of projects is a necessary part of peoples' personal lives and bus
 
 We'll be using an existing application that includes one model, a few routes, and a few views.
 
-* Fork and clone this repository
-* Run `npm install` to install dependencies
-  * Use `nodemon` to start your application
+~~* Fork and clone this repository~~
+~~* Run `npm install` to install dependencies~~
+  ~~* Use `nodemon` to start your application~~
   * Use `npm run lint:js` to lint your JS
   * Use `npm run lint:css` to lint your CSS
-* Setup your database (this app already has one existing model)
-  * Run `createdb project_organizer_development` to create the database
-  * Run `sequelize db:migrate` to run migrations
-  * Run `sequelize db:seed:all` to populate the database with 4 projects from previous WDI Seattle cohorts.
+~~* Setup your database (this app already has one existing model)~~
+~~  * Run `createdb project_organizer_development` to create the database~~
+~~  * Run `sequelize db:migrate` to run migrations~~
+~~  * Run `sequelize db:seed:all` to populate the database with 4 projects from previous WDI Seattle cohorts.~~
 
 #### Read the Code
 
@@ -42,7 +42,7 @@ After setup, **STOP**. You're using an existing application, so make sure to rea
 
 ## Requirements
 
-#### Part 1: Create a Category model
+~~#### Part 1: Create a Category model~~
 
 In order to add categories, create a Sequelize model to store categories. It's recommended that you name this model `category`. It will store one attribute: the name of the category (a string).
 
@@ -60,7 +60,7 @@ db.category.create({
 })
 ```
 
-#### Part 2: Create a Join model
+~~#### Part 2: Create a Join model~~
 
 In order to associate a category to many projects, and a project to many categories, we'll need to create an intermediate model. It's recommended that you name this model `categoriesProjects`. It will store two attributes: the id of a category (an integer) and the id of a project (an integer).
 
