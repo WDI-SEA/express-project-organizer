@@ -8,11 +8,18 @@ router.post('/', (req, res) => {
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
-    description: req.body.description
+    description: req.body.description,
+    // categoryName: req.body.categoryName
   })
-  .then((project) => {
-    res.redirect('/')
+  .then((article) => {
+    db.category.findOrCreate({
+        where: {name: req.body.categoryName}
+    }).spread((category, created) => {
+      project.addCategory(category).then((category) => {
+          res.redirect(`/projects/${project.id}`);
+      })    ///article.add<model name>
   })
+})
   .catch((error) => {
     res.status(400).render('main/404')
   })
@@ -36,5 +43,8 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
+
+
 
 module.exports = router

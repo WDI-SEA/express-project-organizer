@@ -1,0 +1,35 @@
+<style type="text/css">
+
+    body {
+      background-image: linear-gradient(to left, rgba(188, 18, 231, 0), rgb(9, 136, 209));
+    }
+    
+    h1, h2 {
+      color: white;
+    }
+    </style>
+
+<body>
+
+<h1>category: <%= category.name %></h1>
+
+<p><%= category.bio %></p>
+<a href="/projects/new" class="btn btn-primary">Create a new Post</a>
+
+<hr />
+
+<h2>Projects</h2>
+
+<% if(category && category.projects) { %>
+  <% category.projects.forEach(function(a) { %>
+    <div class="well">
+      <h3>
+        <a href="/projects/<%= a.id %>"><%= a.name %></a>
+      </h3>
+    </div>
+  <% }) %>
+<% } else { %>
+  <h3>No projects yet!</h3>
+<% } %>
+    
+</body>
