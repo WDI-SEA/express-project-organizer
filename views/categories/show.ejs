@@ -1,0 +1,7 @@
+<% if (category && category.projects) { %>
+ <% category.projects.forEach(p => { %>
+ <p><a href="<%= p.id %> "><%= p.name %> </a></p>
+<% }) %>
+<% } else { %>
+  <h3>Cannot Find!</h3>
+<% } %>
