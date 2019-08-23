@@ -1,0 +1,17 @@
+<h1>category: <%= category.name %></h1>
+
+<hr />
+
+<h2>Projects</h2>
+
+<% if(category && category.projects) { %>
+  <% category.projects.forEach((p) => { %>
+    <div class="well">
+      <h3>
+        <a href="/projects/<%= p.id %>"><%= p.name %></a>
+      </h3>
+    </div>
+  <% }) %>
+<% } else { %>
+  <h3>No projects categorized by <%= category.name %> yet!</h3>
+<% } %>
