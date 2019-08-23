@@ -11,7 +11,15 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: {name: req.body.postname}
+    }).spread((category, created) =>{
+      project.addCategory(category)
+      .then((category) => {
+        res.redirect('/')
+      })
+    })
+    // res.redirect('/')
   })
   .catch((error) => {
     res.status(400).render('main/404')
