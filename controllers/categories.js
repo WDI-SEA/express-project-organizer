@@ -26,6 +26,23 @@ router.get('/:id', (req ,res) => {
     })
 })
 
+// router.get('/', (req ,res) => {
+//     db.category.findAll({include: [db.project]})
+//     .then((category) => {
+//         res.redirect('show', {category});
+//     })
+// })
+
+router.get('/', (req, res) => {
+    db.category.findAll()
+    .then((categories) => {
+      res.render('categories/index', { categories: categories })
+    })
+    .catch((error) => {
+      console.log('Error in GET /', error)
+      res.status(400).render('main/404')
+    })
+  })
 
 
 module.exports = router

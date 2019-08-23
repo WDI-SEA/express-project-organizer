@@ -1,0 +1,32 @@
+<style type="text/css">
+
+    body {
+      background-image: linear-gradient(to left, rgba(188, 18, 231, 0), rgb(9, 136, 209));
+    }
+    
+    h1, h2 {
+      color: white;
+    }
+    </style>
+    
+    <body>
+      
+    
+    <h1>Category Organizer</h1>
+    
+    <h2>My Projects</h2>
+    <hr>
+    
+    <% if (categories.length < 1) { %>
+      <h4>Better get coding, I've no categories!</h4>
+    <% } %>
+    
+    <% categories.forEach(function(category) { %>
+      <div class="well">
+        <h2>
+          <a href="/categories/<%= category.id %>"><%= category.name %></a>
+        </h2>
+      </div>
+    <% }); %>
+    
+    </body>
