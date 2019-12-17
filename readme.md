@@ -1,6 +1,6 @@
 # Express Project Organizer
 
-To practice M:M associations, we'll be adding the ability to categorize projects in an existing project organizer.
+To practice N:M associations, we'll be adding the ability to categorize projects in an existing project organizer.
 
 #### Backstory: Project Organizer
 
@@ -11,14 +11,12 @@ Keeping track of projects is a necessary part of peoples' personal lives and bus
 We'll be using an existing application that includes one model, a few routes, and a few views.
 
 * Fork and clone this repository
-* Run `npm install` to install dependencies
+* Run `npm install` to install dependencies from the existing `package.json` file
   * Use `nodemon` to start your application
-  * Use `npm run lint:js` to lint your JS
-  * Use `npm run lint:css` to lint your CSS
 * Setup your database (this app already has one existing model)
   * Run `createdb project_organizer_development` to create the database
   * Run `sequelize db:migrate` to run migrations
-  * Run `sequelize db:seed:all` to populate the database with 4 projects from previous WDI Seattle cohorts.
+  * Run `sequelize db:seed:all` to populate the database with 4 projects from previous Seattle cohorts.
 
 #### Read the Code
 
@@ -31,7 +29,7 @@ After setup, **STOP**. You're using an existing application, so make sure to rea
   * `GET /projects/:id` - page that shows a specific project
 * Models
   * `project`
-    * Attributes: `name`, `githubLink`, `deployedLink`, `description`
+   * Attributes: `name`, `githubLink`, `deployedLink`, `description`
 
 ## User Stories
 
