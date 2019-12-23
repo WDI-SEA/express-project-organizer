@@ -22,17 +22,6 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/', function(req, res) {
-  db.category.findAll({
-    include: [db.category]
-  }).then(function(categories) {
-    res.render('categories', { category: category })
-  }).catch(function(error) {
-    console.log(error)
-    res.status(400).render('main/404')
-  })
-})
-
 app.use('/projects', require('./controllers/projects'))
 app.use('/categories', require('./controllers/categories'))
 

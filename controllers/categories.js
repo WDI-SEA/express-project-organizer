@@ -5,7 +5,7 @@ let router = express.Router()
 router.get('/', (req, res) => {
     db.category.findAll()
     .then((category) => {
-        res.render('/categories', { category: category })
+        res.render('categories/show', { categories: category })
     })
     .catch((error) => {
         res.status(400).render('main/404')
