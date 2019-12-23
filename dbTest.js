@@ -39,8 +39,6 @@ db.project.create({
 
 
 
-
-
   // TIMING DOESNOT WORK
   // cats.forEach((cat) => {
   //   db.category.findOrCreate({
@@ -55,4 +53,4 @@ db.project.create({
   //   })
   // })
   // console.log('redirect or something')
-})
+
