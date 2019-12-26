@@ -23,13 +23,14 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
-app.get('*', (req, res) => {
+app.get('*', (req, res) => { //used to get error on all non-useful urls
   res.render('main/404')
 })
 
 let server = app.listen(process.env.PORT || 3000, function() {
-  rowdy.print()
+  rowdy.print() //print all the routes
 })
 
 module.exports = server

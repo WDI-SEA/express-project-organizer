@@ -18,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {})
 
   project.associate = function(models) {
-    // associations can be defined here
+    models.project.belongsToMany(models.category, { through: 'categoriesProjects' })
   }
 
   return project
 }
+
