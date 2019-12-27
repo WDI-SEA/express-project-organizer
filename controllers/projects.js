@@ -10,6 +10,9 @@ router.post('/', (req, res) => {
     deployLink: req.body.deployedLink,
     description: req.body.description
   })
+  db.category.create({
+    name: req.body.categoryName
+  })
   .then((project) => {
     res.redirect('/')
   })
