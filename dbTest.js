@@ -67,4 +67,3 @@ db.project.create({
   //   })
   // })
   // console.log('redirect or something')
-

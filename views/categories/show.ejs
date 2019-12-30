@@ -1,5 +1,6 @@
 <h1>Category: <%= category.name %></h1>
 <% category.projects.forEach(p => { %> 
+<h2>Products that fit in this category:</h2>
     <div class="well">
         <h2>
             <a href="/projects/<%= p.id %>"><%= p.name %></a>
