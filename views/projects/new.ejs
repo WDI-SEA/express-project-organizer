@@ -1,5 +1,6 @@
 <h1>Create a new project</h1>
-
+<section class="main-content">
+<br/>
 <form action="/projects" method="POST">
   <div class="form-group">
     <label for="name">Name</label>
@@ -21,5 +22,12 @@
     <textarea type="text" class="form-control" id="description" name="description" required></textarea>
   </div>
 
+  <div class="form-group">
+    <label for="categories">Add categories, separated by commas</label>
+    <input type="text" class="form-control" id="categories" name="categories" placeholder="category1, category2, etc."></input>
+  </div>
+
   <input type="submit" class="btn btn-primary">
 </form>
+
+</section>

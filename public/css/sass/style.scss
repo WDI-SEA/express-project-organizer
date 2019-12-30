@@ -1,0 +1,94 @@
+$accent1: #855d46;
+$accent2: #9d826d;
+$accent3: #cfdfde;
+$light: #ecd9c4;
+$text: #3a4544;
+
+main {
+    color: $text;
+}
+
+.container {
+    width: 80%;
+    text-align: center;
+}
+
+.main-content {
+    border-top: 1px solid $accent2;
+    h2 {
+        color: $text;
+    }
+}
+
+h2 {
+    color: $accent1;
+}
+
+%links-shared {
+    background: $accent3;
+    display: inline-block;
+    width: 30%;
+    height: 200px;
+    border-radius: 5%;
+    text-align: center;
+    vertical-align: middle;
+    margin: 10px;
+    color: $text;
+    &:hover {
+        border: 10px solid $accent2;
+        text-decoration: none;
+        color: $text;
+    }
+}
+
+.links-main {
+    @extend %links-shared;
+    padding: 60px 0;
+    font-size: 25px;
+    &:hover {
+        font-size: 27px;
+    }
+}
+
+.links-cat {
+    @extend %links-shared;
+    padding: 40px 0;
+    &:hover {
+        text-decoration: none;
+        p {
+            display: block;
+        }
+    }
+    p {
+        display: none;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}
+
+.btn {
+    background: $accent1;
+    border: none;
+    &:hover {
+        background: $accent3;
+    }
+}
+
+#editlink {
+    display: block;
+    margin-top: 15px;
+}
+
+#edit {
+    display: none;
+}
+
+#deletelink {
+    background: none;
+    border: none;
+    color: #347AB7;
+    &:hover {
+        color: #23527c;
+        text-decoration: underline;
+    }
+}

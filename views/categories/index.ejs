@@ -1,0 +1,9 @@
+<h1>All Categories</h1>
+<section class="main-content">
+<% categories.forEach(c => {%>
+    <a class="links-cat" href="/categories/<%=c.id%>">
+        <h2><%=c.name%></h2>
+        <p>View <%=c.name%> Projects</p>
+    </a>
+<%})%>
+</section>

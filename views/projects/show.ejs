@@ -1,4 +1,20 @@
+<%let categories = project.categories%>
+
 <h1><%= project.name %></h1>
+<section class="main-content">
+
+<p><%= project.description %></p>
+
+<%if(categories.length) {%>
+  <p class="category-list"><strong>Categories:</strong> 
+    <%categories.forEach(c => { %>
+      <a href="/categories/<%=c.id%>"><%=c.name%></a>
+      <%if(project.categories.length > 1 && c != categories[categories.length-1] ){%>
+        ,
+     <%}%>
+    <%})%>
+  </p>
+<%}%>
 
 <a class="btn btn-primary" href="<%= project.githubLink %>" target="_blank">
   <i class="fa fa-github" aria-hidden="true"></i>
@@ -10,8 +26,43 @@
   Deployed Link
 </a>
 
-<p><%= project.description %></p>
 
-<hr />
+<a id="editlink">Edit Project Details</a>
 
+
+<form action="/projects/<%=project.id%>/?_method=DELETE" method="POST">
+  <input type="hidden" name="id" value="<%=project.id%>">
+  <input type="submit" id="deletelink" value="Delete Project">
+</form>
+
+
+<form id="edit" action="/projects/<%=project.id%>" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" required value="<%=project.name%>">
+  </div>
+  <div class="form-group">
+    <label for="githubLink">Github Link</label>
+    <input type="text" class="form-control" id="githubLink" name="githubLink" required value="<%=project.githubLink%>">
+  </div>
+
+  <div class="form-group">
+    <label for="deployedLink">Deployed Link</label>
+    <input type="text" class="form-control" id="deployLink" name="deployLink" required value="<%=project.deployLink%>">
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea type="text" class="form-control" id="description" name="description" required><%=project.description%></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="categories">Edit, add or delete categories, separated by commas</label>
+    <input type="text" class="form-control" id="categories" name="categories" value="<%if(categories.length){categories.forEach(c=>{%><%=c.name%><%if(project.categories.length > 1 && c != categories[categories.length-1]){%>, <%}})}%>">
+  </div>
+
+  <input type="submit" class="btn btn-primary">
+</form>
+
+</section>
 <a href="/">&larr; Back Home</a>

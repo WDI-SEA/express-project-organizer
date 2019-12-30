@@ -1,0 +1,12 @@
+<%let projects = category.projects %>
+
+<h1><%=category.name%></h1>
+
+<h2>Projects:</h2>
+<section class="main-content">
+<%projects.forEach(p => { %>
+    
+    <a class="links-main" href="/projects/<%= p.id %>"><%= p.name %></a>
+    
+<%})%>
+</section>
