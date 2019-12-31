@@ -27,7 +27,7 @@
 </a>
 
 
-<a id="editlink">Edit Project Details</a>
+<a id="editlink" href="#">Edit Project Details</a>
 
 
 <form action="/projects/<%=project.id%>/?_method=DELETE" method="POST">
@@ -36,7 +36,7 @@
 </form>
 
 
-<form id="edit" action="/projects/<%=project.id%>" method="POST">
+<form id="edit" class="hide" action="/projects/<%=project.id%>" method="POST">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" required value="<%=project.name%>">
@@ -66,3 +66,5 @@
 
 </section>
 <a href="/">&larr; Back Home</a>
+
+<script type="text/javascript" src="/js/app.js"></script>

@@ -1,15 +1,14 @@
 const editProjectLink = document.getElementById('editlink')
 const editProjectForm = document.getElementById('edit')
 
-//ON LOAD
-
+//show/hide edit form on projects/show
 
 editProjectLink.addEventListener('click', ()=> { 
-  if(editProjectForm.style.display === "none") {
-    editProjectForm.style.display = "block"
+  if(editProjectForm.getAttribute("class") === "hide") {
+    editProjectForm.setAttribute("class", "display")
     editProjectLink.textContent = "Hide edit form"
   } else {
-    editProjectForm.style.display="none"
+    editProjectForm.setAttribute("class", "hide")
     editProjectLink.textContent = "Edit Project Details"
   }
 })

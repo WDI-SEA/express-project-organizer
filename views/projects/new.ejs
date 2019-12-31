@@ -21,9 +21,21 @@
     <label for="description">Description</label>
     <textarea type="text" class="form-control" id="description" name="description" required></textarea>
   </div>
+<!-- 
+  <p><strong>Categories:</strong></p>
 
   <div class="form-group">
-    <label for="categories">Add categories, separated by commas</label>
+    <p>Add existing categories</p>
+    <%//categories.forEach(category => {%>
+        <div id="select-cat<%=//category.id%>" class="existing_categories_selectors">
+          <p><%=//category.name%></p>
+        </div>
+
+    <%//})%>
+  </div> -->
+
+  <div class="form-group">
+    <p>Add new categories, separated by commas</p>
     <input type="text" class="form-control" id="categories" name="categories" placeholder="category1, category2, etc."></input>
   </div>
 
@@ -31,3 +43,23 @@
 </form>
 
 </section>
+
+
+<!--<script type="text/javascript">
+//   <%//categories.forEach(category => {%>
+//     document.getElementById('select-cat<%=//category.id%>').addEventListener('click', () => {
+//       let catInput = document.createElement('input')
+//       if(!document.getElementById('input-cat<%=//category.id%>')){
+//           console.log('input does not exist, creating')
+//           catInput.setAttribute("name", "existing-category<%=//category.id%>")
+//           catInput.setAttribute("type", "hidden")
+//           catInput.setAttribute("value", "<%=//category.name%>")
+//           catInput.setAttribute("id", "input-cat<%=//category.id%>")
+//           document.getElementById('select-cat<%=//category.id%>').appendChild(catInput)
+//       } else {
+//         console.log(catInput, 'input exists, removing')
+//           document.getElementById('select-cat<%=//category.id%>').removeChild(document.getElementById('input-cat<%=//category.id%>'))
+//       }
+//     })
+//   <%//})%>
+// </script>-->

@@ -79,8 +79,12 @@ h2 {
     margin-top: 15px;
 }
 
-#edit {
+.hide {
     display: none;
+}
+
+.display {
+    display: block;
 }
 
 #deletelink {
@@ -90,5 +94,19 @@ h2 {
     &:hover {
         color: #23527c;
         text-decoration: underline;
+    }
+}
+
+
+.existing_categories_selectors {
+    display: inline-block;
+    border: 1px solid $accent3;
+    border-radius: 5%;
+    background: $accent3;
+    color: white;
+    padding: 3px 5px 0 5px;
+    &:hover {
+        background: $accent1;
+        color: $accent3;
     }
 }
