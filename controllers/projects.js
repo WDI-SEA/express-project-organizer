@@ -1,9 +1,14 @@
 let express = require('express')
 let db = require('../models')
 let router = express.Router()
+let async = require('async')
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
+  let cats = []
+  if (req.body.category) {
+    cats = req.body.category
+  }
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -11,15 +16,32 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    db.category.findOrCreate({
-      where: {
-        category: req.body.category
-      }
-    })
-    res.redirect('/')
-  })
-  .catch((error) => {
-    res.status(400).render('main/404')
+    console.log('created project?')
+    if (cats.length) {
+      async.forEach(cats, (c, done) => {
+        db.category.findOrCreate({
+          where: { name: c }
+        })  
+        .then(([category, wasCreated]) => {
+          console.log('created category?')
+          project.addCategory(category)
+          .then(() => {
+            done()
+          })
+          .catch(err => {
+            done()
+          })
+        })
+        .catch(err => {
+          done()
+        })
+      }, () => {
+        res.redirect('/')
+      })
+  // .catch((error) => {
+  //     res.status(400).render('main/404')
+  //     })
+    }
   })
 })
 
