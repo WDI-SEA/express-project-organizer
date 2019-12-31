@@ -1,6 +1,7 @@
 let express = require('express')
 let db = require('../models')
 let router = express.Router()
+var async = require('async')
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
@@ -9,17 +10,26 @@ router.post('/', (req, res) => {
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
+  }).then(function(project){
+  async.forEach(db.category, (category, done) => {
+    db.category.findOrCreate({
+      where: {
+        name: req.body.categoryName
+      }
+    })
+    .spread((category, wasCreated) => {
+      project.addCategory(category)
+      .then(() => {
+        res.redirect('/')
+        done()
+      })
   })
-  db.category.create({
-    name: req.body.categoryName
-  })
-  .then((project) => {
-    res.redirect('/')
-  })
-  .catch((error) => {
-    res.status(400).render('main/404')
-  })
+}, () => {
+  console.log('Done')
 })
+})
+})
+
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
@@ -29,7 +39,8 @@ router.get('/new', (req, res) => {
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [ db.category ]
   })
   .then((project) => {
     if (!project) throw Error()
@@ -39,5 +50,6 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
 
 module.exports = router

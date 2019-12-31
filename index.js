@@ -22,6 +22,38 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/categories', (req, res)=> {
+  db.category.findAll()
+  .then((categories) => {
+    res.render('projects/categories', { categories })
+  })
+})
+
+app.get('/:id', (req, res) => {
+  db.category.findOne({
+    where: {id: req.params.id},
+    include: [ db.project ]
+  })
+  .then((category) => {
+    res.render('projects/categories', { category: category})
+  })
+})
+
+router.get('/:id', (req, res) => {
+  db.project.findOne({
+    where: { id: req.params.id },
+    include: [ db.category ]
+  })
+  .then((project) => {
+    if (!project) throw Error()
+    res.render('projects/show', { project: project })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
+
 app.use('/projects', require('./controllers/projects'))
 
 app.get('*', (req, res) => {
