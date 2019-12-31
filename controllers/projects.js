@@ -7,7 +7,7 @@ let async = require('async')
 router.post('/', (req, res) => {
   let cats = []
   if (req.body.category) {
-    cats = req.body.category
+    cats = req.body.category.split(',')
   }
   db.project.create({
     name: req.body.name,
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     if (cats.length) {
       async.forEach(cats, (c, done) => {
         db.category.findOrCreate({
-          where: { name: c }
+          where: { name: c.trim() }
         })  
         .then(([category, wasCreated]) => {
           console.log('created category?')
