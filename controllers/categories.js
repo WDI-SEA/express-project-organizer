@@ -26,29 +26,20 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    console.log('remove category')
+    db.category.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((category) => {
+        res.redirect('categories/index')
+    })
+    .catch(err => {
+        res.render('404') 
+    })
+})
+
 module.exports = router
 
-// router.post('/categories', (req, res) => {
-//         db.category.findOrCreate({ 
-//             where: {
-//                 category: req.body.category
-//             },
-//             defaults: {
-//                 name: req.body.name,
-//                 githubLink: req.body.githubLink,
-//                 deployLink: req.body.deployedLink,
-//                 description: req.body.description
-//             }
-//         })
-//         .then(([category, created]) => {
-//             if (created) {
-//                 console.log(`${category} was ${created}`)
-//                 res.render('categories/index', { category })
-//             } else {
-//                 console.log('ERROR! CATEGORY NOT CREATED')
-//             }
-//         })
-//         .catch((error) => {
-//             res.status(400).render('main/404')
-//         })
-//     })
