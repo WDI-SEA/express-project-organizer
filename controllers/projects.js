@@ -23,12 +23,13 @@ router.post('/', (req, res) => {
         res.redirect('/')
         done()
       })
+    })
+  }, () => {
+    console.log('Done')
   })
-}, () => {
-  console.log('Done')
+  })
 })
-})
-})
+
 
 
 // GET /projects/new - display form for creating a new project
