@@ -57,12 +57,19 @@ var async = require('async')
   // console.log('redirect or something')
 // })
 
-db.project.findOne({
+// db.project.findOne({
+//   where: { id: 5 },
+//   include: [db.category]
+// }).then(function(project) {
+//   // by using eager loading, the project model should have a categories key
+//   console.log(project.categories)
+
+db.category.findOne({
   where: { id: 5 },
-  include: [db.category]
-}).then(function(project) {
+  include: [db.project]
+}).then(function(category) {
   // by using eager loading, the project model should have a categories key
-  console.log(project.categories)
+  console.log('NAME ===', category.projects[0].name)
 
   // a createCategory function should be available to this model
   // project.createCategory({ name: 'node' }).then(function(category) {

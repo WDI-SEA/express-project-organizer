@@ -10,17 +10,20 @@ router.get('/cats', (req, res) => {
     })
     .catch((error) => {
         console.log('Error in GET /', error)
-        // res.status(400).render('main/404')
     })
 })
 
 //GET categories/:id - display specific category and its related projects
 router.get('/:id', (req, res) => {
     db.category.findOne({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
+        include: [db.project]
     })
     .then((category) => {
-        res.render('categories/show', { category: category})
+        category.getProjects()
+        .then((projects) => {
+            res.render('categories/show', { category, projects })
+        })
     })
     .catch((error) => {
         console.log('Error in SHOW', error)
