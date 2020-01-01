@@ -14,9 +14,18 @@ router.get('/cats', (req, res) => {
     })
 })
 
-
-
-//GET categories/:id
+//GET categories/:id - display specific category and its related projects
+router.get('/:id', (req, res) => {
+    db.category.findOne({
+        where: { id: req.params.id }
+    })
+    .then((category) => {
+        res.render('categories/show', { category: category})
+    })
+    .catch((error) => {
+        console.log('Error in SHOW', error)
+    })
+})
 
 
 
