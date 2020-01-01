@@ -43,10 +43,14 @@ router.get('/new', (req, res) => {
 router.get('/:id', (req, res) => {
   db.project.findOne({
     where: { id: req.params.id },
+    include: [db.category]
   })
   .then((project) => {
     if (!project) throw Error()
-    res.render('projects/show', { project: project })
+    db.category.findAll()
+    .then(categories => {
+    res.render('projects/show', { project: project, categories })
+    })
   })
   .catch((error) => {
     res.status(400).render('main/404')
