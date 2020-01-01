@@ -1,10 +1,18 @@
 let express = require('express')
+let moment = require('moment')
 let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
 let rowdy = require('rowdy-logger')
 let app = express()
 
 rowdy.begin(app)
+
+app.use(function(req, res, next) {
+  res.locals.moment = moment
+  next()
+})
+
+app.use(express.static(__dirname + '/public/'))
 
 app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))

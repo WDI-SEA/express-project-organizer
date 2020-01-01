@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "sass": "node-sass css/sass/ -o css/"
   },
   "license": "ISC",
   "dependencies": {
@@ -11,9 +12,11 @@
     "ejs": "^2.4.2",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.1.0",
+    "moment": "^2.24.0",
     "morgan": "^1.7.0",
     "pg": "^7.10.0",
     "rowdy-logger": "0.0.2",
+    "sass": "^1.24.0",
     "sequelize": "^6.0.0"
   }
 }

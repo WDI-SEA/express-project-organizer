@@ -3,11 +3,30 @@ let db = require('../models') //access database
 let router = express.Router()
 
 router.get('/', (req, res) => {
-    res.send('show all the categories that exist')
+    db.category.findAll({
+        include: [db.project]
+    })
+    .then( categories => {
+        res.render('categories/index', { categories })
+    })
+    .catch((error) => {
+        console.log('Error:', error)
+        res.status(400).render('main/404')
+      })
 })
 
 router.get('/:id', (req, res) => {
- res.send('show a specific category and all the projects with that category')
+    db.category.findOne({
+        where: { id: req.params.id},
+        include: [db.project]
+    })
+    .then(category => {
+        res.render('categories/show', { category })
+    })
+    .catch((error) => {
+        console.log('Error:', error)
+        res.status(400).render('main/404')
+      })
 })
 
 module.exports = router
