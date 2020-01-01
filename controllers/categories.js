@@ -1,6 +1,10 @@
 let express = require('express');
 let db = require('../models');
 let router = express.Router();
+let methodOverride = require('method-override')
+
+router.use(methodOverride('_method'))
+
 
 router.get('/', (req, res) => {
     db.category.findAll()
@@ -14,7 +18,6 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    console.log(req.params.id)
     db.category.findOne({
         where: { id: req.params.id },
         include: [db.project]
@@ -26,6 +29,15 @@ router.get('/:id', (req, res) => {
         })
     })
     .catch(err => console.log(err))
+})
+
+//ATTEMPTING TO MAKE DELETE ROUTE
+
+router.delete('/:id', (req, res) => {
+    db.category.destroy({
+        where: { id: req.params.id }
+    })
+    res.redirect('/')
 })
 
 module.exports = router

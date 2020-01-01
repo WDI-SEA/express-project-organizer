@@ -18,11 +18,18 @@
   <% project.categories.forEach(c => { %>
     <div class="col-sm-4">
      <a href="/categories/<%= c.id %>"> <%= c.name %> </a>
+        <form method="POST" action="/categories/<%= c.id %>?_method=DELETE"> 
+         <input type="submit" name="_method" value="DELETE">
+        </form>
     </div>
   
   <% }) %>
 </div>
 
 <hr />
+
+<h4>Remove categories from this project:</h4>
+
+
 
 <a href="/">&larr; Back Home</a>
