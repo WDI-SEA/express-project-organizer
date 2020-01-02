@@ -4,6 +4,7 @@ let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
 let rowdy = require('rowdy-logger')
 let app = express()
+let methodOverride = require('method-override');
 
 rowdy.begin(app)
 
@@ -13,6 +14,7 @@ app.use(function(req, res, next) {
 })
 
 app.use(express.static(__dirname + '/public/'))
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))

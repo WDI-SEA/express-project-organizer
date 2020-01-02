@@ -20,5 +20,15 @@ Categories:
 <p><%= project.description %></p>
 
 <hr />
+<form>
+  
+  <button type="submit" class="btn btn-primary btn-warning"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+</form>
+
+<form method="POST" action="/projects/<%= project.id %>/?_method=DELETE">
+  <button type="submit" class="btn btn-primary btn-danger"><i class="glyphicon glyphicon-remove"></i> Delete</button>
+</form>
+
+<hr />
 
 <a href="/">&larr; Back Home</a>

@@ -71,4 +71,19 @@ router.get('/:id', (req, res) => {
   })
 })
 
+router.delete('/:id', (req, res) => {
+  db.project.destroy({
+    where: { id: req.params.id }
+  })
+  .then( () => {
+    db.project.findAll()
+    .then(function(projects) {
+      res.render('main/index', { projects })
+    })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
 module.exports = router
