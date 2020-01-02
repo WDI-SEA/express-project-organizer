@@ -2,11 +2,20 @@
 
 <h1><%=category.name%></h1>
 
-<h2>Projects:</h2>
+<%if (!projects.length) {%> //this shouldn't ever happen with how I set up the delete to delete a category if there is no project associated
+    <p>No projects here yet!</p>
+<%}%>
+
+<h2>Projects</h2>
 <section class="main-content">
 <%projects.forEach(p => { %>
     
     <a class="links-main" href="/projects/<%= p.id %>"><%= p.name %></a>
     
 <%})%>
+
+<form method="POST" action="/categories/<%=category.id%>/?_method=DELETE">
+    <button type="submit" class="btn btn-danger">Delete this category</button>    
+</form>
+
 </section>

@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.send('error')
+        res.render('main/404')
     })
 })
 
@@ -30,8 +30,32 @@ router.get('/:id', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.send('err')
+        res.render('main/404')
     })
+})
+
+
+//DELETE
+router.delete('/:id', (req, res) => {
+    // res.send('Delete a category')
+
+    //onDelete cascade not working - first look up the category, and destroy association in table
+    db.categories_projects.destroy({
+        where: {categoryId: req.params.id}
+    })
+    .then(()=> {
+        db.category.destroy({
+            where: {id: req.params.id}
+        })
+        .then(destroyedCategory => {
+            res.redirect('/categories')
+        })
+    })
+    .catch(err => {
+        console.log(err)
+        res.render('main/404')
+    })
+
 })
 
 module.exports = router

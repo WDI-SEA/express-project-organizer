@@ -9,12 +9,18 @@ router.use(methodOverride('_method'))
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
-  let categories = []
+  //need to first check if there are existing categories?
+  
+  let categories = typeof req.body.existing_categories === 'string' ? [req.body.existing_categories] : req.body.existing_categories
+    //above says if existing_categories comes back as a string(how data comes back if there is only one), force it into an array; otherwise, if there are multiple it will come back an array so keep as is
  
   if(req.body.categories) {
-    categories = req.body.categories.split(',')
+    // categories = req.body.categories.split(',')
+    categories = categories.concat(req.body.categories.split(','))
     // console.log(typeof(categories) + '🌷🌷🌷🌷🌷🌷')
   }
+
+  // res.send(categories)
   
   db.project.create({
     name: req.body.name,
@@ -26,7 +32,7 @@ router.post('/', (req, res) => {
     console.log(project + '👻👻👻👻👻👻')
     if(categories.length){
       //create new category or categories
-      console.log('looking for new categories 🌷🌷🌷🌷🌷🌷🌷🌷')
+
       async.forEach(categories, (c, done) => {
         db.category.findOrCreate({
           where: {name: c.trim()}
@@ -37,7 +43,7 @@ router.post('/', (req, res) => {
           console.log(wasCreated ? category + ' was created' : category + ' already exists')
           project.addCategory(category)
           .then(() => {
-            done()
+            done() //since things are happening out of order, function compares number of requests put out to the number of times callbac function is called to confirm the overall loop function is complete
           })
           .catch(done)
         })
@@ -123,7 +129,7 @@ router.get('/new', (req, res) => {
   })
   .catch(err => {
     console.log(err)
-    res.render('main/404')
+    res.status(400).render('main/404')
   })
   
 })

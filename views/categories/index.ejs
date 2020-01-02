@@ -3,7 +3,11 @@
 <% categories.forEach(c => {%>
     <a class="links-cat" href="/categories/<%=c.id%>">
         <h2><%=c.name%></h2>
-        <p>View <%=c.name%> Projects</p>
+        <% if(c.projects.length === 1) {%>
+        <p>View <%= c.projects.length%> <%=c.name%> Project</p>
+    <%} else { %>
+        <p>View <%= c.projects.length%> <%=c.name%> Projects</p>
+   <% } %>
     </a>
 <%})%>
 </section>

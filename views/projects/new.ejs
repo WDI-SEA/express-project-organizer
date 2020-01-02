@@ -23,8 +23,18 @@
   </div>
 
   <div class="form-group">
-    <p>Add categories, separated by commas</p>
-    <input type="text" class="form-control" id="categories" name="categories" placeholder="category1, category2, etc."></input>
+    <p><strong>Existing Categories</strong></p>
+    <% categories.forEach(c => { %>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="existing_categories" value="<%=c.name%>">
+          <%= c.name %>
+        </label>
+    <%})%>
+  </div>
+
+  <div class="form-group">
+    <label for="categories">New Categories</label>
+    <input type="text" class="form-control" id="categories" name="categories" placeholder="Enter comma-separated list: category1, category2, etc."></input>
   </div>
 
   <input type="submit" class="btn btn-primary">
