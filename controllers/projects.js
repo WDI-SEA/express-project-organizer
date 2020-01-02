@@ -86,4 +86,39 @@ router.delete('/:id', (req, res) => {
   })
 })
 
+router.put('/:id', (req, res) => {
+  db.project.update({
+    name: req.body.name,
+    githubLink: req.body.githubLink,
+    deployLink: req.body.deployedLink,
+    description: req.body.description
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then( () => {
+    db.project.findAll()
+    .then(function(projects) {
+      res.render('main/index', { projects })
+    })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
+router.get('/:id/edit', (req, res) => {
+  db.project.findOne({
+    where: {id: req.params.id},
+    include: [ db.category]
+  }).then(function(project) {
+    console.log(project)
+    res.render('projects/edit', { project })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
 module.exports = router
