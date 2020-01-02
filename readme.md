@@ -54,7 +54,7 @@ var db = require('./models')
 db.category.create({
   name: 'node'
 }).then(function(category) {
-  console.log(category.get())
+  console.log(category.id)
 })
 ```
 
@@ -74,9 +74,9 @@ db.project.findOne({
   // by using eager loading, the project model should have a categories key
   console.log(project.categories)
 
-  // a createCategory function should be available to this model
-  project.createCategory({ name: 'node' }).then(function(category) {
-    console.log(category.get())
+  // addCategory function should be available to this model
+  project.addCategory({ name: 'node' }).then(function(category) {
+    console.log(category.id)
   })
 })
 ```
