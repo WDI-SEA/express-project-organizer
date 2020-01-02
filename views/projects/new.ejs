@@ -21,9 +21,19 @@
     <textarea type="text" class="form-control" id="description" name="description" required></textarea>
   </div>
 
-  <div>
-    <label for="category">Category (React, CSS, JS, Node, etc)</label>
-    <input type="text" class="form-control" id="category" name="catgeory" required>
+  <div class="form-group">
+    <p><strong>Existing Categories</strong></p>
+    <% categories.forEach(c => { %>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="existing_categories" value="<%=c.name%>">
+        <%= c.name %>
+      </label>
+    <% }) %>
+  </div>
+
+  <div class="form-group">
+    <label for="new_categories">New Categories</label>
+    <input type="text" id="new_categories" name="new_categories" placeholder="Comma-separated list" class="form-control">
   </div>
 
   <input type="submit" class="btn btn-primary">

@@ -71,8 +71,8 @@ db.category.findOne({
   // by using eager loading, the project model should have a categories key
   console.log('NAME ===', category.projects[0].name)
 
-  // a createCategory function should be available to this model
-  // project.createCategory({ name: 'node' }).then(function(category) {
+  // a addCategory function should be available to this model
+  // project.addCategory({ name: 'node' }).then(function(category) {
   //   console.log(category.get())
   // })
 })

@@ -1,11 +1,22 @@
-<h1><%= category.name %></h1>
-<hr/>
+<h1>One Category: <%= category.name %></h1>
 
-<h3>Projects under this Category</h3>
-<br/>
+<h2>Projects Tagged With <%= category.name %></h2>
 
-<% category.projects.forEach((cat) => { %>
-    <h4><%= cat.name %></h4>
-    <h4><%= cat.description %></h4>
-    <br/>
+<% if (!category.projects.length) { %>
+  <h3>Nothing yet!</h3>
+<% } %>
+
+<% category.projects.forEach(p => { %>
+  <h3>
+    <a href="/projects/<%=p.id%>">
+      <%= p.name %>
+    </a>
+  </h3>
+  <hr>
 <% }) %>
+
+<form method="POST" action="/categories/<%=category.id%>?_method=DELETE">
+  <button type="submit" class="btn btn-danger">
+    Delete this category
+  </button>
+</form>

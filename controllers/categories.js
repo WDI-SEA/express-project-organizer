@@ -1,35 +1,57 @@
-let express = require('express')
+let router = require('express').Router()
 let db = require('../models')
-let router = express.Router()
 
-//GET display all categories
-router.get('/cats', (req, res) => {
-    db.category.findAll()
-    .then((categories) => {
-        res.render('categories/cats', { categories: categories })
-    })
-    .catch((error) => {
-        console.log('Error in GET /', error)
-    })
+router.get('/', (req, res) => {
+  db.category.findAll({
+    include: [db.project]
+  })
+  .then(categories => {
+    res.render('categories/cats', { categories })
+  })
+  .catch(err => {
+    console.log('Error', err)
+    res.render('main/404')
+  })
 })
 
-//GET categories/:id - display specific category and its related projects
 router.get('/:id', (req, res) => {
-    db.category.findOne({
-        where: { id: req.params.id },
-        include: [db.project]
-    })
-    .then((category) => {
-        category.getProjects()
-        .then((projects) => {
-            res.render('categories/show', { category, projects })
-        })
-    })
-    .catch((error) => {
-        console.log('Error in SHOW', error)
-    })
+  db.category.findOne({
+    where: { id: req.params.id },
+    include: [db.project]
+  })
+  .then(category => {
+    res.render('categories/show', { category })
+  })
+  .catch(err => {
+    console.log('Error', err)
+    res.render('main/404')
+  })
 })
 
+router.delete('/:id', (req, res) => {
+  // Delete from the join table
+  db.categoriesProjects.destroy({
+    where: { categoryId: req.params.id }
+  })
+  .then(() => {
+    // Now I am free to delete the category itself
+    db.category.destroy({
+      where: { id: req.params.id }
+    })
+    .then(destroyedCategory => {
+      res.redirect('/categories/cats')
+    })
+    .catch(err => {
+      console.log('Oh no what happened', err)
+      res.render('main/404')
+    })
+  })
+  .catch(err => {
+    console.log('Oh no what happened', err)
+    res.render('main/404')
+  })
 
+
+})
 
 module.exports = router

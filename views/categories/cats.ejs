@@ -1,9 +1,11 @@
-<h1>Categories</h1>
+<h1>All Categories</h1>
 
-<% categories.forEach(function(category) { %>
-    <div class="well">
-      <h2>
-        <a href="/categories/<%= category.id %>"><%= category.name %></a>
-      </h2>
-    </div>
-  <% }); %>
+<% categories.forEach(c => { %>
+  <h2>
+    <a href="/categories/<%=c.id%>">
+      <%= c.name %>
+    </a>
+  </h2>
+  <p>This category is associated with <%= c.projects.length %> projects</p>
+  <hr>
+<% }) %>
