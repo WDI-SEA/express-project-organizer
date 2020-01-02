@@ -27,13 +27,12 @@ router.get('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    console.log('remove category')
     db.category.destroy({
         where: {
             id: req.params.id
         }
     })
-    .then((category) => {
+    .then((categories) => {
         res.redirect('categories/index')
     })
     .catch(err => {

@@ -3,7 +3,7 @@
     <div class="well">
         <div class="col s4">
             <div class="card blue-grey darken-1 center-align">
-                <form method="POST" action="/<%=c.id%>/?_method=DELETE">
+                <form action="/<%=c.id%>/?_method=DELETE" method="POST">
                     <h2>
                         <a href="/categories/<%= c.id %>"><span class="card-title red-text"><strong><%= c.name %></strong></a></span>
                     </h2>
