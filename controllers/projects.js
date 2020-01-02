@@ -10,22 +10,6 @@ router.use(methodOverride('_method'))
 // POST /projects - create a new project
 router.post('/', (req, res) => {
   let categories = []
-
-  // //check if inputs for existing categories exist
-  // db.category.findAndCountAll()
-  // .then(result => {
-  //   console.log(result.rows)
-  //   // if(result.count>0) {
-  //       //compare 
-  //     //
-  //     // 
-  //       //categories.push(req.body.inputname)
-  //   // }
-  // }).catch(err => {
-  //   console.log(err)
-  //   res.render('main/404')
-  // })
-  
  
   if(req.body.categories) {
     categories = req.body.categories.split(',')
@@ -70,7 +54,7 @@ router.post('/', (req, res) => {
     console.log(error, '⁉️⁉️⁉️⁉️⁉️⁉️⁉️')
     res.status(400).render('main/404')
   })
-})
+ })
 
 //POST - edit project
 router.post('/:id', (req, res) => {

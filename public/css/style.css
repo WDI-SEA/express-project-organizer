@@ -68,14 +68,3 @@ h2 {
   #deletelink:hover {
     color: #23527c;
     text-decoration: underline; }
-
-.existing_categories_selectors {
-  display: inline-block;
-  border: 1px solid #cfdfde;
-  border-radius: 5%;
-  background: #cfdfde;
-  color: white;
-  padding: 3px 5px 0 5px; }
-  .existing_categories_selectors:hover {
-    background: #855d46;
-    color: #cfdfde; }
