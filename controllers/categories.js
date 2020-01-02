@@ -9,7 +9,6 @@ router.use(methodOverride('_method'))
 router.get('/', (req, res) => {
     db.category.findAll()
     .then((categories) => {
-        // res.send(categories);
         res.render('categories/index', { categories })
     })
     .catch((error) => {
