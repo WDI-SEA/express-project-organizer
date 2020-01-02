@@ -1,0 +1,29 @@
+$primary_color: rgb(0, 2, 117);
+$secondary_color: rgb(151, 150, 150);
+$tertiary_color: rgb(121, 3, 3);
+$font-stack: Helvetica, sans-serif;
+
+h1 {
+  color: $primary_color;
+  font-family: $font-stack;
+}
+
+a {
+  color: $primary_color;
+  &:hover {
+    font-size: larger;
+    color: $tertiary_color;
+  }
+}
+
+.row {
+  border: 1px solid $secondary_color;
+  border-radius: 10%;
+  padding: 2em;
+  .panel {
+    margin: 1em;
+    border: 1px dotted $secondary_color;
+    border-radius: 10%;
+    padding: 1em;
+  }
+}

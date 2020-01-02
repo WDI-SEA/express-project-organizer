@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "sass": "node-sass css/sass/ -o css/"
+    "sass": "node-sass public/css/sass/ -o public/css/"
   },
   "license": "ISC",
   "dependencies": {
@@ -14,6 +14,7 @@
     "express-ejs-layouts": "^2.1.0",
     "moment": "^2.24.0",
     "morgan": "^1.7.0",
+    "node-sass": "^4.13.0",
     "pg": "^7.10.0",
     "rowdy-logger": "0.0.2",
     "sass": "^1.24.0",
