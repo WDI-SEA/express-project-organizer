@@ -1,0 +1,15 @@
+<h1>All Categories</h1>
+
+<hr>
+
+<% if (categories.length < 1) { %>
+  <h4>No categories have been created yet.</h4>
+<% } %>
+
+<% categories.forEach(function(category) { %>
+  <div class="well">
+    <h2>
+      <a href="/categories/<%= category.id %>"><%= category.name %></a>
+    </h2>
+  </div>
+<% }); %>
