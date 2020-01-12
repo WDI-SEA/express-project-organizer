@@ -15,17 +15,17 @@ router.get('/', (req, res) => {
 	})
 })
 
-// GET /projects/:id - display a specific project
+// GET /categories/:id - display a specific category and associated projects
 router.get('/:id', (req, res) => {
   db.category.findOne({
 	where: { id: req.params.id },
-	include: [db.projects]
+	include: [db.project]
   })
   .then((category) => {
-    if (!project) throw Error()
-    res.render('categories/show', { category: category })
+    res.render('categories/show', { category: category, projects: projects })
   })
   .catch((error) => {
+	  console.log(error)
     res.status(400).render('main/404')
   })
 })
