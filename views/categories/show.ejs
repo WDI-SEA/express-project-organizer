@@ -1,20 +1,18 @@
-<h1>Category: <%= category.name %></h1>
+<h3>Category: <%= category.name %></h3>
 
 <% const projects = category.projects %>
 
 <% if (projects.length < 1) { %>
 	<h4>No projects have been associated with this category yet.</h4>
 <% } else { %>
+
 <h4>Projects associated with the category '<%= category.name %>':</h4>
-  <% projects.forEach(function(project) { %>
-	<div class="well">
-	  <h2>
-		<a href="/projects/<%= project.id %>"><%= project.name %></a>
-	  </h2>
-	</div>
+	<ul class="list-group">
+<% projects.forEach(function(project) { %>
+		<li class="list-group-item"><a href="/projects/<%= project.id %>"><%= project.name %></a></li>
 	<% }) %>
 <% } %>
-
+	</ul>
 <hr>
 
 <a href="/categories">&larr; Back to Categories</a>

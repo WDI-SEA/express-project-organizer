@@ -1,30 +1,57 @@
-<h1>Create a new project</h1>
+<h3>Create a new project</h3>
 
 <form action="/projects" method="POST">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" required>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label for="name">Name
+          <input type="text" id="name" name="name" required>
+      </label>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="githubLink">Github Link</label>
-    <input type="text" class="form-control" id="githubLink" name="githubLink" required>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label for="githublink">GitHub Link
+          <input type="text" id="githubLink" name="githubLink" required>
+      </label>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="deployedLink">Deployed Link</label>
-    <input type="text" class="form-control" id="deployedLink" name="deployedLink" required>
+
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label for="deployedLink">Deployed Link
+          <input type="text" class="form-control" id="deployedLink" name="deployedLink" required>
+      </label>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="description" name="description" required></textarea>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label for="description">Description
+          <textarea id="description" name="description" required></textarea>
+          </label>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="category">Category</label>
-    <input type="text" class="form-control" id="category" name="catName"></input>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label for="category">Category
+          <input type="text" id="category" name="catName">
+      </label>
+      </div>
+    </div>
   </div>
 
-  <input type="submit" class="btn btn-primary">
+  <input type="submit" class="button">
+
 </form>
