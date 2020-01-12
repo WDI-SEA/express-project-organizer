@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 	include: [db.project]
   })
   .then((category) => {
-    res.render('categories/show', { category: category, projects: projects })
+    res.render('categories/show', { category: category })
   })
   .catch((error) => {
 	  console.log(error)
