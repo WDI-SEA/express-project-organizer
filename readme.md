@@ -87,9 +87,10 @@ Note that these are two possible queries you can perform. There are others that 
 
 Now that the models have been created, you'll want to add the ability to create categories, view categories, and view projects by category to the rest of the application. Here is an approach you can take:
 
-* Add a field to `GET /projects/new` that accepts a category, then save the category on `POST /projects`
+* Add a field to the existing view associated with `GET /projects/new`. This new field should accept a new category name. 
   * Keep in mind that categories should be associated with projects
   * Category names should be unique; the category model should have no duplicates (hint, use `findOrCreate`)
+* Add to the view associated withe the `POST /projects` route, which allows the user to add categories to each individual project. 
 * Create the following routes for viewing categories and viewing projects by category:
   * `GET /categories` - show all the categories that exist
   * `GET /categories/:id` - show a specific category and all the projects with that category
