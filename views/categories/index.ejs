@@ -1,0 +1,7 @@
+<h1>Category Index Page</h1>
+
+<%category.forEach(c => {%>
+    <p>
+        <a href="/categories/<%= c.id%>"><%=c.name%></a>
+    </p>
+<%})%>

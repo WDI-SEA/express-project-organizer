@@ -23,13 +23,15 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')
 })
 
-let server = app.listen(process.env.PORT || 3000, function() {
+let server = app.listen(process.env.PORT || 2050, function() {
   rowdy.print()
+  console.log('listening on port 2050!')
 })
 
 module.exports = server
