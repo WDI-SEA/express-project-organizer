@@ -10,7 +10,14 @@
   Deployed Link
 </a>
 
+
 <p><%= project.description %></p>
+
+Categories:&nbsp;
+<% project.categories.forEach(category => { %>
+	<a href="/categories/<%=category.id%>"><%=category.name%></a>
+<% }) %>
+
 
 <hr />
 

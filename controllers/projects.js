@@ -1,6 +1,7 @@
 let express = require('express')
 let db = require('../models')
 let router = express.Router()
+var async = require("async");
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
@@ -8,10 +9,20 @@ router.post('/', (req, res) => {
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
-    description: req.body.description
+    description: req.body.description,
   })
   .then((project) => {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: {
+        name: req.body.categories
+      }
+    })
+    .spread((category, created) => {
+      project.addCategory(category)
+      .then(c => {
+        res.redirect('/')
+      })
+    }) 
   })
   .catch((error) => {
     res.status(400).render('main/404')
@@ -26,7 +37,8 @@ router.get('/new', (req, res) => {
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [db.category]
   })
   .then((project) => {
     if (!project) throw Error()
