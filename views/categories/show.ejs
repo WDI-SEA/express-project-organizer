@@ -1,0 +1,16 @@
+<h1>Category: <%= category.name %></h1>
+
+<h2><%= category.name %> Projects</h2>
+<hr>
+
+<% if (category.projects.length < 1) { %>
+  <h4>Better get coding, I've no projects!</h4>
+<% } %>
+
+<% category.projects.forEach(function(project) { %>
+  <div class="well">
+    <h2>
+      <a href="/projects/<%= project.id %>"><%= project.name %></a>
+    </h2>
+  </div>
+<% }); %>

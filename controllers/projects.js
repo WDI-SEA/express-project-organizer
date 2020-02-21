@@ -9,11 +9,20 @@ router.post('/', (req, res) => {
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
+  }).then((project) => {
+    db.category.findOrCreate({
+    where: {name: req.body.category}
+  }).spread((category, created) => {
+      project.addCategory(category)
+      .then((category) => {
+        console.log(category)
+        res.redirect('/')
+      })
+    })
   })
-  .then((project) => {
-    res.redirect('/')
-  })
+
   .catch((error) => {
+    console.log(error, "err")
     res.status(400).render('main/404')
   })
 })
@@ -26,7 +35,7 @@ router.get('/new', (req, res) => {
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
   })
   .then((project) => {
     if (!project) throw Error()
