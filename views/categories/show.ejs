@@ -1,0 +1,10 @@
+<h1><%= category.name %></h1>
+
+<p><%= category.description %></p>
+<% category.projects.forEach(p => { %>
+<p class="well"><%= p.name %></p>
+<% }) %>
+
+<hr />
+
+<a href="/">&larr; Back Home</a>

@@ -22,7 +22,25 @@ app.get('/', (req, res) => {
   })
 })
 
+
+
+// router.get('/:id', (req, res) => {
+//   db.project.findOne({
+//     where: { id: req.params.id },
+//     include: [ db.category ]
+//   })
+//   .then((project) => {
+//     if (!project) throw Error()
+//     res.render('projects/show', { project: project })
+//   })
+//   .catch((error) => {
+//     res.status(400).render('main/404')
+//   })
+// })
+
+
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')
