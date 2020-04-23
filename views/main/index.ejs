@@ -1,7 +1,7 @@
 <h1>Project Organizer</h1>
-
-<h2>My Projects</h2>
 <hr>
+
+<h2>My Projects</h2><br>
 
 <% if (projects.length < 1) { %>
   <h4>Better get coding, I've no projects!</h4>
@@ -13,4 +13,5 @@
       <a href="/projects/<%= project.id %>"><%= project.name %></a>
     </h2>
   </div>
+  <hr>
 <% }); %>
