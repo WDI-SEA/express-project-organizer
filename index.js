@@ -4,7 +4,7 @@ let db = require('./models')
 let rowdy = require('rowdy-logger')
 let app = express()
 
-rowdy.begin(app)
+//rowdy.begin(app)
 
 app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))
@@ -24,12 +24,15 @@ app.get('/', (req, res) => {
 
 app.use('/projects', require('./controllers/projects'))
 
+app.use('/categories', require('./controllers/categories'))
+
 app.get('*', (req, res) => {
   res.render('main/404')
 })
 
-let server = app.listen(process.env.PORT || 3000, function() {
+/* let server = app.listen(process.env.PORT || 8000, function() {
   rowdy.print()
-})
+}) */
 
-module.exports = server
+app.listen(5000)
+//module.exports = server
