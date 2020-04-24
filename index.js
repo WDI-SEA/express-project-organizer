@@ -8,6 +8,7 @@ rowdy.begin(app)
 
 app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))
+app.use('/', express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')

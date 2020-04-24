@@ -1,16 +1,20 @@
-<h1>Project Organizer</h1>
 
-<h2>My Projects</h2>
-<hr>
+<header>
+  <h3>My Projects</h3>
+</header>
+<ul class="list-group">
 
 <% if (projects.length < 1) { %>
-  <h4>Better get coding, I've no projects!</h4>
+  <li>
+    <div>
+      <p class="">NO PROJECTS SAVED</p>
+    </div>
+  </li>
 <% } %>
 
 <% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-    </h2>
-  </div>
+  <li class="list-group-item">
+    <a href="/projects/<%= project.id %>"><%= project.name %></a>
+  </li>
 <% }); %>
+  </ul>

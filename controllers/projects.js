@@ -2,7 +2,7 @@ let express = require('express')
 let db = require('../models')
 let router = express.Router()
 
-// POST /projects - create a new project
+// POST /projects - create a new project and add category if not blank
 router.post('/', (req, res) => {
   db.project.create({
     name: req.body.name,
@@ -10,10 +10,25 @@ router.post('/', (req, res) => {
     deployLink: req.body.deployedLink,
     description: req.body.description
   })
+  .then((project) =>{
+    if(req.body.catName) {
+      db.category.findOrCreate({
+        where: {
+          name: req.body.catName
+        }
+      })
+      .then(([category, created]) => {
+        project.addCategory(category)
+        })
+      }
+  })
+
   .then((project) => {
+    // console.log(project.id, category.id)
     res.redirect('/')
   })
   .catch((error) => {
+    console.log(error)
     res.status(400).render('main/404')
   })
 })
