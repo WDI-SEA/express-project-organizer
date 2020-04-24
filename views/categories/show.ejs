@@ -1,0 +1,16 @@
+<div class="space"></div>
+
+<div class="list-group">
+  <button type="button" class="list-group-item list-group-item-action active" disabled>
+    <h1>Projects using <%= category.name %></h1>
+  </button>
+ 
+    <% category.projects.forEach(function(p) { %>
+    <button type="button" class="list-group-item list-group-item-action">
+        <h4>
+          <a class="text-dark" href="/projects/<%= p.id %>"><%= p.name %></a>
+        </h4>
+    </button>
+    <% }); %>
+  
+</div>

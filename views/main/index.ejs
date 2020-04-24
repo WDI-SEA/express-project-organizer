@@ -1,16 +1,26 @@
 <h1>Project Organizer</h1>
 
-<h2>My Projects</h2>
+<h2 class="mymy">My Projects</h2>
 <hr>
 
 <% if (projects.length < 1) { %>
   <h4>Better get coding, I've no projects!</h4>
 <% } %>
-
+<div class="projectList">
 <% projects.forEach(function(project) { %>
-  <div class="well">
-    <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
-    </h2>
+<div class="card bg-secondary" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title"><a class="text-light" href="/projects/<%= project.id %>"><%= project.name %></a></h4>
+    <div class="buttons">
+      <form method="GET" action="/projects/<%=project.id%>/edit" >
+        <input type="submit" class="btn btn-primary red" value="Edit Project">
+      </form>
+      <form method="POST" action="/projects/<%=project.id%>?_method=DELETE" >
+        <input type="submit" class="btn btn-danger" value="Delete Project">
+      </form>
+    </div>
   </div>
+</div>
+<br />
 <% }); %>
+</div>

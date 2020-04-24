@@ -1,0 +1,15 @@
+<div class="space"></div>
+
+<div class="list-group">
+  <button type="button" class="list-group-item list-group-item-action active" disabled>
+    <h1>Project Categories</h1>
+  </button>
+  <% categories.forEach(function(c) { %>
+  <button type="button" class="list-group-item list-group-item-action">
+          <h4>
+            <a class="text-dark" href="/categories/<%= c.id %>"><%= c.name %></a>
+          </h4>
+    </button>
+    <% }); %>
+  
+</div>

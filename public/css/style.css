@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(43, 44, 83);
+    color: white;
+}
+
+nav {
+    color: white;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.jumbotron {
+    margin: 40 auto;
+    color: rgb(43, 44, 83);
+}
+
+.space {
+    height: 40px;
+}
+
+.projectList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mymy {
+    text-align: center;
+}
