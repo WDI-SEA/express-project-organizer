@@ -9,15 +9,26 @@ router.get('/', (req, res) => {
         res.render('category/index', { category })
     })
     .catch(err =>{
-        console.log('THERE IS AN ERRROR HERE', error)
+        console.log('THERE IS AN ERRROR HERE', err)
         res.status(400).render('main/404')
     })
 })
 
 //GET /categories/:id to display projects 
 router.get('/:id', (req, res) => {
-   res.render('category/show', { category })
-   
+    db.category.findOne({
+        where: {id: req.params.id},
+        include: [db.project]
+    }
+    )
+    .then((category) => {
+        res.render('category/show', { category })
+    })
+    .catch(err =>{
+        console.log('THERE IS AN ERRROR HERE BRAHHHHH', err)
+        res.status(400).render('main/404')
+    })
 })
+
 
 module.exports = router
