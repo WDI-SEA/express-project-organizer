@@ -24,6 +24,10 @@
 
 <a href="/">&larr; Back Home</a>
 
+<form method="POST" action="/projects/<%=project.id%>?_method=DELETE">
+<button type="submit">Delete</button>
+</form>
+
 <div style="margin-top: 5px;">
 <a class="btn btn-primary" href="/projects/<%=project.id%>/edit" target="_blank">
   <span class="glyphicon glyphicon-pencil"></span> 

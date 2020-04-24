@@ -66,51 +66,56 @@ router.get('/:id/edit',(req,res)=>{
   })
   
 })
-/*
-router.put('/:id/edit',(req,res)=>{
-  console.log("put route",req.body,req.params.id)
-  let categories = []
-  if(req.body.categories){
-    categories = req.body.categories.split(',')
-  }
-    db.project.update({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description
-    }, {
-    where: {
-      id: req.params.id
-    }
-  })
-  .then((project) => {
-    async.forEach(categories, (category, done) => {
-      db.category.findOrCreate({  where: {name: category.trim()}
+
+router.put('/edit',(req,res)=>{
+  let categories = req.body.categories.split(',')
+  categories= categories.map(c=>c.trim())
+    db.project.update( req.body,
+      {
+      where: {id: req.body.projectId},
+      returning: true
+    })
+    .then(([rows,project])=>{
+      console.log("put",project)
+      db.category.findAll({
+        where: {name: categories}
       })
-      .then(([category, wasCreated]) => {
-        project.addCategory(category)
-        .then(() => {
-         done()
-        })
-        .catch((error) => {
-          console.log('error in project.add category',error)
-          done()
-          //res.status(400).render('main/404')
+      .then(cats=>{
+       // project.set(db.category,cats)
+       project[0].setCategories(cats)
+        .then(()=>{
+          res.redirect('/projects/'+req.body.projectId)
         })
       })
-      .catch((error) => {
-        console.log(error)
-        done()
-        res.status(400).render('main/404')
-      })
-    },
-    () => {
-      res.redirect('/projects/'+req.params.id)
-    }) //end of async function
-  }) // end of then for the project create
-  //res.render('projects/show', { project: project })
+    })
+    .catch((error) => {
+      res.status(400).render('main/404')
+    })
 })
-*/
+
+router.delete('/:id', (req,res) => {
+  db.categoriesProjects.destroy({
+    where: { projectId: req.params.id }
+  })
+  .then(() => {
+    // Now I am free to delete the project itself
+    db.project.destroy({
+      where: { id: req.params.id }
+    })
+    .then(destroyedProject => {
+      res.redirect('/')
+    })
+    .catch(err => {
+      console.log('Oh no what happened', err)
+      res.render('main/404')
+    })
+  })
+  .catch(err => {
+    console.log('Oh no what happened', err)
+    res.render('main/404')
+  })
+
+})
 
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {

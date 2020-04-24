@@ -1,6 +1,7 @@
 <h1>Edit the project</h1>
 
-<form action="/projects/<%=project.id%>/edit?_method=PUT" method="POST">
+<form action="/projects/edit?_method=PUT" method="POST">
+    <input type="hidden" id="id" name="projectId" value="<%=project.id%>">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" value = "<%= project.name %>" required>
@@ -18,14 +19,14 @@
 
   <div class="form-group">
     <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="description" name="description" value="<%= project.description%>" required></textarea>
+    <textarea type="text" class="form-control" id="description" name="description" value="<%=project.description%>" required><%=project.description%></textarea>
   </div>
   <%  let str = "" %>
     <% project.categories.forEach(function(c) { %>
     <% str = str + c.name+',' %>       
     <% }); %>  
     <% let categories = str.substring(0,(str.length-1)); %>   <!-- substr removes the comma at the end  -->
-
+      <!-- Another way to do it is: project.categories.map(c=>c.name).join(', ') --> 
   <div class="form-group">
     <label for="categories">Category Name</label>
     <input type="text" class="form-control" id="categories" name="categories" value= <%=categories%> placeholder="comma-separated list" required>
