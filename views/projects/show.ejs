@@ -10,7 +10,15 @@
   Deployed Link
 </a>
 
-<p><%= project.description %></p>
+<div class="well">
+  <p><%= project.description %></p>
+</div>
+
+<p>
+  <% project.categories.forEach(cat => { %>
+    <a href="/categories/<%=cat.id%>" >#<%=cat.name%> </a>   
+  <%}) %>
+</p>
 
 <!-- <div class="form-group">
   <form method="POST" action="/projects/addCat">

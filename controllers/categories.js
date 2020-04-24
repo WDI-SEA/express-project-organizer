@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     })    
 })
 
-router.get('/details/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     db.category.findOne({
         where: { id: req.params.id },
         include: [db.project]
