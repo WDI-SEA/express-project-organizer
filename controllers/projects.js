@@ -1,9 +1,15 @@
+let async = require('async')
 let express = require('express')
-let db = require('../models')
+let db = require('../models') //access database
 let router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
+  //get the categories and separate by comma
+  let categories = []
+  if (req.body.categories) {
+    categories = req.body.categories.split(',')
+  }
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -11,9 +17,36 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    res.redirect('/')
+    //if categories exist, check if exists, if not, create it, attach to the project
+    if (categories.length) {
+
+      async.forEach(categories, (c, complete) => {
+        db.category.findOrCreate({
+          where: { name: c.trim() }
+        })
+        .then(([newcategory, wasCreated]) => {
+          project.addCategory(newcategory)
+          .then(() => {
+            complete()
+          })
+          .catch(function(error) {
+            res.status(400).render('main/404')
+            complete()
+          }) //end of adding to join table
+        })
+        .catch(function(error) {
+          res.status(400).render('main/404')
+          complete()
+        })
+      }, () => {
+        //executes one time only when entire list is complete (all done functions have been called for each iteration)
+        res.redirect('/projects/' + project.id)
+      })
+    } else {//End of if, if no categories
+      res.redirect('/projects/' + project.id)
+    }
   })
-  .catch((error) => {
+  .catch(function(error) {
     res.status(400).render('main/404')
   })
 })
@@ -26,11 +59,62 @@ router.get('/new', (req, res) => {
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    include: [ db.category]
   })
   .then((project) => {
     if (!project) throw Error()
-    res.render('projects/show', { project: project })
+    res.render('projects/show', { project })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  db.project.destroy({
+    where: { id: req.params.id }
+  })
+  .then( () => {
+    db.project.findAll()
+    .then(function(projects) {
+      res.render('main/index', { projects })
+    })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
+router.put('/:id', (req, res) => {
+  db.project.update({
+    name: req.body.name,
+    githubLink: req.body.githubLink,
+    deployLink: req.body.deployedLink,
+    description: req.body.description
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then( () => {
+    db.project.findAll()
+    .then(function(projects) {
+      res.render('main/index', { projects })
+    })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
+router.get('/:id/edit', (req, res) => {
+  db.project.findOne({
+    where: {id: req.params.id},
+    include: [ db.category]
+  }).then(function(project) {
+    console.log(project)
+    res.render('projects/edit', { project })
   })
   .catch((error) => {
     res.status(400).render('main/404')

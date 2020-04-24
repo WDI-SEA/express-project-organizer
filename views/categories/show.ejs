@@ -1,0 +1,22 @@
+<h1>Category Detail: <%= category.name %></h1>
+
+<p>
+    <strong><%= moment(category.createdAt).calendar() %></strong>
+</p>
+
+
+<div class = "row">
+    <% category.projects.forEach( p => { %>
+        <div class="col-sm-3">
+            <div class="panel">
+                <p>Projects:
+                    <% if (category.projects.length) { %>
+                        <li><%= p.name %></li>
+                    <% }  else { %>
+                        <p>None</p>
+                    <% } %>
+                </p>
+            </div>
+        </div>
+    <% }) %>
+</div>

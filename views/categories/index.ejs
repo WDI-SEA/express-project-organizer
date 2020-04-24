@@ -1,0 +1,18 @@
+<h1>All Categories</h1>
+
+<div class = "row">
+    <% categories.forEach( c => { %>
+        <div class="col-sm-3">
+            <div class="panel">
+                <h6><span class="panel-title"><a href="/categories/<%= c.id %>"><%= c.name %></a></span></h6>
+                <p>Projects:
+                    <% if (c.projects.length) { %>
+                        <li><%= c.projects.map( p => p.name).join(', ') %></li>
+                    <% }  else { %>
+                        <p>None</p>
+                    <% } %>
+                </p>
+            </div>
+        </div>
+    <% }) %>
+</div>
