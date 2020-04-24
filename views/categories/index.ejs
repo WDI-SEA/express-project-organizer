@@ -1,0 +1,11 @@
+<h1> Categories </h1>
+
+<% categories.forEach(c => { %>
+    <a class="btn btn-primary" href="/categories/<%=c.id%>">
+        <%=c.name%>
+    </a>
+<% }) %>
+
+<hr />
+
+<a href="/">&larr; Back Home</a>

@@ -1,0 +1,30 @@
+<h1>Create a new project</h1>
+
+<form method="POST" action="/projects/edit/<%=project.id%>?_method=PUT">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%=project.name%>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="githubLink">Github Link</label>
+        <input type="text" class="form-control" id="githubLink" name="githubLink" value="<%=project.githubLink%>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="deployedLink">Deployed Link</label>
+        <input type="text" class="form-control" id="deployedLink" name="deployedLink" value="<%=project.deployLink%>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" class="form-control" id="description" name="description" required><%=project.description%></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="categories">Categories</label>
+        <input type="text" class="form-control" id="categories" name="categories" value="<%=catString%>">
+    </div>
+
+    <input type="submit" class="btn btn-primary">
+</form>

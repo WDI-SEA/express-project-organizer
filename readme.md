@@ -127,3 +127,6 @@ Here are some example screenshots. Your finished deliverable will differ and inc
 ## Licensing
 1. All content is licensed under a CC-BY-NC-SA 4.0 license.
 2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
+
+
+TA session stuff that might be relevant to you: 1) if you've got a process running on 3000 that is crashing your app, in terminal do "lsof -i :3000", you will get a process displayed along with a PID. in terminal enter "kill <PID>" without the <> or any brackets or quotes. 2) you might encounter some issues with npm i, specifically with sequelize. go to your package.json file in the root of the repository, remove line 17 and the comma on line 16. in terminal, "npm i sequelize". make sure sequelize appears on line 17 again, this time with a different version. in terminal, "npm i" to install all other packages. should be okay. optional: run "npm audit fix" in terminal. (edited) 
