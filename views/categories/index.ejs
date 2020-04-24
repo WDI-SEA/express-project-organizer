@@ -1,0 +1,16 @@
+<h1>Categories Index</h1>
+
+<% categories.forEach(c => { %>
+    <div>
+        <li>
+            <a href="/categories/<%= c.id %>">
+                <%= c.name %>
+            </a>
+        </li>
+    </div>
+<% }) %>
+
+<h4>
+    <a href="/">&larr; Back Home</a>
+</h4>
+    

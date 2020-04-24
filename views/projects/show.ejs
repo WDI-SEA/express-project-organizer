@@ -12,6 +12,11 @@
 
 <p><%= project.description %></p>
 
+<% project.categories.forEach(c => { %>
+ <span>
+   <a href="/categories/<%= c.id %>"><%= c.name %> |</a>
+  </span>
+<% }) %>
 <hr />
 
 <a href="/">&larr; Back Home</a>
