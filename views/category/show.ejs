@@ -1,3 +1,9 @@
-<h1>THIS IS THE SHOW PAGE</h1>
+<h1>THIS IS THE SHOW PAGE <%= category.name %></h1>
 
-<% %>
+<% category.projects.forEach(p => { %>
+<div>
+    <strong>
+        <a href="../projects/<%=p.id%>"><%=p.name %></a>
+    </strong>
+</div>
+<% }) %>

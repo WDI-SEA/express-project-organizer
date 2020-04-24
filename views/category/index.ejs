@@ -2,9 +2,9 @@
 
 <% category.forEach(function(cat) { %>
 <div class="well">
-        <p>
+        <a href='/categories/<%= cat.id %>'>
             <%=cat.name %>
-        </p>
+        </a>
 </div>
 
 <% }) %> 
