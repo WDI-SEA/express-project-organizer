@@ -2,7 +2,9 @@
 
 <p><%= category.description %></p>
 <% category.projects.forEach(p => { %>
+<div class="well">
 <a href="/projects/<%=p.id%>" ><%= p.name %></a>
+</div>
 <% }) %>
 
 <hr />
