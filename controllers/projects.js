@@ -6,8 +6,8 @@ let async = require('async')
 // POST /projects - create a new project
 router.post('/', (req, res) => {
   let categories = []
-  if (req.body.categoryName) {
-    categories = req.body.categoryName.split(',')
+  if (req.body.cn) {
+    categories = req.body.cn.split(',')
   }
   db.project.create({
     name: req.body.name,
@@ -60,9 +60,10 @@ router.get('/:id', (req, res) => {
       res.render('projects/show', { project: project })
     })
     .catch((error) => {
-      console.log('did you throw an error?---------------', error)
       res.status(400).render('main/404')
     })
 })
+
+
 
 module.exports = router
