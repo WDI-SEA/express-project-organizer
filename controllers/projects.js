@@ -64,6 +64,34 @@ router.get('/:id', (req, res) => {
     })
 })
 
+//delete project route
+router.delete('/:id', (req, res) => {
+  console.log('where the fuck are you!?--------------')
+  // Delete from the join table
+  db.categoriesProjects.destroy({
+    where: { categoryId: req.params.id }
+  })
+  .then(() => {
+    // Now I am free to delete the category itself
+    db.category.destroy({
+      where: { id: req.params.id }
+    })
+    .then(destroyedCategory => {
+      res.redirect('/categories')
+    })
+    .catch(err => {
+      console.log('Oh no what happened', err)
+      res.render('main/404')
+    })
+  })
+  .catch(err => {
+    console.log('Oh no what happened', err)
+    res.render('main/404')
+  })
+})
+
+//edit a project
+
 
 
 module.exports = router

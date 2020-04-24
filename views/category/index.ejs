@@ -2,8 +2,6 @@
 
 <% category.forEach(c => { %>
 <div class="well">
-    <p>
-        <a href="/categories/<%= c.id%>"><%=c.name %></a>
-    </p>
+    <h3><p><a href="/categories/<%=c.id%>"><%= c.name %></a></p></h3>
 </div>
 <% }) %>

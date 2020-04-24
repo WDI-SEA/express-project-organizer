@@ -2,7 +2,7 @@ let express = require('express')
 let db = require('../models')
 let router = express.Router()
 
-//GET - categories
+//GET - categories - view all categories
 router.get('/', (req, res) => {
     db.category.findAll()
     .then((category) => {

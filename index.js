@@ -3,6 +3,8 @@ let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
 let rowdy = require('rowdy-logger')
 let app = express()
+let methodOverride = require('method-override')
+
 
 rowdy.begin(app)
 
