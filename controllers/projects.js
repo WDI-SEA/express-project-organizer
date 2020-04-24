@@ -35,10 +35,9 @@ router.post('/', (req, res) => {
             done()
             res.status(400).render('main/404')
           })
-      }),
-      () => {
-        res.redirect('/')
-      }
+      })
+      res.redirect('/')
+    
     })
 })
 
@@ -62,5 +61,21 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
+//POST /projects/:id - delete a specific project
+router.delete('/:id', (req, res) => {
+  db.project.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(() => {
+    res.redirect('/')
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
 
 module.exports = router
