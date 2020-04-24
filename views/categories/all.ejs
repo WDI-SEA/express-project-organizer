@@ -1,0 +1,11 @@
+<h1>All Categories of Technology</h1>
+
+<% categories.forEach(c => { %>
+	<div>
+		<form action="/categories/:id" method="GET">
+			<input type="hidden" name="<%= c.id %>" >
+			<%= c.name %>
+			<input type="submit">
+		</form>
+	</div>
+<% }) %>
