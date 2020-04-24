@@ -1,14 +1,13 @@
 <h1>Category: <%=category.name%></h1>
-
 <h2>Projects that fall under this category</h2>
-<% category.projects.forEach(p => { %>
-    <% if (category.projects.length > 1) { %>
+<% if (category.projects.length < 1) { %>
+    <p>Nothing to see here. Move along.</p>
+<% } else { %>
+    <% category.projects.forEach(p => { %>
         <div class="well">
             <h2>
                 <a href="/projects/<%=p.id%>"><%= p.name %></a>
             </h2>
         </div>
-    <% } else { %>
-        <p>Nothing to see here. Move along.</p>
-    <% } %>
-<% }) %>
+    <%})%>
+<% } %>
