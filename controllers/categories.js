@@ -19,7 +19,7 @@
  		include: [db.project]
  	})
  	.then(data => {
- 		res.render('category/one', { data })
+ 		res.render('categories/one', { data })
  	})
  	.catch((error) => {
  		res.status(400).render('main/404')
