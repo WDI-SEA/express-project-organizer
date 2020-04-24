@@ -67,7 +67,7 @@ Once created, add the associations need to create a many-to-many association bet
 ```js
 var db = require('./models')
 
-db.project.findOne({
+db.project.findOne(
   where: { id: 1 },
   include: [db.category]
 }).then(function(project) {

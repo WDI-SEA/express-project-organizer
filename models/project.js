@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 
   project.associate = function(models) {
     // associations can be defined here
-  }
-
-  return project
-}
+    models.project.belongsToMany(models.category, {
+      through: 'categoriesProjects',
+      onDelete: 'CASCADE'
+    })
+  };
+  return project;
+};
