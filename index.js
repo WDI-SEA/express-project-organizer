@@ -3,6 +3,7 @@ let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
 let rowdy = require('rowdy-logger')
 let app = express()
+let rowdyResults = rowdy.begin(app)
 
 rowdy.begin(app)
 
@@ -23,13 +24,15 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
+
 
 app.get('*', (req, res) => {
   res.render('main/404')
 })
 
 let server = app.listen(process.env.PORT || 3000, function() {
-  rowdy.print()
+  rowdyResults.print()
 })
 
 module.exports = server

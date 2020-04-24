@@ -13,7 +13,7 @@
     "express-ejs-layouts": "^2.1.0",
     "morgan": "^1.7.0",
     "pg": "^7.10.0",
-    "rowdy-logger": "0.0.2",
-    "sequelize": "^6.0.0"
+    "rowdy-logger": "^1.0.2",
+    "sequelize": "^5.21.6"
   }
 }
