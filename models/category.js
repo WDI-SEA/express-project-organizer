@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     models.category.belongsToMany(models.project, {
       through: 'categoriesProjects',
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE', 
+      foreignKey: 'categoryId',
+      hooks: true
     })
   };
   return category;
