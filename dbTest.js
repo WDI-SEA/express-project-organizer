@@ -1,12 +1,12 @@
 var db = require('./models')
 var async = require('async')
-// Create a category: Category model must exist and be migrated
+//Create a category: Category model must exist and be migrated
 
-// db.category.create({
-//   name: 'node'
-// }).then(function(category) {
-//   console.log(category.get())
-// })
+db.category.create({
+  name: 'node'
+}).then(function(category) {
+  console.log(category.get())
+})
 
 // Create a project and use the helper function create<ModelName> to create a category
 // Requires categoriesProjects to exist, be migrated, and properly associated
@@ -36,7 +36,6 @@ db.project.create({
   }, () => {
     console.log('EVERYTHING is done. Now redirect or something')
   })
-
 
 
 

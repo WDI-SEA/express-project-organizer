@@ -11,7 +11,9 @@
 </a>
 
 <p><%= project.description %></p>
-
+<% project.categories.forEach(c => { %>
+  #<%= c.name %>
+<% })%>
 <hr />
 
 <a href="/">&larr; Back Home</a>
