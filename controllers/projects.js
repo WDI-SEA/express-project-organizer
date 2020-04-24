@@ -50,10 +50,12 @@ router.get('/new', (req, res) => {
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id }, 
+    include: [db.category]
   })
   .then((project) => {
     if (!project) throw Error()
+    console.log("PROJECTTTT-", project)
     res.render('projects/show', { project: project })
   })
   .catch((error) => {

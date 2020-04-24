@@ -11,7 +11,11 @@
 </a>
 
 <p><%= project.description %></p>
-
+<div>
+  <% project.categories.forEach(c => { %>
+    <a href="/categories/<%=c.id%>"><span class="badge badge-light"><%= c.name%></span></a>
+  <% }) %>
+</div>
 <hr />
 
 <a href="/">&larr; Back Home</a>
