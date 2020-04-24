@@ -68,4 +68,9 @@ router.get('/:id', (req, res) => {
     })
 })
 
+// GET /project/:id  - displaying a specific project
+router.get('/:id', (req, res) => {
+  
+})
+
 module.exports = router
