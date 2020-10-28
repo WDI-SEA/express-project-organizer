@@ -14,7 +14,7 @@ We'll be using an existing application that includes one model, a few routes, an
 * Run `npm install` to install dependencies from the existing `package.json` file
   * Use `nodemon` to start your application
 * Setup your database (this app already has one existing model)
-  * Run `createdb project_organizer_development` to create the database
+  * Run `createdb project_organizer_development` or `sequelize db:create project_organizer_de elopment` to create the database
   * Run `sequelize db:migrate` to run migrations
   * Run `sequelize db:seed:all` to populate the database with 4 projects from previous Seattle cohorts.
 
