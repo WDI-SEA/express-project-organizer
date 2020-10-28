@@ -60,7 +60,7 @@ db.category.create({
 
 #### Part 2: Create a Join model
 
-In order to associate a category to many projects, and a project to many categories, we'll need to create an intermediate model. It's recommended that you name this model `categoriesProjects`. It will store two attributes: the id of a category (an integer) and the id of a project (an integer).
+In order to associate a category to many projects, and a project to many categories, we'll need to create an intermediate model. It's recommended that you name this model `ProjectCategory`. It will store two attributes: the id of a category (an integer) and the id of a project (an integer).
 
 Once created, add the associations need to create a many-to-many association between categories and projects, using the join table you just created. Be sure to test this functionality by creating categories and projects, then seeing if you can include them in different queries.
 
