@@ -4,8 +4,6 @@ let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
 let app = express()
 
-rowdy.begin(app)
-
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
