@@ -14,7 +14,7 @@ We'll be using an existing application that includes one model, a few routes, an
 * Run `npm install` to install dependencies from the existing `package.json` file
   * Use `nodemon` to start your application
 * Setup your database (this app already has one existing model)
-  * Run `createdb project_organizer_development` to create the database
+  * Run `createdb project_organizer_development` or `sequelize db:create project_organizer_de elopment` to create the database
   * Run `sequelize db:migrate` to run migrations
   * Run `sequelize db:seed:all` to populate the database with 4 projects from previous Seattle cohorts.
 
@@ -60,7 +60,7 @@ db.category.create({
 
 #### Part 2: Create a Join model
 
-In order to associate a category to many projects, and a project to many categories, we'll need to create an intermediate model. It's recommended that you name this model `categoriesProjects`. It will store two attributes: the id of a category (an integer) and the id of a project (an integer).
+In order to associate a category to many projects, and a project to many categories, we'll need to create an intermediate model. It's recommended that you name this model `ProjectCategory`. It will store two attributes: the id of a category (an integer) and the id of a project (an integer).
 
 Once created, add the associations need to create a many-to-many association between categories and projects, using the join table you just created. Be sure to test this functionality by creating categories and projects, then seeing if you can include them in different queries.
 

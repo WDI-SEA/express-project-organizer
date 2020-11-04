@@ -1,13 +1,10 @@
+require('dotenv').config()
 let express = require('express')
 let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
-let rowdy = require('rowdy-logger')
 let app = express()
 
-rowdy.begin(app)
-
 app.set('view engine', 'ejs')
-app.use(require('morgan')('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 
@@ -29,7 +26,7 @@ app.get('*', (req, res) => {
 })
 
 let server = app.listen(process.env.PORT || 3000, function() {
-  rowdy.print()
+  console.log(`you're listening to the smooth sounds of port ${process.env.PORT}`)
 })
 
 module.exports = server
