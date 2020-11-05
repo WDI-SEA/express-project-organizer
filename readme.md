@@ -75,7 +75,7 @@ db.project.findOne({
   console.log(project.categories)
 
   // addCategory function should be available to this model
-  project.addCategory({ name: 'node' }).then(function(category) {
+  project.createCategory({ name: 'node' }).then(function(category) {
     console.log(category.id)
   })
 })
