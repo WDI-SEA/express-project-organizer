@@ -49,11 +49,11 @@ Once this model has been created, run the migration for the model and test the m
 **dbTest.js**
 
 ```js
-var db = require('./models')
+const db = require('./models')
 
 db.category.create({
   name: 'node'
-}).then(function(category) {
+}).then(category => {
   console.log(category.id)
 })
 ```
@@ -65,17 +65,17 @@ In order to associate a category to many projects, and a project to many categor
 Once created, add the associations need to create a many-to-many association between categories and projects, using the join table you just created. Be sure to test this functionality by creating categories and projects, then seeing if you can include them in different queries.
 
 ```js
-var db = require('./models')
+const db = require('./models')
 
 db.project.findOne({
   where: { id: 1 },
   include: [db.category]
-}).then(function(project) {
+}).then(project => {
   // by using eager loading, the project model should have a categories key
   console.log(project.categories)
 
   // createCategory function should be available to this model - it will create the category then add it to the project
-  project.createCategory({ name: 'node' }).then(function(category) {
+  project.createCategory({ name: 'express' }).then(category => {
     console.log(category.id)
   })
 })
