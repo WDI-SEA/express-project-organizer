@@ -89,7 +89,7 @@ Now that the models have been created, you'll want to add the ability to create 
 
 * Add a field to the existing view associated with `GET /projects/new`. This new field should accept a new category name. 
 * Add to the `POST /projects` route to add the category to the project being created.
-  * Category names should be unique; the category model should have no duplicates (hint, use `findOrCreate`).
+  * Category names should be unique; the category model should have no duplicates (HINT use `findOrCreate`).
   * Keep in mind that categories should be associated with projects (HINT use the `addCategory` method).
 * Create the following routes for viewing categories and viewing projects by category:
   * `GET /categories` - show all the categories that exist
