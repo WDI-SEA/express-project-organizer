@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="../public/css/style.css">
+<h1><%= name %></h1>
+<% details.forEach(detail=>{%>
+    <h3><%= detail.name  %> </h3>
+    <a class="btn btn-primary" href="<%= detail.githubLink %>" target="_blank">
+      <i class="fa fa-github" aria-hidden="true"></i>
+      Github Link
+    </a>
+    
+    <a class="btn btn-primary" href="<%= detail.deployLink %>" target="_blank">
+      <i class="fa fa-globe" aria-hidden="true"></i>
+      Deployed Link
+    </a>
+    
+    <p id="detail"><%= detail.description %></p>
+    <hr />
+<%}) %> 
+
+<hr />
+
+<a href="/">&larr; Back Home</a>
