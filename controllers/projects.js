@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
       description: req.body.description
     }
 }).then(([project, wasCreated]) => {
-    let categories = req.body.categories.split(',')
+    let categories = req.body.categories.split(' ')
 
     console.log(categories)
     categories.forEach((category, i) => {
