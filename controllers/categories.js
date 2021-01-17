@@ -13,7 +13,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    res.render('categories/show.ejs', {category: {name: 'categoryName'}})
+    db.category.findOne({
+        where: {id: req.params.id}
+    }).then(category => {
+        category.getProjects().then(projects => {
+            console.log(projects)
+            res.render('categories/show.ejs', {category: category, projects: projects})
+        })
+    })
 })
 
 module.exports = router

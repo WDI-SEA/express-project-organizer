@@ -1,1 +1,7 @@
 <h1>Projects under category '<%=category.name%>'</h1>
+
+<ul>
+<% projects.forEach(project => { %>
+    <a href="/projects/<%= project.id %>"> <li><%= project.name %></li> </a>
+<% }) %>
+</ul>
