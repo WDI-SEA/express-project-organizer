@@ -12,7 +12,14 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: {name: req.body.category}
+    }).then( ([category, wasCreated]) => {
+      project.addCategory(category).then(relationInfo => {
+        console.log(`💕${category.name} category has been assigned to project ${project.name}💕`)
+        res.redirect('/')
+      })
+    })
   })
   .catch((error) => {
     console.log(error)
