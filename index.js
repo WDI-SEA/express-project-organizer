@@ -12,13 +12,15 @@ app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 
 app.get('/', (req, res) => {
-  db.project.findAll()
-  .then((projects) => {
+  db.project.findAll({
+    include: [db.category]
+  }).then(projects => {
+    console.log(projects)
     res.render('main/index', { projects: projects })
   })
   .catch((error) => {
     console.log('Error in GET /', error)
-    res.status(400).render('main/404')
+    res.status(400).render('main404')
   })
 })
 
