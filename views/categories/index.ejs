@@ -1,1 +1,7 @@
-<h1> List of all categories </h1>>
+<h1> List of all project categories </h1>
+
+<ul>
+<% categories.forEach(category => { %>
+    <li> <%= category.name %> </li>
+<% }) %>
+</ul>

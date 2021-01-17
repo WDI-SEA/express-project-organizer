@@ -24,9 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/projects', require('./controllers/projects'))
 
-app.get('/categories', (req, res) => {
-  res.render('categories/index.ejs')
-})
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')
