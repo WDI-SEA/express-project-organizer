@@ -13,13 +13,14 @@ router.post('/', (req, res) => {
       description: req.body.description
     }
 }).then(([project, wasCreated]) => {
-    let categories = req.body.categories.split(' ')
-
-    console.log(categories)
-    categories.forEach((category, i) => {
+    let categories = req.body.categories.split(', ')
+    
+      console.log('Categories: ')
+      console.log(categories)
+      categories.forEach((category, i) => {
         db.category.findOrCreate({
-          where: {
-              name: category
+        where: {
+            name: category
           }
         }).then(([category, wasCreated]) => {
           project.addCategory(category).then((r) => {
@@ -32,6 +33,40 @@ router.post('/', (req, res) => {
     })
   })
 })
+
+//Route to edit projects
+router.put('/:id', (req, res) => {
+  db.project.update({
+    name: req.body.name,
+    githubLink: req.body.githubLink,
+    deployLink: req.body.deployedLink,
+    description: req.body.description
+  }, {
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.redirect(`/projects/${req.params.id}`)
+  })
+})
+
+//Route to show edit page
+router.get('/edit/:id', (req, res) => {
+  db.project.findOne({
+    where: { id: req.params.id },
+    include: [db.category]
+  })
+  .then((project) => {
+    if (!project) throw Error()
+    console.log(project.categories)
+    res.render('projects/edit', { project: project })
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+})
+
+//Route to delete projects
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {

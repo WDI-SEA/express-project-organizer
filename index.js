@@ -3,11 +3,13 @@ let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')
 let rowdy = require('rowdy-logger')
 let app = express()
+const methodOverride = require('method-override')
 
 rowdy.begin(app)
 
 app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))
+app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
 
