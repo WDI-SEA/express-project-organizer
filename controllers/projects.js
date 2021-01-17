@@ -117,6 +117,13 @@ router.get('/edit/:id', (req, res) => {
 })
 
 //Route to delete projects
+router.delete('/:id', (req, res) => {
+  db.project.destroy({
+    where: {id: req.params.id}
+  }).then(() => {
+    res.redirect('/')
+  })
+})
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {

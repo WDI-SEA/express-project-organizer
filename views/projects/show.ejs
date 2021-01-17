@@ -19,7 +19,7 @@
 <div class="well">
   Categories:
   <% project.categories.forEach((category, i) => { %>
-    <%= category.name %><%= i === project.categories.length-1 ? '' : ',' %>
+    <a href="/categories/<%= category.name %>"><%= category.name %><%= i === project.categories.length-1 ? '' : ',' %></a>
   <% }) %>
 </div>
 
@@ -27,6 +27,10 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   Edit
 </a>
+
+<form action="/projects/<%= project.id %>?_method=DELETE" method="POST" style="display: inline">
+  <input type="submit" class="btn btn-primary" value="Delete" style="background-color: red">
+</form>
 
 <hr />
 
