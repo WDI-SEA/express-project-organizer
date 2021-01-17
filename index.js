@@ -9,10 +9,10 @@ rowdy.begin(app)
 
 app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))
-app.use(express.static('public'))
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   db.project.findAll({
