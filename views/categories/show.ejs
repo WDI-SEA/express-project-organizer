@@ -1,0 +1,9 @@
+<div class="container">
+    <h3><%= category.name %></h3>
+
+    <% projects.forEach(project => { %>
+        <div class="well">
+            <a href="/projects/<%= project.id %>"><%= project.name %></a>
+        </div>
+    <% }) %>
+</div>

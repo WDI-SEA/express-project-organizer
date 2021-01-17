@@ -19,11 +19,14 @@ router.get('/', (req, res) => {
 
 // Route to get one category and all associated projects
 router.get('/:name', (req, res) => {
-    db.categpry.findOne({
+    console.log(req.params.name)
+    db.category.findOne({
         where: {name: req.params.name}
     }).then(category => {
         category.getProjects().then(projects => {
-            
+            console.log(category)
+            console.log(projects)
+            res.render('categories/show', {category: category, projects: projects})
         })
     })
 })
