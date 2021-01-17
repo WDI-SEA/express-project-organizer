@@ -1,5 +1,6 @@
 let express = require('express')
 let db = require('../models')
+const category = require('../models/category')
 let router = express.Router()
 
 // POST /projects - create a new project
@@ -36,6 +37,7 @@ router.post('/', (req, res) => {
 
 //Route to edit projects
 router.put('/:id', (req, res) => {
+  let categories = req.body.categories.split(', ')
   db.project.update({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -46,7 +48,33 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     }
   }).then(() => {
-    res.redirect(`/projects/${req.params.id}`)
+    db.project.findOne({
+      where: {id:req.params.id},
+      include: [db.category]
+    }).then((project) => {
+      console.log(categories)
+      console.log(project.categories)
+
+      project.categories.forEach(category => {
+        project.removeCategory(category)
+      })
+      
+      categories.forEach((category, i) => {
+        db.category.findOrCreate({
+          where: {
+              name: category
+            }
+          }).then(([category, wasCreated]) => {
+            project.addCategory(category).then((r) => {
+              console.log(project.categories)
+              res.redirect(`/projects/${req.params.id}`)
+          })
+          .catch((error) => {
+            res.status(400).render('main/404')
+          })
+        })
+      })
+    })
   })
 })
 
@@ -58,7 +86,7 @@ router.get('/edit/:id', (req, res) => {
   })
   .then((project) => {
     if (!project) throw Error()
-    console.log(project.categories)
+    console.log(project.description)
     res.render('projects/edit', { project: project })
   })
   .catch((error) => {
