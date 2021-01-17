@@ -16,7 +16,9 @@
     <p>
       categories:
       <% project.categories.forEach((category, i) => { %>
-        <%= category.name %><%= i === project.categories.length-1 ? '' : ',' %>
+        <a href='/categories/<%= category.name %>'>
+          <%= category.name %><%= i === project.categories.length-1 ? '' : ',' %>
+        </a>
       <% }) %>
     </p>
   </div>

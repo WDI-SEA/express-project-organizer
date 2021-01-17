@@ -3,17 +3,18 @@ let db = require('../models')
 const category = require('../models/category')
 let router = express.Router()
 
+//Async function to split and trim category input. Used in both new project and edit project routes
+async function trimInput(array) {
+  array = array.split(',')
+  array = array.map(string => {
+    return string.trim()
+  })
+  return array
+}
+
 // POST /projects - create a new project
 router.post('/', (req, res) => {
   let categories = req.body.categories
-
-  async function trimInput(array) {
-    array = array.split(',')
-    array = array.map(string => {
-      return string.trim()
-    })
-    return array
-  }
 
   trimInput(categories).then(categories => {
     db.project.findOrCreate({
@@ -47,14 +48,6 @@ router.post('/', (req, res) => {
 //Route to edit projects
 router.put('/:id', (req, res) => {
   let categories = req.body.categories
-
-  async function trimInput(array) {
-    array = array.split(',')
-    array = array.map(string => {
-      return string.trim()
-    })
-    return array
-  }
 
   async function removeTags(model) {
     model.categories.forEach(category => {
