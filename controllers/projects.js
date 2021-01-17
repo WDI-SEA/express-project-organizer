@@ -5,30 +5,39 @@ let router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
-  
-  db.project.findOrCreate({
-    where: {
-      name: req.body.name,
-      githubLink: req.body.githubLink,
-      deployLink: req.body.deployedLink,
-      description: req.body.description
-    }
-}).then(([project, wasCreated]) => {
-    let categories = req.body.categories.split(', ')
-    
-      console.log('Categories: ')
-      console.log(categories)
-      categories.forEach((category, i) => {
-        db.category.findOrCreate({
-        where: {
-            name: category
-          }
-        }).then(([category, wasCreated]) => {
-          project.addCategory(category).then((r) => {
-            res.redirect('/')
-        })
-        .catch((error) => {
-          res.status(400).render('main/404')
+  let categories = req.body.categories
+
+  async function trimInput(array) {
+    array = array.split(',')
+    array = array.map(string => {
+      return string.trim()
+    })
+    return array
+  }
+
+  trimInput(categories).then(categories => {
+    db.project.findOrCreate({
+      where: {
+        name: req.body.name,
+        githubLink: req.body.githubLink,
+        deployLink: req.body.deployedLink,
+        description: req.body.description
+      }
+    }).then(([project, wasCreated]) => {
+          console.log('After the trim input:')
+          console.log(categories)
+          categories.forEach((category, i) => {
+            db.category.findOrCreate({
+            where: {
+                name: category
+              }
+            }).then(([category, wasCreated]) => {
+              project.addCategory(category).then((r) => {
+                res.redirect('/')
+            })
+            .catch((error) => {
+              res.status(400).render('main/404')
+          })
         })
       })
     })
@@ -37,40 +46,53 @@ router.post('/', (req, res) => {
 
 //Route to edit projects
 router.put('/:id', (req, res) => {
-  let categories = req.body.categories.split(', ')
-  db.project.update({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description
-  }, {
-    where: {
-      id: req.params.id
-    }
-  }).then(() => {
-    db.project.findOne({
-      where: {id:req.params.id},
-      include: [db.category]
-    }).then((project) => {
-      console.log(categories)
-      console.log(project.categories)
+  let categories = req.body.categories
 
-      project.categories.forEach(category => {
-        project.removeCategory(category)
-      })
-      
-      categories.forEach((category, i) => {
-        db.category.findOrCreate({
-          where: {
-              name: category
-            }
-          }).then(([category, wasCreated]) => {
-            project.addCategory(category).then((r) => {
-              console.log(project.categories)
-              res.redirect(`/projects/${req.params.id}`)
-          })
-          .catch((error) => {
-            res.status(400).render('main/404')
+  async function trimInput(array) {
+    array = array.split(',')
+    array = array.map(string => {
+      return string.trim()
+    })
+    return array
+  }
+
+  async function removeTags(model) {
+    model.categories.forEach(category => {
+      model.removeCategory(category)
+    })
+    return model
+  }
+
+  trimInput(categories).then(categories => {
+    db.project.update({
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployLink: req.body.deployedLink,
+      description: req.body.description
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {
+      db.project.findOne({
+        where: {id:req.params.id},
+        include: [db.category]
+      }).then((project) => {
+        removeTags(project).then(project => {
+          categories.forEach((category, i) => {
+            db.category.findOrCreate({
+              where: {
+                  name: category
+                }
+              }).then(([category, wasCreated]) => {
+                project.addCategory(category).then((r) => {
+                  console.log(project.categories)
+                  res.redirect(`/projects/${req.params.id}`)
+              })
+              .catch((error) => {
+                res.status(400).render('main/404')
+              })
+            })
           })
         })
       })
