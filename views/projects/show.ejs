@@ -10,7 +10,18 @@
   Deployed Link
 </a>
 
+<hr />
+
 <p><%= project.description %></p>
+
+<hr />
+
+<div class="well">
+  Categories:
+  <% project.categories.forEach((category, i) => { %>
+    <%= category.name %><%= i === project.categories.length-1 ? '' : ',' %>
+  <% }) %>
+</div>
 
 <a class="btn btn-primary" href="/projects/edit/<%= project.id %>">
   <i class="fa fa-globe" aria-hidden="true"></i>
