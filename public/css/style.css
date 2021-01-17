@@ -1,3 +1,26 @@
-html {
-    background-color: #503D3F;
-}
+
+      body {
+        background-color: #503D3F;
+        color: white;
+      }
+
+      .well {
+        background-color: #615756;
+        color: white;
+        border-top: none;
+        border-bottom: none;
+        border-width: 1em;
+      }
+
+      .btn {
+        background-color: #539987;
+      }
+
+      a {
+        color: #52FFB8;
+        transition: .5s;
+      }
+
+      a:hover {
+        color: white;
+      }
