@@ -16,3 +16,12 @@ const db = require('./models')
 //       console.log(category.id)
 //     })
 //   })
+
+db.project.destroy({
+    where: {
+        id: 10
+    }
+}).then(rowsDeleted => {
+    console.log(rowsDeleted)
+    process.exit()
+})

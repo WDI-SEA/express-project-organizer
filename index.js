@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/categories', (req, res) => {
+  res.render('main/categories')
+})
+
 app.use('/projects', require('./controllers/projects'))
 
 app.get('*', (req, res) => {
