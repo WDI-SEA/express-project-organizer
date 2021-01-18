@@ -23,7 +23,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/categories', (req, res) => {
-  res.render('main/categories')
+  db.category.findAll()
+  .then((categories) => {
+    res.render('main/categories', { categories: categories })
+  })
 })
 
 app.use('/projects', require('./controllers/projects'))

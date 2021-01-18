@@ -17,11 +17,11 @@ const db = require('./models')
 //     })
 //   })
 
-db.project.destroy({
-    where: {
-        id: 10
-    }
-}).then(rowsDeleted => {
-    console.log(rowsDeleted)
-    process.exit()
-})
+// db.project.destroy({
+//     where: {
+//         id: 10
+//     }
+// }).then(rowsDeleted => {
+//     console.log(rowsDeleted)
+//     process.exit()
+// })
