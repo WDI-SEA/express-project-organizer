@@ -5,10 +5,20 @@ let router = express.Router()
 // POST /projects - create a new project
 router.post('/', (req, res) => {
   db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description
+    where: {
+        name: req.body.name,
+        githubLink: req.body.githubLink,
+        deployLink: req.body.deployedLink,
+        description: req.body.description
+    }
+  }).then(([project, wasCreated])=> {
+    db.category.findOrCreate({
+        where: {
+        name: req.body.category
+        }
+    }).then(([category, wasCreated])=>{
+      project.addCategory(category)
+    })
   })
   .then((project) => {
     res.redirect('/')
