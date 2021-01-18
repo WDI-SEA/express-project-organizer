@@ -1,13 +1,16 @@
 <% categories.forEach(category => { %>
-    <div class="well">
-      <h3><a class="proj-name" href="categories/<%=category.name%>"> <%= category.name %> </a></h3>
+    <div class="well category-card">
+        <div>
+            <h3 style="margin-top: 10px;"><a class="proj-name" style="padding: 0;" href="categories/<%=category.name%>"> <%= category.name %> </a></h3>
 
-      <% category.projects.forEach((project, i) => { %>
-          <a href="/projects/<%= project.id %>" class="desc"><%= project.name %><%= i === category.projects.length-1 ? '' : ',' %></a>
-      <% }) %>
+            Projects:
+            <% category.projects.forEach((project, i) => { %>
+                <a href="/projects/<%= project.id %>" class="desc"><%= project.name %><%= i === category.projects.length-1 ? '' : ',' %></a>
+            <% }) %>
+        </div>
 
-      <form action="/categories/delete/<%= category.id %>?_method=DELETE" method="POST" style="display: inline">
-        <input type="submit" class="btn btn-primary" value="Delete" style="background-color: red">
+      <form action="/categories/delete/<%= category.id %>?_method=DELETE" method="POST" style="padding-top: 15px;">
+        <input type="submit" class="btn btn-primary btn-delete" value="Delete" style="background-color: red">
       </form>
     </div>
 <% }) %>
