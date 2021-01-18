@@ -1,5 +1,13 @@
 <% categories.forEach(category => { %>
     <div class="well">
-      <h3><a href="categories/<%=category.name%>"> <%= category.name %> </a></h3>
+      <h3><a class="proj-name" href="categories/<%=category.name%>"> <%= category.name %> </a></h3>
+
+      <% category.projects.forEach((project, i) => { %>
+          <a href="/projects/<%= project.id %>" class="desc"><%= project.name %><%= i === category.projects.length-1 ? '' : ',' %></a>
+      <% }) %>
+
+      <form action="/categories/delete/<%= category.id %>?_method=DELETE" method="POST" style="display: inline">
+        <input type="submit" class="btn btn-primary" value="Delete" style="background-color: red">
+      </form>
     </div>
 <% }) %>
