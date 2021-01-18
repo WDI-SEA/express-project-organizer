@@ -10,16 +10,17 @@
 <% projects.forEach(function(project) { %>
   <div class="well">
     <h2>
-      <a href="/projects/<%= project.id %>"><%= project.name %></a>
+      <a class="proj-name" href="/projects/<%= project.id %>"><%= project.name %></a>
     </h2>
 
-    <p>
-      categories:
+    <p class="desc">
+      <%= project.description %>
+    </p>
+
       <% project.categories.forEach((category, i) => { %>
-        <a href='/categories/<%= category.name %>'>
-          <%= category.name %><%= i === project.categories.length-1 ? '' : ',' %>
+        <a href='/categories/<%= category.name %>' class="btn btn-primary btn-sm">
+          <%= category.name %>
         </a>
       <% }) %>
-    </p>
   </div>
 <% }); %>

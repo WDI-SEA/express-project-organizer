@@ -24,3 +24,37 @@
       a:hover {
         color: white;
       }
+
+      p.desc {
+        overflow:hidden;
+        font-size: 20px;
+        height:50px;
+        line-height:50px;
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        -webkit-text-fill-color: transparent;
+      }
+
+      .proj-name {
+        position: relative;
+        padding: 5px;
+        transition: 1s;
+      }
+
+      .proj-name:hover {
+        text-decoration: none;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        position: relative;
+        background-color: #52FFB8;
+        color: #503D3F;
+        padding-left: 35px;
+      }
+
+      .new-proj {
+        background-color: #615756;
+        color: white;
+        border-color: black;
+        border-bottom-width: 2px;
+      }

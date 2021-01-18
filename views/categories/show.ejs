@@ -1,9 +1,15 @@
 <div class="container">
     <h3>Projects Tagged With <%= category.name %></h3>
-
-    <% projects.forEach(project => { %>
+      
+      <% projects.forEach(function(project) { %>
         <div class="well">
+          <h2>
             <a href="/projects/<%= project.id %>"><%= project.name %></a>
+          </h2>
+
+          <p class="desc">
+            <%= project.description %>
+          </p>
         </div>
-    <% }) %>
+      <% }) %>
 </div>
