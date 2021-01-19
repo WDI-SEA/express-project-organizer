@@ -4,12 +4,31 @@ let router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
+  // testing
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
-  })
+    // testing
+  }).then((project) => {
+    // project.getCategory().then(categories => {
+    //   if(category.length > 0){
+    //     category.forEach(category => {
+    //       console.log(`${category.name}`)
+    //     })
+    //   } else {
+        db.category.findOrCreate({
+          where: {name: req.body.category }
+        }) .then(([category, wasCreated]) => {
+          project.addCategory(category).then(relationInfo => {
+            console.log(`${category.name} was added to ${project.name}`)
+          })
+        })
+      // }
+    })
+    
+  // })
   .then((project) => {
     res.redirect('/')
   })
@@ -20,8 +39,15 @@ router.post('/', (req, res) => {
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
-  res.render('projects/new')
+  // testing
+  db.project.findAll()
+  .then((project) => {
+    res.render('projects/new', {project: project})
+  })
 })
+
+
+
 
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
@@ -36,5 +62,6 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
 
 module.exports = router
