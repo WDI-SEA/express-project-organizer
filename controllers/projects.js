@@ -17,9 +17,9 @@ router.post('/', (req, res) => {
       }
     })
     .then(([category, wasCreated]) => {
-      project.addCategory(category).then(() => {
+      project.addCategory(category).then((relationInfo => {
         res.redirect('/')
-      })
+      }))
     })
     .catch((error) => {
       res.status(400).render('main/404')

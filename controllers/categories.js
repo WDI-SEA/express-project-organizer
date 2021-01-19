@@ -5,11 +5,11 @@ let router = express.Router()
 
 router.get('/', (req, res) => {
     db.category.findAll().then(categories => {
-        res.render('category/show', {categories:categories})
+        res.render('categories.ejs', {categories:categories})
     })
 })
 
-router.get('/:id'), (req, res) => {
+router.get('/:idx'), (req, res) => {
     db.category.findOne({
         where: {
             id: req.params.id
