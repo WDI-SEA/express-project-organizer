@@ -5,7 +5,10 @@ let router = express.Router()
 
 router.get('/', (req, res) => {
     db.category.findAll().then(categories => {
-        res.render('categories.ejs', {categories:categories})
+        res.render('categories/categories.ejs', {categories})
+    })
+    .catch(error => {
+        res.status(400).render('main/404')
     })
 })
 
@@ -17,6 +20,11 @@ router.get('/:idx'), (req, res) => {
         include: [db.project]
     })
     .then(category => {
-        res.render()
+        res.render('categories/show.ejs', {categories})
+    })
+    .catch(error => {
+        res.status(400).render('main/404')
     })
 }
+
+router.post()
