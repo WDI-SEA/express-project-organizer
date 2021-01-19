@@ -29,6 +29,16 @@ app.get('/categories', (req, res) => {
   })
 })
 
+app.get('/categories/:id', (req, res)=>{
+  db.category.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(category => {
+    res.render('main/show', {category: category})
+  })
+})
+
 app.use('/projects', require('./controllers/projects'))
 
 app.get('*', (req, res) => {
