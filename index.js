@@ -34,8 +34,10 @@ app.get('/categories/:id', (req, res)=>{
     where: {
       id: req.params.id
     }
-  }).then(category => {
-    res.render('main/show', {category: category})
+  }).then(category=>{
+    category.getProjects().then(projects => {
+      res.render('main/show', { projects: projects })
+    })
   })
 })
 
