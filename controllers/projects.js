@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
   .then((project) => {
     db.category.findOrCreate({
       where: {
-        name: req.body.addCategory
+        name: req.body.category
       }
     })
     .then(([category, wasCreated]) => {

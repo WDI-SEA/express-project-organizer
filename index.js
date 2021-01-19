@@ -10,6 +10,8 @@ app.set('view engine', 'ejs')
 app.use(require('morgan')('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use(ejsLayouts)
+// ADDED CSS
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
   db.project.findAll()

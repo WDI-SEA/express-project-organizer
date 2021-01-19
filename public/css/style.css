@@ -1,0 +1,55 @@
+body {
+    text-align: center;
+    background-color: darkolivegreen;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h3, .backLink {
+    color: white;
+}
+
+h2 {
+    color: darkolivegreen;
+}
+
+
+p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+.well {
+    width: 400px;
+    background-color: white;
+    color: white;
+    border-color: tan;
+    display: inline-block;
+    margin: 10px;
+}
+
+.btn {
+    background-color: white;
+    color: darkolivegreen;
+    border: white;
+    margin: 0 10px 0 10px;
+}
+
+.btn:hover {
+    background-color: tan;
+    color: white;
+    border: white;
+    margin: 0 10px 0 10px;
+}
+
+.form-group {
+    width: 500px;
+    color: white;
+    display: inline-table;
+}
+
+#name {
+    width: 1000px;
+}
