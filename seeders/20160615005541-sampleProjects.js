@@ -2,16 +2,16 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+    
+      // Add altering commands here.
+      // Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+      // Example:
+      // return queryInterface.bulkInsert('Person', [{
+      //   name: 'John Doe',
+      //   isBetaMember: false
+      // }], {});
+    
     return queryInterface.bulkInsert('projects', [{
       name: 'Seattle Showdown',
       githubLink: 'https://github.com/michaelscotthurley/seattle-showdown',
