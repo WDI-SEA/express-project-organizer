@@ -1,9 +1,12 @@
 let express = require('express')
 let db = require('../models')
+const category = require('../models/category')
 let router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
+
+  console.log(req.body)
   db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
@@ -11,11 +14,19 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
-    res.redirect('/')
+    db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    }).then(([category, created]) =>{
+      project.addCategory(category)
+      res.redirect('/')
+    })
   })
   .catch((error) => {
     res.status(400).render('main/404')
   })
+
 })
 
 // GET /projects/new - display form for creating a new project
