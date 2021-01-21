@@ -25,15 +25,17 @@
 
   <div class="form-group">
     <label for="categoryName">Category Name</label>
-    <% if (project.categories.length>1){%>
-        <% let c = project.categories[0]%>
-        <% for (let i=1; i < project.categories.length;i++){%>
-            <% c = c+","+project.categories[i] %>
+    
+    <% if (project.categories.length > 1){%>
+      <% let c = project.categories[0].name %>
+      <% for (let i = 1; i < project.categories.length;i++){%>
+            <%c = c+ `,${project.categories[i].name}` %>
         <%} %>
-        <input type="text" class="form-control" id="categoryName" name="categoryName" value="<%=c%>" required>
+        <input type="text" class="form-control" id="categoryName" name="categoryName" value=<%= c %> required>
+    
     <%}else {%>
-        <input type="text" class="form-control" id="categoryName" name="categoryName" value="<%=project.categories[0].name%>" required>
-    <%}%>
+      <input type="text" class="form-control" id="categoryName" name="categoryName" value=<%= project.categories.name %> required>
+    <% }%>
   </div>
 
   <input type="submit" class="btn btn-primary">
