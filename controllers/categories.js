@@ -14,9 +14,8 @@ router.get('/', async (req, res)=>{
 router.get('/:id', async (req, res)=> {
     try {
         const displayCategory = await db.category.findOne({
-            where: {
-                id: req.params.id
-            }
+            where: { id: req.params.id },
+            include: [db.project]
         })
         console.log(displayCategory)
         res.render('./categories/show.ejs', {displayCategory})

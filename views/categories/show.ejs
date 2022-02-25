@@ -1,3 +1,12 @@
 <h2><%= displayCategory.name %> </h2>
 
+<ul>
+    <% displayCategory.projects.forEach(project=> { %>
+        <li>
+            <%= project %> 
+        </li>
+    <% }) %>
+
+</ul>
+
 <!-- display all the projects that utilized this category -->
