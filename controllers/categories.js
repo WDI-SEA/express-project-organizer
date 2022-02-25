@@ -18,10 +18,9 @@ router.get('/:id', (req, res) => {
     db.category.findOne({
       where: { id: req.params.id }
     })
-    console.log
-    .then((category) => {
-      if (!category) throw Error()
-      res.render('categories/show', { category: category, project: project })
+    .then((project) => {
+      if (!project) throw Error()
+      res.render('categories/show', { project: project})
     })
     .catch((error) => {
       res.status(400).render('main/404')

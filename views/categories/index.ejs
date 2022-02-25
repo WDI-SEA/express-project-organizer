@@ -2,5 +2,10 @@
 
 
 <% categories.forEach(category => { %>
-        <li><%= category.name %> </li>
+        <form method="POST" action="/categories">
+            <input hidden type="text" name="name" value="<%= category.id %>">
+            <a href="/categories/<%= category.id %>"><%= category.name  %> </a>
+          </form>
+        
+
 <% }) %>
