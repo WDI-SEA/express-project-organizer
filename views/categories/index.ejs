@@ -1,0 +1,13 @@
+<h2>The Categories</h2>
+
+<% if (category.length < 1) { %>
+  <h4>Where all the categories at?</h4>
+<% } %>
+
+<% category.forEach(el => { %>
+  <div class="well">
+    <h2>
+      <a href="/categories/<%= el.id %>"><%= el.name %></a>
+    </h2>
+  </div>
+<% }); %>

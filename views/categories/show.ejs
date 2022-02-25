@@ -1,0 +1,10 @@
+<h2>Category: <%= cat.name %> </h2>
+<h3>Projects that fall under this category</h3>
+
+<% cat.projects.forEach(el => { %>
+  <div class="well">
+    <h2>
+      <a href="/projects/<%= el.id %>"><%= el.name %></a>
+    </h2>
+  </div>
+<% }); %>
