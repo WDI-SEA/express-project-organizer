@@ -3,20 +3,25 @@ let db = require('../models')
 let router = express.Router()
 
 // POST /projects - create a new project
-router.post('/', (req, res) => {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description,
-    category: req.body.category
-  })
-  .then((project) => {
-    res.redirect('/')
-  })
-  .catch((error) => {
-    res.status(400).render('main/404')
-  })
+router.post('/', async (req, res) => {
+  try {
+    const addCategory = await db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    })
+    const addProject = await db.project.findOrCreate({
+      where: {
+        name: req.body.name,
+        githubLink: req.body.githubLink,
+        deployLink: req.body.deployedLink,
+        description: req.body.description
+      }
+    })
+  } catch (error) {
+    console.log('error ', error)
+  }
+  res.redirect('/')
 })
 
 // GET /projects/new - display form for creating a new project
