@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')
@@ -31,5 +32,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, function() {
   rowdy.print()
-  console.log(`listening on port: ${PORT}`)
+  console.log(`⭐ listening on port: ${PORT} ⭐`)
 })

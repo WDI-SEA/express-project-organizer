@@ -1,0 +1,8 @@
+<h4>Here are all of the categories</h4>
+
+<h5><em>click any to view all projects in that category</em></h3>
+<% categories.forEach(element => { %>
+ 
+    <li><a href="/categories/<%=element.id%>"><%=element.name%></a></li>
+
+<% }) %>
