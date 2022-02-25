@@ -14,12 +14,12 @@ router.get('/', async (req, res)=>{
 router.get('/:id', async (req, res)=> {
     try {
         const displayCategory = await db.category.findOne({
-            // where: {
-            //     displayCategory.id = req.params.id
-            // }
+            where: {
+                id: req.params.id
+            }
         })
-        res.json(displayCategory)
-        // res.send(`hello this is category ${req.params.id}'s page`)
+        console.log(displayCategory)
+        res.render('./categories/show.ejs', {displayCategory})
     } catch (error) {
         console.log('there is an error', error)
     }
