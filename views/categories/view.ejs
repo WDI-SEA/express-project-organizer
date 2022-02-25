@@ -1,7 +1,7 @@
-<h1>Whats up <%= number %>
-</h1>
+<h2>Categories</h2>
+<hr>
 
-<% categories.forEach(function(category) { %>
+<% categories.forEach(category=>{ %>
     <div class="well">
         <h2>
             <a href="/categories/<%= category.id %>">
@@ -9,4 +9,4 @@
             </a>
         </h2>
     </div>
-    <% }); %>
+    <%})%>

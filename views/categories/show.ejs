@@ -1,0 +1,14 @@
+<h2>Category: <%= catProj.name %>
+</h2>
+<h3>Projects that fall under this category</h3>
+<hr>
+
+<% catProj.projects.forEach(proj=>{ %>
+    <div class="well">
+        <h2>
+            <a href="/projects/<%= proj.id %>">
+                <%= proj.name %>
+            </a>
+        </h2>
+    </div>
+    <%})%>

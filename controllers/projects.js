@@ -30,6 +30,10 @@ router.get('/new', (req, res) => {
   res.render('projects/new')
 })
 
+router.get('/edit', (req, res) => {
+  res.render('projects/editCat')
+})
+
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
   db.project.findOne({
@@ -43,5 +47,6 @@ router.get('/:id', (req, res) => {
       res.status(400).render('main/404')
     })
 })
+
 
 module.exports = router

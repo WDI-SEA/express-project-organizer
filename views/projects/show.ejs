@@ -1,4 +1,6 @@
-<h1><%= project.name %></h1>
+<h1>
+  <%= project.name %>
+</h1>
 
 <a class="btn btn-primary" href="<%= project.githubLink %>" target="_blank">
   <i class="fa fa-github" aria-hidden="true"></i>
@@ -10,7 +12,14 @@
   Deployed Link
 </a>
 
-<p><%= project.description %></p>
+<a class="btn btn-primary" href="/projects/edit" target="_blank">
+  <i class="fa-solid fa-circle-c" aria-hidden="true"></i>
+  Add Category
+</a>
+
+<p>
+  <%= project.description %>
+</p>
 
 <hr />
 
