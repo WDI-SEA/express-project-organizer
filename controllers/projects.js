@@ -16,11 +16,34 @@ router.post('/', (req, res) => {
   .catch((error) => {
     res.status(400).render('main/404')
   })
+
+  // // creating a new category
+  // db.category.findOrCreate({
+  //   name: 'node'
+  // })
+  //   .then(category => {
+  //       db.projec
+  //   })
+  //   .catch (console.log)
+
+
+  // // create an async/await function 
+  // async function createCategory() {
+  //     try{
+  //         const newCategory = await db.category.create({
+  //             name: 'python'
+  //         })
+  //         console.log(newCategory)
+  //     }catch(err) {
+  //         console.log(err)
+  //     } 
+  // }
 })
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
   res.render('projects/new')
+  res.render('categories/new')
 })
 
 // GET /projects/:id - display a specific project
