@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
     include: [db.project]
   })
     .then(categories => {
-      console.log(categories)
+      // console.log(categories)
       res.render("categories/categories", { categories});
     })
     .catch((error) => {
@@ -22,14 +22,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  db.project
+  db.category
     .findOne({
       where: { id: req.params.id },
+      include:[db.project]
     })
-    .then((project) => {
-      if (!project) throw Error();
-      res.render("projects/show", { project: project });
+    .then(category => {
+      res.render("categories/show", { category });
     })
+    console.log(category)
     .catch((error) => {
       res.status(400).render("main/404");
     });
