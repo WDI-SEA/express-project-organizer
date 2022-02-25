@@ -6,14 +6,19 @@ let router = express.Router()
 router.post('/', (req, res) => {
   db.project.create({
     name: req.body.name,
+    categoryName: req.body.categoryName,
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
+
   })
+  // db.category.findOrCreate({name: req.body.name})
   .then((project) => {
+
     res.redirect('/')
   })
   .catch((error) => {
+    console.log(error)
     res.status(400).render('main/404')
   })
 })
