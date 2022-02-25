@@ -1,0 +1,4 @@
+sequelize model:create --name category --attributes name:string
+
+M:M
+sequelize model:create --name categoriesProjects --attributes projectId:integer,categoryId:integer
