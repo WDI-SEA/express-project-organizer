@@ -1,0 +1,13 @@
+<h2>Categories</h2>
+<hr>
+<% if (cat.length < 1) { %>
+  <h4>No categories available.</h4>
+<% } %>
+
+<% cat.forEach(function(e) { %>
+  <div class="well">
+    <h2>
+      <a href="/categories/<%= e.id %>"><%= e.name %></a>
+    </h2>
+  </div>
+<% }); %>

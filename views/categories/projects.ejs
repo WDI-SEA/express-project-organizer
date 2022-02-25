@@ -1,0 +1,17 @@
+<h2>Category : <%=projList[0].name%></h2>
+
+<% if (projList.length < 1) { %>
+    <h4>No projects available.</h4>
+<% } else {%>
+    <h4>Projects under this category</h4>
+<%}%>
+
+<hr>
+
+
+
+<%for(let i =0; i<projList[0].projects.length; i++) {%>
+    <div class="well">
+    <h2><a href="/projects/<%=projList[0].projects[i].id%>"><%=projList[0].projects[i].name%></a></h2>
+    </div>
+<%}%>
