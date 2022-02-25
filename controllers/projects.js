@@ -11,6 +11,18 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
+    db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    }).then(([category, wasCreated]) => {
+      project.addCategory(category).then(relationInfo => {
+        console.log(`${category.name} added to ${project.name}.`)
+        console.log(`A new category named ${category.name} was created: ${wasCreated}`)
+      })
+    })
+  })
+  .then((project) => {
     res.redirect('/')
   })
   .catch((error) => {

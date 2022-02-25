@@ -1,0 +1,7 @@
+<h3>Categories</h3>
+
+<ul>
+    <% categoryArr.forEach(category => { %>
+        <li><%= category.name %><a href="/categories/<%= category.id %>"> See all projects with this category</a> </li>
+    <% }) %>
+</ul>
