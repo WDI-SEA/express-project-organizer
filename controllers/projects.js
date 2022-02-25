@@ -30,9 +30,9 @@ router.get('/new', (req, res) => {
   res.render('projects/new')
 })
 
-router.get('/edit', (req, res) => {
-  res.render('projects/editCat')
-})
+// router.get('/edit', (req, res) => {
+//   res.render('projects/editCat')
+// })
 
 // GET /projects/:id - display a specific project
 router.get('/:id', (req, res) => {
@@ -48,5 +48,14 @@ router.get('/:id', (req, res) => {
     })
 })
 
+//add the specific project to a category
+router.get('/:id', async (req, res) => {
+  try {
+
+
+  } catch (error) {
+    res.status(400).render('main/404')
+  }
+})
 
 module.exports = router
