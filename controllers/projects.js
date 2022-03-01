@@ -2,7 +2,7 @@ let express = require('express')
 let db = require('../models')
 let router = express.Router()
 
-// POST /projects - create a new project
+// POST /projects - CREATE a new project -- then redirects it to HOME
 router.post('/', (req, res) => {
   db.project.create({
     name: req.body.name,
@@ -18,12 +18,12 @@ router.post('/', (req, res) => {
   })
 })
 
-// GET /projects/new - display form for creating a new project
+// GET /projects/new - DISPLAY FORM for creating a NEW PROJECT-- inside VIEWS/PROJECTS/NEW
 router.get('/new', (req, res) => {
   res.render('projects/new')
 })
 
-// GET /projects/:id - display a specific project
+// GET /projects/:id - DISPLAY a SPECIFIC PROJECT -- inside VIEWS/PROJECTS/SHOW
 router.get('/:id', (req, res) => {
   db.project.findOne({
     where: { id: req.params.id }
