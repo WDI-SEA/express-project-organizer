@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 // CONTROLLERS
 // projects
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 // ERROR page
 app.get('*', (req, res) => {
