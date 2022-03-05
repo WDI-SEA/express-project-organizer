@@ -1,27 +1,42 @@
-const express = require('express')
-const db = require('../models')
-const router = express.Router()
+const express = require("express");
+const db = require("../models");
+const router = express.Router();
 
-router.get('/', async (req, res)=>{
+router.get("/", async (req, res) => {
     try {
-        const readCategories = await db.category.findAll()
-        res.render('./categories/index.ejs', {readCategories})
-    } catch (err) {
-        console.log('error', err)
-    }
-})
-
-router.get('/:id', async (req, res)=> {
-    try {
-        const displayCategory = await db.category.findOne({
-            where: { id: req.params.id },
-            include: [db.project]
-        })
-        console.log(displayCategory)
-        res.render('./categories/show.ejs', {displayCategory})
+        const categories = await db.category.findAll();
+        res.render("categories/index", { categories });
     } catch (error) {
-        console.log('there is an error', error)
+        console.log(error);
+        res.status(400).render("main/404");
     }
-})
+});
 
-module.exports = router
+router.get("/:id", async (req, res) => {
+    try {
+        const category = await db.category.findOne({
+            where: {
+                id: req.params.id,
+            },
+            include: [db.project],
+        });
+        res.render("categories/show", { category });
+    } catch (error) {
+        console.log(error);
+        res.status(400).render("main/404");
+    }
+});
+
+router.delete("/:id", async (req,res ) => {
+    try {
+      const foundCategory = await db.category.findOne({
+        where: { id: req.params.id },
+      });
+      await foundCategory.destroy();
+      res.redirect("/categories");
+    } catch (err) {
+      console.log(err);
+    }
+  })
+  
+module.exports = router;

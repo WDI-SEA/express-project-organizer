@@ -1,21 +1,36 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Project Organizer</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="/projects/new">New Project</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Project Organizer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if (!user) { %>
+          <li class="nav-item">
+            <li><a class="nav-link" href="/users/new">Sign Up</a></li>
+          </li>
+          <li class="nav-item">
+            <li><a class="nav-link" href="/users/login">Log In</a></li>
+          </li>
+        <% } else { %>
+        <li class="nav-item">
+          <li><a class="nav-link" href="/users/logout">Log Out</a></li>
+        </li>
+        <% } %> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Projects
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/">All Projects</a></li>
+            <li><a class="dropdown-item" href="/projects/new">New Project</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+            <li><a class="nav-link" href="/categories">All Categories</a></li>
+        </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div>
   </div>
 </nav>

@@ -1,10 +1,9 @@
-<h1>this is the new categories page</h1>
+<h1>All Categories</h1>
 
-<!-- read all the categories from the db -->
-<ul>
-    <% readCategories.forEach(category => { %>
-        <li>
-            <a href="/categories/<%= category.id %>"><%= category.name %></a>
-        </li>
-    <% }) %> 
-</ul>
+<% categories.forEach(element => { %>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title"><a href="/categories/<%=element.id%>"><%= element.name %> </a></h2>
+        </div>
+    </div>
+<% }) %>

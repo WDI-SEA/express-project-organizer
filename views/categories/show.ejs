@@ -1,12 +1,19 @@
-<h2><%= displayCategory.name %> </h2>
+<h1><%= category.name %></h1>
 
-<ul>
-    <% displayCategory.projects.forEach(project=> { %>
-        <li>
-            <%= project %> 
-        </li>
-    <% }) %>
-
-</ul>
-
-<!-- display all the projects that utilized this category -->
+<% if (!category.projects.length) { %>
+<h2>No projects with this category!</h2>
+<% } %> <% category.projects.forEach(project => { %>
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <h2>
+                <a href="/projects/<%= project.id%>"> <%= project.name %> </a>
+            </h2>
+        </div>
+    </div>
+</div>
+<hr />
+<% }) %>
+<form action="/categories/<%=category.id%>?_method=DELETE" method="POST">
+    <input type="submit" class="btn btn-danger" value="Delete Category" />
+</form>
