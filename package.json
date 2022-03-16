@@ -15,5 +15,16 @@
     "pg": "^8.5.1",
     "rowdy-logger": "0.0.2",
     "sequelize": "^6.3.5"
-  }
+  },
+  "description": "To practice N:M associations, we'll be adding the ability to categorize projects in an existing project organizer.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tristonpalacios/express-project-organizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/tristonpalacios/express-project-organizer/issues"
+  },
+  "homepage": "https://github.com/tristonpalacios/express-project-organizer#readme"
 }
