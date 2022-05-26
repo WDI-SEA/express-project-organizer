@@ -1,6 +1,6 @@
 <h1>Categories</h1>
 <ul>
 <%foundCategories.forEach(category => { %>
-<li><%=category.name%></li>
+<li><a href="/categories/<%=category.id%>"><%=category.name%></a></li>
 <% });%>
 </ul>
