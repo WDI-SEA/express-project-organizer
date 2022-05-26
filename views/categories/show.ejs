@@ -2,7 +2,7 @@
 
 <ul>
     <%categories.forEach(function(category){%>
-        <li><%=category.name%></li>
+        <li><a href="/categories/<%=category.id%>"><%=category.name%></a></li>
 
     <%})%>
 </ul>

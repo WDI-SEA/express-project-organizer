@@ -11,7 +11,7 @@ router.get('/', async function(req,res){
 router.get('/:id', async function(req,res){
  const category = await db.category.finOne()
  where: {id: req.params.id}
- imclude: {db.project}
+ include: {db.project}
 
  res.render('categories/assProjects.ejs', {category})
 })
