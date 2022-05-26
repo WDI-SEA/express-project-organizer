@@ -1,3 +1,6 @@
+<a href="/">&larr; Back Home</a>
+<br />
+
 <h1><%= project.name %></h1>
 <br />
 
@@ -10,9 +13,18 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   Deployed Link
 </a>
+
+<a class="btn btn-primary" href="/projects/edit/<%= project.id %>">
+  Edit Project
+</a>
+
+<br />
+<br />
+
 <hr />
 <p><%= project.description %></p>
 
 <hr />
-
-<a href="/">&larr; Back Home</a>
+<form action="/projects/<%= project.id %>/?_method=DELETE" method="POST">
+  <button class="btn btn-primary" type="submit">Delete Project</button>
+</form>

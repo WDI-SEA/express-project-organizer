@@ -2,6 +2,7 @@ const express = require("express");
 const ejsLayouts = require("express-ejs-layouts");
 const db = require("./models");
 const rowdy = require("rowdy-logger");
+const methodOverride = require("method-override");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,7 @@ app.set("view engine", "ejs");
 app.use(require("morgan")("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
   db.project

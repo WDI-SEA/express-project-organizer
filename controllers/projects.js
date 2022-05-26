@@ -36,6 +36,73 @@ router.get("/new", (req, res) => {
   res.render("projects/new");
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const project = await db.project.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    await project.destroy();
+    res.redirect("/");
+  } catch (err) {
+    console.warn(err);
+  }
+});
+
+router.get("/edit/:id", async (req, res) => {
+  try {
+    const project = await db.project.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [db.category],
+    });
+
+    const { id, name, githubLink, deployedLink, description } = project;
+
+    res.render("projects/edit.ejs", {
+      id,
+      name,
+      githubLink,
+      deployedLink,
+      description,
+      category: project.categories[0].name,
+    });
+  } catch (err) {
+    console.warn(err);
+  }
+});
+
+router.put("/edit/:id", async (req, res) => {
+  try {
+    const project = await db.project.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [db.category],
+    });
+
+    const { id } = project;
+
+    await project.set({
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployedLink: req.body.deployedLink,
+      description: req.body.description,
+    });
+
+    // console.log(project);
+
+    await project.save();
+
+    res.redirect(`/projects/${id}`);
+  } catch (err) {
+    console.warn(err);
+  }
+});
+
 // GET /projects/:id - display a specific project
 router.get("/:id", (req, res) => {
   db.project
