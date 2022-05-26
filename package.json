@@ -15,5 +15,8 @@
     "pg": "^8.5.1",
     "rowdy-logger": "0.0.2",
     "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
