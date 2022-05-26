@@ -1,0 +1,7 @@
+sequelize model:create --name category --attributes name:string
+
+sequelize db:migrate
+
+sequelize model:create --name categoriesProjects --attributes projectId:integer,categoryId:integer
+
+sequelize db:migrate

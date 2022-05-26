@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     res.status(400).render('main/404')
   })
 })
-
+app.use('/categories', require('./controllers/categories'))
 app.use('/projects', require('./controllers/projects'))
 
 app.get('*', (req, res) => {

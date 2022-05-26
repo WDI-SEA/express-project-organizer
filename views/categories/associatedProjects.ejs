@@ -1,0 +1,11 @@
+<h2>List of Projects that use <%=category.name%> </h2>
+
+<ul>
+    <% category.projects.forEach(function(proj){%>
+        <h3><%=proj.name%></h3>
+        <li><a href="<%=proj.githubLink%>">Github Link</a></li>
+        <li><a href="<%=proj.deployLink%>">Deployed Link</a></li>
+        <li>Description: <%=proj.description%></li>
+    <%})%>
+
+</ul>
