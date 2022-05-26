@@ -1,0 +1,9 @@
+<h1>Projects in <%= category.name.toUpperCase() %></h1> 
+
+<% category.projects.forEach(project => { %>
+    <div class="well">
+        <a href="/projects/<%= project.id %> "><%= project.name %> </a> 
+    </div>
+<% }) %> 
+
+<a href="/categories">Back</a>

@@ -1,0 +1,12 @@
+table name: category{
+    name:VARCHAR
+}
+
+sequelize model:create --name category --attributes name:string
+
+JOIN table name: categoriesProjects {
+    categoryId: integer,
+    projectId: integer
+}
+
+sequelize model:create --name categoriesProjects --attributes categoryId:integer,projectId:integer
