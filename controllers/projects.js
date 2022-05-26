@@ -3,19 +3,27 @@ let db = require('../models')
 let router = express.Router()
 
 // POST /projects - create a new project
-router.post('/', (req, res) => {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then((project) => {
+router.post('/', async (req, res) => {
+  try {
+    const project = await db.project.create({
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployLink: req.body.deployedLink,
+      description: req.body.description
+    })
+    const [category, created] = await db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    })
+    project.addCategory(category)
+    console.log(`The ${category.name} was added as a category to the ${project.name}`)
     res.redirect('/')
-  })
-  .catch((error) => {
-    res.status(400).render('main/404')
-  })
+  }
+  catch (err) {
+    console.log(err)  
+  }
+  
 })
 
 // GET /projects/new - display form for creating a new project
@@ -36,5 +44,7 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
+
 
 module.exports = router
