@@ -4,13 +4,17 @@ let router = express.Router()
 
 // POST /projects - create a new project
 router.post('/', (req, res) => {
-  db.project.create({
+  
+  const foundOreCreatedProject = db.project.findOrCreate({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
-    description: req.body.description
+    description: req.body.description,
+    category: req.body.category
   })
   .then((project) => {
+    foundOreCreatedProject.addCategory(category)
+    console.log(` added to ${foundOreCreatedProject}`)
     res.redirect('/')
   })
   .catch((error) => {
@@ -21,6 +25,7 @@ router.post('/', (req, res) => {
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
   res.render('projects/new')
+  console.log(`${category} added to ${foundOreCreatedProject}`)
 })
 
 // GET /projects/:id - display a specific project
