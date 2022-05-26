@@ -1,0 +1,5 @@
+<h2>Project Categories</h2>
+
+<% allCat.forEach(cat => { %>
+<a href="/categories/<%= cat.id %>"><h4 class="well"><%= cat.name %></h4></a>
+<% }) %>

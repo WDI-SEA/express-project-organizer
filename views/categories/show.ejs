@@ -1,0 +1,9 @@
+<h1><%= name %></h1>
+
+<ul class="list-group">
+  <% projects.forEach(project => { %>
+  <a href="/projects/<%= project.id %>">
+    <li class="list-group-item"><%= project.name %></li>
+  </a>
+  <% }); %>
+</ul>
