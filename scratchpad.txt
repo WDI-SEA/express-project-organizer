@@ -1,0 +1,5 @@
+part 1 - create category model
+sequelize model:create --name category --attributes name:string
+
+part 2 - create association model
+sequelize model:create --name categoriesProjects --attributes categoryId:integer,projectId:integer

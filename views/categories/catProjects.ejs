@@ -1,0 +1,8 @@
+<h1><%= category.name %> </h1>
+
+<h2>Projects categorized with <%= category.name %> </h2>
+<ul>
+    <% category.projects.forEach(project=>{ %>
+        <li><%= project.name %></li>
+    <% }) %> 
+</ul>
