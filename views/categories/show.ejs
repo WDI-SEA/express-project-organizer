@@ -1,0 +1,15 @@
+<h2>Category: <%= category.name %></h2>
+<h3>Projects tagged with <%= category.name %></h3>
+<hr>
+
+<% if (category.projects.length < 1) { %>
+  <p class="h4">No projects in this category yet!</p>
+<% } %>
+
+<% category.projects.forEach(project => { %>
+  <div class="well">
+    <h2><a href="/projects/<%= project.id %>">
+        <%= project.name %>
+      </a></h2>
+  </div>
+<% }) %>
