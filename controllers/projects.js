@@ -3,20 +3,48 @@ let db = require('../models')
 let router = express.Router()
 
 // POST /projects - create a new project
-router.post('/', (req, res) => {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then((project) => {
+// router.post('/', (req, res) => {
+//   db.project.create({
+//     name: req.body.name,
+//     githubLink: req.body.githubLink,
+//     deployLink: req.body.deployedLink,
+//     description: req.body.description
+//   })
+//   .then((project) => {
+//     // find or create a category here
+//     res.redirect('/')
+//   })
+//   .catch((error) => {
+//     res.status(400).render('main/404')
+//   })
+// })
+
+router.post('/', async (req, res) => {
+  try {
+    const project = await db.project.create({
+      name: req.body.name,
+      githubLink: req.body.githubLink,
+      deployLink: req.body.deployedLink,
+      description: req.body.description
+    })
+    // find or create a category
+    const [category] = await db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      },
+      // no defualts needed 
+      // defualts:
+    })
+    // associate the project with the category
+    await category.addProject(project)
+    // await project.addCategory(category)
     res.redirect('/')
-  })
-  .catch((error) => {
+  } catch(err) {
+    console.log(err)
     res.status(400).render('main/404')
-  })
+  }
 })
+
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
