@@ -119,7 +119,6 @@ When finished with the above, style the application appropriately with CSS. Try 
 * Add the ability to edit and delete projects
 * Add the ability to input and assign multiple tags via a comma separated list.
   * Example: Inputting `node, pizza, music` would add all three tags to a project at once.
-  * You'll notice that this will require multiple queries, dependent on how many tags you're adding. Look into using the [async module](https://wdi_sea.gitbooks.io/notes/content/02-js-jquery/js-async/readme.html) in order to run multiple asynchronous functions and send a response at the correct time.
 
 ## Deliverables
 
