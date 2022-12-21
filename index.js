@@ -23,6 +23,38 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/categories',async function(req,res){
+  try{
+   const categories= await db.category.findAll()
+    res.render('categories/index',{categories})
+  }catch(error){
+    console.log('nnnnnnnn')
+  }
+})
+app.get('/categories/:id',async function(req,res){
+  try{
+    //  const projects = await db.category.findAll({
+    //   where:{
+    //     id: parseInt(req.params.id)
+    //   },
+    //   include:[{
+    //     model: db.project
+    //   }]
+    //  })
+
+    const category = await db.category.findOne({
+      where:{
+        id:req.params.id
+      },
+      include:[db.project]
+    })
+    // const projects = await category.getProjects()
+
+     res.render('categories/show',{category})
+   }catch(error){
+     console.log('nnnnnnnn')
+   }
+})
 app.use('/projects', require('./controllers/projects'))
 
 app.get('*', (req, res) => {
