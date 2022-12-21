@@ -1,0 +1,7 @@
+table: category
+name: string
+
+sequelize model:create --name category --attributes name:string
+
+Join table between projects & categries
+sequelize model:create --name categories_projects --attributes categoryId:integer,projectId:integer

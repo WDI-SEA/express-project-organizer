@@ -4,7 +4,7 @@ const db = require('./models')
 const rowdy = require('rowdy-logger')
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3050
 rowdy.begin(app)
 
 app.set('view engine', 'ejs')
@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')
