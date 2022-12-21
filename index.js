@@ -25,6 +25,24 @@ app.get('/', (req, res) => {
 
 app.use('/projects', require('./controllers/projects'))
 
+app.get('/categories/:id', async (req, res) => {
+  try {
+    const category = await db.category.findOne({
+      where: {
+        id: req.params.id
+      }, 
+      include: [db.project]
+    })
+
+    const projects = await category.getProjects()
+    res.json(category)
+
+  } catch (err) {
+    console.log(err)
+    res.status(400).send('error')
+  }
+})
+
 app.get('*', (req, res) => {
   res.render('main/404')
 })
