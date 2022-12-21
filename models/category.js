@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class project extends Model {
+  class category extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,30 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.project.belongsToMany(models.category, {
+      models.category.belongsToMany(models.project, {
         through: "categories_projects",
       });
     }
   }
-  project.init(
+  category.init(
     {
-      githubLink: {
-        type: DataTypes.TEXT,
-        validate: { isUrl: true },
-      },
       name: DataTypes.STRING,
-      deployLink: {
-        type: DataTypes.TEXT,
-        validate: { isUrl: true },
-      },
-      description: {
-        type: DataTypes.TEXT,
-      },
     },
     {
       sequelize,
-      modelName: "project",
+      modelName: "category",
     }
   );
-  return project;
+  return category;
 };

@@ -22,7 +22,14 @@ app.get('/', (req, res) => {
     res.status(400).render('main/404')
   })
 })
-
+app.get('/categories',async(req,res)=>{
+  try {
+    let categories = await db.category.findAll()
+    res.render('categories/index',{categories:categories})
+  } catch (error) {
+    console.error(error);
+  }
+})
 app.use('/projects', require('./controllers/projects'))
 
 app.get('*', (req, res) => {
