@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // N:M with category
+      models.project.belongsToMany(models.category, { through: "categoriesProjects"}) // thru join table
     }
   }
   project.init({
