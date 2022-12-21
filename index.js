@@ -25,6 +25,28 @@ app.get('/', (req, res) => {
 
 app.use('/projects', require('./controllers/projects'))
 
+// pretend this is in a controller
+
+app.get('/categories/:id', async (req,res) => {
+  try {
+    // use the req.params.id 
+    const category = await db.category.findOne({
+      where: {
+        id: req.params.id
+      },
+      //imbed assoc. projects in this category
+      include: [db.project]
+    })
+    // way #1 = get all projects assoc. with this category
+    // const projects = await category.getProjects()
+    // console.log(projects)
+    res.render('categories/detail.ejs', { category })
+  } catch (err) {
+    console.log(err)
+    res.status(400).send('error')
+  }
+})
+
 app.get('*', (req, res) => {
   res.render('main/404')
 })

@@ -71,6 +71,14 @@ async function createCategory() {
 createCategory()
 ```
 
+### Create tables
+
+```bash
+sequelize model:create --name category --attributes name:string
+
+sequelize model:create --name categoriesProjects --attributes projectId:integer,categoryId:integer
+```
+
 #### Part 2: Create a Join model
 
 In order to associate a category to many projects, and a project to many categories, we'll need to create an intermediate model. It's recommended that you name this model `categoriesProjects`. It will store two attributes: the id of a category (an integer) and the id of a project (an integer).
