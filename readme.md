@@ -70,6 +70,12 @@ async function createCategory() {
 
 createCategory()
 ```
+#### create tables
+
+```bash 
+sequelize model:create --name category --attributes name:string
+# Join table model
+sequelize model:create --name categoriesProjects --attributes projectId:integer,categoryId:integer
 
 #### Part 2: Create a Join model
 
