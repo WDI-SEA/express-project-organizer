@@ -1,0 +1,14 @@
+<h1>All Categories</h1>
+
+<% categories.forEach(category => { %>
+    <div>
+        <h2><%= category.name %></h2>
+        <ul>
+            <% category.projects.forEach(project => { %>
+                <li>
+                    <a href="/projects/<%= project.id %>"><%= project.name %></a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+<% }) %>
