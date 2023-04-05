@@ -3,12 +3,17 @@ let db = require('../models')
 let router = express.Router()
 
 // POST /projects - create a new project
-router.post('/', (req, res) => {
-  db.project.create({
+router.post('/', async (req, res) => {
+   await db.project.create({
     name: req.body.name,
     githubLink: req.body.githubLink,
     deployLink: req.body.deployedLink,
     description: req.body.description
+  })
+    await db.category.findOrCreate({
+    where:{
+      name: req.body
+    }
   })
   .then((project) => {
     res.redirect('/')
@@ -37,4 +42,8 @@ router.get('/:id', (req, res) => {
   })
 })
 
+
+
+
 module.exports = router
+
