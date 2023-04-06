@@ -1,0 +1,13 @@
+sequelize model:create --name category --attributes name:string
+
+sequelize model:create --name categoriesProjects --attributes categoryId:integer,projectId:integer
+
+
+db.category.findOne({
+  where: { id: categoryId },
+  include: [db.project]
+})
+.then(db.category => {
+  console.log(category.Projects)
+})
+
