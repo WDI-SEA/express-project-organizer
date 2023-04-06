@@ -1,0 +1,8 @@
+sequelize model:create --name category --attributes name:string
+
+categoriesProjects => categoriesProjects model
+------------------------
+categoryId: FK REFERENCES category.id (integer)
+projectId: FK REFERENCES project.id (integer)
+
+sequelize model:create --name categoriesProjects --attributes categoryId:integer,projectId:integer
