@@ -10,3 +10,4 @@ db.category.findOne({
 .then(db.category => {
   console.log(category.Projects)
 })
+
