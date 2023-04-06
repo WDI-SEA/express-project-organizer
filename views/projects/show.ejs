@@ -14,4 +14,14 @@
 
 <hr />
 
+<form action="/projects/<%project.id %>" method="POST">
+  
+  <div class="form-group">
+    <label for="category">Add another category</label>
+    <textarea type="text" class="form-control" id="category" name="category" required></textarea>
+  </div>
+
+  <input type="submit" class="btn btn-primary">
+</form>
+
 <a href="/">&larr; Back Home</a>
