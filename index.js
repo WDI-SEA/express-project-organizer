@@ -23,7 +23,19 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/', (req, res) => {
+  db.category.findAll()
+  .then((category) => {
+    res.render('categories/categories', {category: category})
+  })
+  .catch((error) => {
+    console.log('Error in GET /', error)
+    res.status(400).render('main/404')
+  })
+  })
+
 app.use('/projects', require('./controllers/projects'))
+app.use('/categories', require('./controllers/categories'))
 
 app.get('*', (req, res) => {
   res.render('main/404')

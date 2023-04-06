@@ -3,20 +3,29 @@ let db = require('../models')
 let router = express.Router()
 
 // POST /projects - create a new project
-router.post('/', (req, res) => {
-  db.project.create({
-    name: req.body.name,
-    githubLink: req.body.githubLink,
-    deployLink: req.body.deployedLink,
-    description: req.body.description
-  })
-  .then((project) => {
-    res.redirect('/')
-  })
-  .catch((error) => {
-    res.status(400).render('main/404')
-  })
-})
+router.post('/', async (req, res) => {
+  try {
+    const [project, category] = await Promise.all([
+      db.project.create({
+        name: req.body.name,
+        githubLink: req.body.githubLink,
+        deployLink: req.body.deployedLink,
+        description: req.body.description
+      }),
+      db.category.findOrCreate({
+        where: {
+          name: req.body.category
+        }
+      })
+    ]);
+
+    await project.addCategory(category[0]);
+
+    res.redirect('/');
+  } catch (error) {
+    res.status(400).render('main/404');
+  }
+});
 
 // GET /projects/new - display form for creating a new project
 router.get('/new', (req, res) => {
@@ -35,6 +44,30 @@ router.get('/:id', (req, res) => {
   .catch((error) => {
     res.status(400).render('main/404')
   })
+})
+
+router.put('/:id', async (req, res) => {
+  try {
+    const project = await db.project.findByPk(req.params.id)
+
+    if (!project) {
+      res.status(404).render('main/404')
+      return
+    }
+
+    const category = await db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    })
+
+    await project.addCategory(category)
+
+    res.redirect(`/projects/${project.id}`)
+  } catch (error) {
+    console.log(error)
+    res.status(400).render('main/404')
+  }
 })
 
 module.exports = router
