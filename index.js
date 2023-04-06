@@ -15,7 +15,7 @@ app.use(ejsLayouts)
 app.get('/', (req, res) => {
   db.project.findAll()
   .then((projects) => {
-    res.render('main/index', { projects: projects })
+    res.render('main/index', { projects: projects, blah: 'hello' })
   })
   .catch((error) => {
     console.log('Error in GET /', error)
