@@ -2,6 +2,8 @@
 
 <% categories.forEach(category => { %>
     <h2><%= category.name %></h2>
-    
+    <% projects.forEach(project => { %>
+        <p><%= project.name %></p>
+    <% }) %>
 <% }) %>
 
