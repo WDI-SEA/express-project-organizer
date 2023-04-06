@@ -8,7 +8,7 @@ router.get('/new', (req, res) => {
 })
 
 // GET /projects/:id - display a specific project
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
   db.project.findOne({
     where: { id: req.params.id },
     include: [db.category]
