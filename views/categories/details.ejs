@@ -1,0 +1,6 @@
+<h1><%=categoryInfo.name%></h1>
+<ul>
+    <% categoryInfo.projects.forEach(project => { %>
+        <li><%=project.name%></li>
+   <% }) %>
+</ul>
