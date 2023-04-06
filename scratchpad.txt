@@ -1,0 +1,15 @@
+TODO User Stories:
+--As a user, I want to categorize projects using different names. For example, all of my Node projects will be under the category "Node".
+--As a user, I want to assign multiple categories to a single project.
+--As a user, I want to view a list of categories I've assigned.
+--As a user, I want to view projects associated with a category I've selected
+
+
+Step One:
+
+sequelize model:create --name category --attributes name:string
+
+
+Step :
+
+sequelize model:create --name categoriesProjects --attributes categoryId:integer,projectId:integer    
