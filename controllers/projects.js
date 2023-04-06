@@ -11,6 +11,12 @@ router.post('/', (req, res) => {
     description: req.body.description
   })
   .then((project) => {
+    const [category] = db.category.findOrCreate({
+      where: {
+        name: req.body.category
+      }
+    })
+    project.addCategory(category)
     res.redirect('/')
   })
   .catch((error) => {
