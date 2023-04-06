@@ -1,5 +1,6 @@
 let express = require('express')
 let db = require('../models')
+const project = require('../models/project')
 let router = express.Router()
 
 // POST /projects - create a new project
@@ -12,9 +13,14 @@ router.post('/', async (req, res) => {
   })
     await db.category.findOrCreate({
     where:{
-      name: req.body
+      name: req.body.category
     }
   })
+  // //  await project.addCategory({
+  // //   where:{
+  // //     name: req.body.category
+  // //   }
+  //  })
   .then((project) => {
     res.redirect('/')
   })
